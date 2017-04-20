@@ -1,0 +1,167 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/templates/Func_Layout.xhtml">
+	
+	<ui:define name="content">
+            <h1 class="aw-page-title">Minhas Portarias</h1>
+            
+            <f:metadata>
+                <f:viewAction action="#{CadastroPort.listandoPortaria()}">  </f:viewAction>    
+            </f:metadata>
+            
+            <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
+            <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
+            
+            <h:form id="Portarias" >
+                <p:dataTable id="listandoPortaria"
+                             var="portaria" 
+                             value="#{CadastroPort.listaPortaria}" 
+                             editable="true" reflow="true" >
+                    
+                    <f:facet name="header">
+                        Portarias
+                    </f:facet>
+                    
+                    
+                    <p:ajax event="rowEdit" />
+                    <p:ajax event="rowEditCancel"  />
+                    
+                    <p:column headerText="Número" width="50" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{portaria.numeroPort}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText disabled="true" 
+                                             placeholder="#{portaria.numeroPort}" 
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                   <p:column headerText="Ementa" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{portaria.ementaPort}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{portaria.ementaPort}" 
+                                             placeholder="#{portaria.ementaPort}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Título do Projeto" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{portaria.titulo}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{portaria.titulo}" 
+                                             placeholder="#{portaria.titulo}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Projeto" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{portaria.projeto}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{portaria.projeto}" 
+                                             placeholder="#{portaria.projeto}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Professor Coordenador" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{portaria.profCoordenador}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{portaria.profCoordenador}" 
+                                             placeholder="#{portaria.profCoordenador}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Siape Prof Coordenador" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{portaria.siapeCoordenador}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{portaria.siapeCoordenador}" 
+                                             placeholder="#{portaria.siapeCoordenador}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Vigêcia Início" >
+                        <p:cellEditor>
+                               <f:facet name="output"><p:outputLabel value="#{portaria.vigenciaInicio}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{portaria.vigenciaInicio}" 
+                                                 placeholder="#{portaria.vigenciaInicio}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                 
+                 
+                 <p:column headerText="Vigêcia Fim" >
+                        <p:cellEditor>
+                               <f:facet name="output"><p:outputLabel value="#{portaria.vigenciaFim}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{portaria.vigenciaFim}" 
+                                                 placeholder="#{portaria.vigenciaFim}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                 
+                 
+                  <p:column headerText="Status" >
+                        <p:cellEditor>
+                                  <f:facet name="output"><p:outputLabel value="#{portaria.status}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{portaria.status}" 
+                                                 placeholder="#{portaria.status}"
+                                             maxlength="255"
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                 
+                    
+                   <p:column headerText="Usuário" width="110" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{funcionario.tipoUsuario}" /></f:facet>
+                            <f:facet name="input">
+                                <p:selectOneMenu value="#{funcionario.tipoUsuario}" >
+                                           <f:selectItem itemLabel="Professor" itemValue="Professor" />
+                                           <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                                </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column> 
+                    
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+                    
+                </p:dataTable>
+                
+                
+            </h:form>
+                
+            </p:panelGrid>
+            
+	</ui:define>
+	
+</ui:composition>

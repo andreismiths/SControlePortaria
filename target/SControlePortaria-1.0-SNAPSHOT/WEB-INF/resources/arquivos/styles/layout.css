@@ -1,0 +1,144 @@
+/* TOPBAR */
+.aw-topbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	min-height: 50px;
+	z-index: 9999;
+	
+        background-color: #1e94d2;
+}
+
+.banneradmlayout{
+    max-width: 100%;
+    height: auto;
+}
+.bannerloginlayout {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.aw-topbar-banner {
+	position: fixed;
+	
+	min-height: 6px;
+	z-index: 9999;
+	
+}
+.aw-topbar > img {
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+/*posicionamento imagens da pagina selecionar faculdade
+*/
+
+.facomp {
+    position:absolute;
+    top: 50px;
+    left: 50px; }
+
+.famatematica {
+    position:absolute;
+    top: 50px;
+    left: 300px; }
+
+.faedfisica {
+    position:absolute;
+    top: 50px;
+    left: 550px; }
+
+.faletras {
+    position:absolute;
+    top: 250px;
+    left: 50px; }  
+
+.fapedagogia {
+    position:absolute;
+    top: 250px;
+    left: 300px; }
+
+.faeja {
+    position:absolute;
+    top: 250px;
+    left: 550px; }
+
+
+/* SIDEBAR CONFIGURAÇÕES DO MENU*/
+
+.aw-sidebar {
+	position:  fixed;
+	top: 50px;
+	bottom: 0;
+	left: 0;
+	width:  max-content;
+	margin-left: -180px;
+	z-index: 9998;
+	transition: margin-left 0.5s;
+	overflow-y: auto;
+	
+	border-right: 1px solid blue;
+        background-color: white;
+	
+}
+
+/* formatando rodapé */
+.rodape {
+        position:absolute;
+	bottom:0;
+	width:100%;
+        text-align: center;
+}
+
+/* MENU BAR SUPERIOR */
+
+.menu-sistema {
+    position:  fixed;
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+    align-items: center;
+    top: 15px;
+    
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color:	 black !important;
+}
+
+
+/* FIM MENU BAR SUPERIOR */
+
+.aw-sidebar.is-toggled {
+	margin-left: 0px;
+}
+
+@media (min-width: 960px) {
+	.aw-sidebar {
+		margin-left: 0px;
+	}
+	
+	.aw-sidebar.is-toggled {
+		margin-left: -180px;
+	}
+}
+
+/* CONTENT */
+.aw-content {
+	padding: 0 20px;
+        transition: margin-left 0.5s;
+	margin-top: auto;
+	
+}
+
+@media (min-width: 960px) {
+	.aw-content {
+		margin-left: 210px;
+	}
+	
+	.aw-content.is-toggled {
+		margin-left: 0;
+	}
+}

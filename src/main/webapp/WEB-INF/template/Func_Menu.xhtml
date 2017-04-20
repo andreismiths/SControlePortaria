@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+   
+    <p:menu class="aw-menu" toggleable="true" style="border: 0px; background: none;">
+
+        <p:submenu label="PORTARIA">
+            <p:menuitem class="menuitem" value="Minhas Portarias" outcome="/Telas/Funcionario/MinhasPortarias" icon="fa fa-file-text"/>
+        </p:submenu>
+        <p:submenu label="RELATÓRIO">
+            <p:menuitem class="menuitem" value="Novo Relatório" outcome="/Telas/Funcionario/NovoRelatorioFuncionario" icon="fa fa-plus"/>
+        </p:submenu>
+    </p:menu>
+</ui:composition>
