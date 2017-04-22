@@ -1,7 +1,5 @@
 package com.ufpa.scontroleportaria.DAO;
 
-import com.ufpa.scontroleportaria.classeMolde.FormsExames;
-import com.ufpa.scontroleportaria.classeMolde.CollectionClasses;
 import com.ufpa.scontroleportaria.model.Funcionario;
 import java.util.List;
 
@@ -16,10 +14,6 @@ public interface GenericoDAO<T> {
     
     public List<T> list(String sqlHQL);    
     public List<Funcionario> listBySearchPESSOA(String searchMode, String search);
-    public List<CollectionClasses> generalSearchList(String searchMode, String search);
-    public List<CollectionClasses> listBySearchANIMAIS(String searchMode, String search);
-    public List<CollectionClasses> listBySearchCONSULTA(String searchMode, String search);
-    public FormsExames viewCONSULTA(String pkConsulta);
     public List<String> getPelagemNames();    
     public void remove(Object entidade);
     public void update(Object entidade);

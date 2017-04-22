@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/04/2017 13:14:41 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ufpa.scontroleportaria.model.Funcionario" table="Funcionario" catalog="SControlePortaria" optimistic-lock="version">
+        <id name="idFuncionario" type="int">
+            <column name="idFuncionario" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="portaria" class="com.ufpa.scontroleportaria.model.Portaria" fetch="select">
+            <column name="Portaria_idPortaria" not-null="true" />
+        </many-to-one>
+        <property name="nomeFuncionario" type="string">
+            <column name="nomeFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="siapeFuncionario" type="string">
+            <column name="siapeFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="cpfFuncionario" type="string">
+            <column name="cpfFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="senhaFuncionario" type="string">
+            <column name="senhaFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="dataNascimentoFuncionario" type="date">
+            <column name="dataNascimentoFuncionario" length="10" not-null="true" />
+        </property>
+        <property name="emailFuncionario" type="string">
+            <column name="emailFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="tipoFuncionario" type="string">
+            <column name="tipoFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="nomeusuario" type="string">
+            <column name="nomeusuario" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
