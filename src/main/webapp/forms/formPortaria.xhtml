@@ -1,10 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:x="http://xpert.com/faces"
-                template="/WEB-INF/template/Adm_Layout.xhtml">
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div class="ui-fluid">
         <p:panelGrid id="portariaForm"
@@ -17,10 +15,10 @@
             <!-- CADASTRO, ADICIONANDO, EXCLUINDO E MODIFICANDO FICA NO MB DA CLASSE A SER UTILIZADA
                   ESSE "CADASTROPORTARIA" É A MB DO SISTEMA ANTIGO ENTAO ELA DEVE SER ALTERADA VISANDO MELHOR
                   FORMATAÇÃO DO CÓDIGO E BOAS PRÁTICAS DE PROGRAMAÇÃO-->
-            <p:outputLabel value="Número Portaria: *"
+            <p:outputLabel value="Número Portaria:"
                            rendered="true"
                            for="numeroPortaria" />
-            <p:inputText id="nome" 
+            <p:inputText id="numeroPortaria" 
                          value="#{MBportaria.portaria.numeroPortaria}" 
                          title="Ex: 001/2017"
                          maxlength="100"
@@ -32,7 +30,7 @@
 
 
 
-            <p:outputLabel value="Ementa: *"
+            <p:outputLabel value="Ementa:"
                            rendered="true"
                            for="ementa" />                                
             <p:inputText id="ementa"
@@ -45,7 +43,7 @@
                        rendered="true" />
 
 
-            <p:outputLabel value="Projeto: *"
+            <p:outputLabel value="Projeto:"
                            for="projetoPortaria" />                             
             <p:selectOneMenu id="projetoPortaria"
                              value="#{MBportaria.portaria.projetoPortaria}"
@@ -59,7 +57,7 @@
             <p:message for="projetoPortaria" rendered="true" />
 
 
-            <p:outputLabel value="Título do Projeto: *"
+            <p:outputLabel value="Título do Projeto:"
                            rendered="true"
                            for="tituloProjeto" />                                
             <p:inputText id="tituloProjeto"
@@ -71,7 +69,7 @@
             <p:message for="tituloProjeto"
                        rendered="true" />
 
-            <p:outputLabel value="Faculdade: *"
+            <p:outputLabel value="Faculdade:"
                            for="faculdadePortaria" />                             
             <p:selectOneMenu id="faculdadePortaria"
                              value="#{MBportaria.portaria.faculdadePortaria}"
@@ -88,35 +86,7 @@
             <p:message for="faculdadePortaria" rendered="true" />
 
 
-      <!--      <p:outputLabel value="Professor Coordenador: *"
-                           rendered="true"
-                           for="professorCoordenador" />
-            <p:inputText id="professorCoordenador" 
-                         value="#{MBportaria.portaria.professorCoordenador}" 
-                         title="Ex: Marcos Seruffo"
-                         maxlength="100"
-                         rendered="true"
-                         required="true"
-                         requiredMessage="Informe o nome do Professor Coordenador!"/>
-            <p:message for="professorCoordenador"
-                       rendered="true" />
-
-
-            <p:outputLabel value="Siape Professor Coordenador *:"
-                           rendered="true"
-                           for="siapeProfessorCoordenador" />                                
-            <p:inputMask mask="999999"
-                         id="siapeProfessorCoordenador"
-                         rendered="true"
-                         value="#{MBportaria.portaria.siapeCoordenador}" 
-                         title="Ex.: 999999" 
-                         required="true" 
-                         requiredMessage="Informe o Siape do Professor Coordenador!" />
-            <p:message for="siapeProfessorCoordenador"
-                       rendered="true" />
-
--->
-            <p:outputLabel value="Vigência Início: *"
+            <p:outputLabel value="Vigência Início:"
                            for="vigenciaInicio" />
             <p:calendar id="vigenciaInicio"
                         value="#{MBportaria.portaria.inicioVigencia}"
@@ -132,14 +102,14 @@
 
 
 
-            <p:outputLabel value="Vigência Fim: *"
+            <p:outputLabel value="Vigência Fim:"
                            for="vigenciaFim" />
             <p:calendar id="vigenciaFim"
                         value="#{MBportaria.portaria.fimVigencia}"
                         maxlength="10" 
                         disabled="false" 
                         required="true"  
-                        requiredMessage="Coloque o Inicio da Vigência!" 
+                        requiredMessage="Coloque o Fim da Vigência!" 
                         locale="pt" 
                         navigator="true"  
                         pattern="dd-mm-yyyy" 
@@ -147,7 +117,7 @@
             <p:message for="vigenciaFim" rendered="true" />
 
 
-            <p:outputLabel value="Status Portaria: *"
+            <p:outputLabel value="Status Portaria:"
                            for="statusPortaria" />                             
             <p:selectOneMenu id="statusPortaria"
                              value="#{MBportaria.portaria.statusPortaria}"
