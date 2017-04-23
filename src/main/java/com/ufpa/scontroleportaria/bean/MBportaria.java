@@ -20,7 +20,7 @@ public class MBportaria extends AbstractBean {
     public void cadastrarPortaria() {
         try {
             getDaoGenerico().save(portaria);
-            getObjMessage().info("Cadastro efetuado!", "Cinema cadastrado com sucesso");
+            getObjMessage().info("Cadastro efetuado!", "Portaria cadastrada com sucesso");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
         }

@@ -1,0 +1,128 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:x="http://xpert.com/faces"
+                template="/WEB-INF/template/Adm_Layout.xhtml">
+
+    <div class="ui-fluid">
+        <p:panelGrid id="portariaCoordColabForm"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
+
+            <!---->
+            <!-- CADASTRO, ADICIONANDO, EXCLUINDO E MODIFICANDO FICA NO MB DA CLASSE A SER UTILIZADA
+                  ESSE "CADASTROPORTARIA" É A MB DO SISTEMA ANTIGO ENTAO ELA DEVE SER ALTERADA VISANDO MELHOR
+                  FORMATAÇÃO DO CÓDIGO E BOAS PRÁTICAS DE PROGRAMAÇÃO-->
+            <p:outputLabel value="Professor Coordenador: *"
+                           rendered="true"
+                           for="professorCoordenador" />
+            <p:inputText id="professorCoordenador" 
+                         value="#{MBportaria.portaria.professorCoordenador}" 
+                         title="Ex: Fabrício Garcia"
+                         maxlength="100"
+                         rendered="true"
+                         required="true"
+                         requiredMessage="Informe o nome do Professor Coordenador!"/>
+            <p:message for="professorCoordenador"
+                       rendered="true" />
+
+
+            <p:outputLabel value="Siape Professor Coordenador *:"
+                           rendered="true"
+                           for="siapeProfessorCoordenador" />                                
+            <p:inputMask mask="999999"
+                         id="siapeProfessorCoordenador"
+                         rendered="true"
+                         value="#{MBportaria.portaria.siapeCoordenador}" 
+                         title="Ex.: 999999" 
+                         required="true" 
+                         requiredMessage="Informe o Siape do Professor Coordenador!" />
+            <p:message for="siapeProfessorCoordenador"
+                       rendered="true" />
+
+            
+            <p:outputLabel value="Professor Colaborador 1:"
+                           rendered="true"
+                           for="professorColaborador1" />
+            <p:inputText id="professorColaborador1" 
+                         value="#{MBportaria.portaria.colaborador1}" 
+                         title="Ex: Tássio Carvalho"
+                         maxlength="100"
+                         rendered="true"
+                         required="false"/>
+            <p:message for="professorColaborador1"
+                       rendered="true" />
+            
+            
+            <p:outputLabel value="Siape Professor Colaborador 1:"
+                           rendered="true"
+                           for="siapeProfessorColaborador1" />                                
+            <p:inputMask mask="999999"
+                         id="siapeProfessorColaborador1"
+                         rendered="true"
+                         value="#{MBportaria.portaria.siapeColaborador1}" 
+                         title="Ex.: 999999" 
+                         required="false"/>
+            <p:message for="siapeProfessorColaborador1"
+                       rendered="true" />
+            
+            
+            <p:outputLabel value="Professor Colaborador 2:"
+                           rendered="true"
+                           for="professorColaborador2" />
+            <p:inputText id="professorColaborador2" 
+                         value="#{MBportaria.portaria.colaborador2}" 
+                         title="Ex: Yomara"
+                         maxlength="100"
+                         rendered="true"
+                         required="false"/>
+            <p:message for="professorColaborador2"
+                       rendered="true" />
+            
+            
+            <p:outputLabel value="Siape Professor Colaborador 2:"
+                           rendered="true"
+                           for="siapeProfessorColaborador2" />                                
+            <p:inputMask mask="999999"
+                         id="siapeProfessorColaborador2"
+                         rendered="true"
+                         value="#{MBportaria.portaria.siapeColaborador2}" 
+                         title="Ex.: 999999" 
+                         required="false"/>
+            <p:message for="siapeProfessorColaborador2"
+                       rendered="true" />
+            
+            
+            <p:outputLabel value="Professor Colaborador 3:"
+                           rendered="true"
+                           for="professorColaborador3" />
+            <p:inputText id="professorColaborador3" 
+                         value="#{MBportaria.portaria.colaborador3}" 
+                         title="Ex: José Jailton Junior"
+                         maxlength="100"
+                         rendered="true"
+                         required="false"/>
+            <p:message for="professorColaborador3"
+                       rendered="true" />
+
+            
+            <p:outputLabel value="Siape Professor Colaborador 3:"
+                           rendered="true"
+                           for="siapeProfessorColaborador3" />                                
+            <p:inputMask mask="999999"
+                         id="siapeProfessorColaborador3"
+                         rendered="true"
+                         value="#{MBportaria.portaria.siapeColaborador3}" 
+                         title="Ex.: 999999" 
+                         required="false"/>
+            <p:message for="siapeProfessorColaborador3"
+                       rendered="true" />
+
+        </p:panelGrid>
+
+    </div>
+</ui:composition>

@@ -1,0 +1,165 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:x="http://xpert.com/faces"
+                template="/WEB-INF/template/Adm_Layout.xhtml">
+
+    <div class="ui-fluid">
+        <p:panelGrid id="portariaForm"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
+
+            <!---->
+            <!-- CADASTRO, ADICIONANDO, EXCLUINDO E MODIFICANDO FICA NO MB DA CLASSE A SER UTILIZADA
+                  ESSE "CADASTROPORTARIA" É A MB DO SISTEMA ANTIGO ENTAO ELA DEVE SER ALTERADA VISANDO MELHOR
+                  FORMATAÇÃO DO CÓDIGO E BOAS PRÁTICAS DE PROGRAMAÇÃO-->
+            <p:outputLabel value="Número Portaria: *"
+                           rendered="true"
+                           for="numeroPortaria" />
+            <p:inputText id="nome" 
+                         value="#{MBportaria.portaria.numeroPortaria}" 
+                         title="Ex: 001/2017"
+                         maxlength="100"
+                         rendered="true"
+                         required="true"
+                         requiredMessage="Informe o Número da Portaria!"/>
+            <p:message for="numeroPortaria"
+                       rendered="true" />
+
+
+
+            <p:outputLabel value="Ementa: *"
+                           rendered="true"
+                           for="ementa" />                                
+            <p:inputText id="ementa"
+                         rendered="true"
+                         value="#{MBportaria.portaria.ementaPortaria}" 
+                         title="Informe a Ementa" 
+                         required="true" 
+                         requiredMessage="Informe a Ementa!" />
+            <p:message for="ementa"
+                       rendered="true" />
+
+
+            <p:outputLabel value="Projeto: *"
+                           for="projetoPortaria" />                             
+            <p:selectOneMenu id="projetoPortaria"
+                             value="#{MBportaria.portaria.projetoPortaria}"
+                             required="true"
+                             requiredMessage="Informe o tipo do Projeto!">
+                <f:selectItem itemLabel=" --- " itemValue="" />
+                <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
+                <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
+                <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
+            </p:selectOneMenu>
+            <p:message for="projetoPortaria" rendered="true" />
+
+
+            <p:outputLabel value="Título do Projeto: *"
+                           rendered="true"
+                           for="tituloProjeto" />                                
+            <p:inputText id="tituloProjeto"
+                         rendered="true"
+                         value="#{MBportaria.portaria.tituloProjetoPortaria}" 
+                         title="Projeto de Pesquisa para Computação em Nuvem..." 
+                         required="true" 
+                         requiredMessage="Informe o Título do Projeto!" />
+            <p:message for="tituloProjeto"
+                       rendered="true" />
+
+            <p:outputLabel value="Faculdade: *"
+                           for="faculdadePortaria" />                             
+            <p:selectOneMenu id="faculdadePortaria"
+                             value="#{MBportaria.portaria.faculdadePortaria}"
+                             required="true"
+                             requiredMessage="Informe a Faculdade!">
+                <f:selectItem itemLabel=" --- " itemValue="" />
+                <f:selectItem itemLabel="Faculdade de Computação" itemValue="Computação" />
+                <f:selectItem itemLabel="Faculdade de Matematica" itemValue="Matematica" />
+                <f:selectItem itemLabel="Faculdade de Letras" itemValue="Letras" />  
+                <f:selectItem itemLabel="Faculdade de Educação Física" itemValue="Educação Física" />
+                <f:selectItem itemLabel="Faculdade de Pedagogia" itemValue="Pedagogia" />
+                <f:selectItem itemLabel="Faculdade de Medicina Veterinária" itemValue="Medicina Veterinária" />
+            </p:selectOneMenu>
+            <p:message for="faculdadePortaria" rendered="true" />
+
+
+      <!--      <p:outputLabel value="Professor Coordenador: *"
+                           rendered="true"
+                           for="professorCoordenador" />
+            <p:inputText id="professorCoordenador" 
+                         value="#{MBportaria.portaria.professorCoordenador}" 
+                         title="Ex: Marcos Seruffo"
+                         maxlength="100"
+                         rendered="true"
+                         required="true"
+                         requiredMessage="Informe o nome do Professor Coordenador!"/>
+            <p:message for="professorCoordenador"
+                       rendered="true" />
+
+
+            <p:outputLabel value="Siape Professor Coordenador *:"
+                           rendered="true"
+                           for="siapeProfessorCoordenador" />                                
+            <p:inputMask mask="999999"
+                         id="siapeProfessorCoordenador"
+                         rendered="true"
+                         value="#{MBportaria.portaria.siapeCoordenador}" 
+                         title="Ex.: 999999" 
+                         required="true" 
+                         requiredMessage="Informe o Siape do Professor Coordenador!" />
+            <p:message for="siapeProfessorCoordenador"
+                       rendered="true" />
+
+-->
+            <p:outputLabel value="Vigência Início: *"
+                           for="vigenciaInicio" />
+            <p:calendar id="vigenciaInicio"
+                        value="#{MBportaria.portaria.inicioVigencia}"
+                        maxlength="10" 
+                        disabled="false" 
+                        required="true"  
+                        requiredMessage="Coloque o Inicio da Vigência!" 
+                        locale="pt" 
+                        navigator="true"  
+                        pattern="dd-mm-yyyy" 
+                        style="margin-bottom: 20px;" /> 
+            <p:message for="vigenciaInicio" rendered="true" />
+
+
+
+            <p:outputLabel value="Vigência Fim: *"
+                           for="vigenciaFim" />
+            <p:calendar id="vigenciaFim"
+                        value="#{MBportaria.portaria.fimVigencia}"
+                        maxlength="10" 
+                        disabled="false" 
+                        required="true"  
+                        requiredMessage="Coloque o Inicio da Vigência!" 
+                        locale="pt" 
+                        navigator="true"  
+                        pattern="dd-mm-yyyy" 
+                        style="margin-bottom: 20px;" /> 
+            <p:message for="vigenciaFim" rendered="true" />
+
+
+            <p:outputLabel value="Status Portaria: *"
+                           for="statusPortaria" />                             
+            <p:selectOneMenu id="statusPortaria"
+                             value="#{MBportaria.portaria.statusPortaria}"
+                             required="true"
+                             requiredMessage="Informe o Status da Portaria!">
+                <f:selectItem itemLabel=" --- " itemValue="" />
+                <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
+                <f:selectItem itemLabel="Expirada" itemValue="Expirada" />  
+            </p:selectOneMenu>
+            <p:message for="statusPortaria" rendered="true" />
+
+        </p:panelGrid>
+
+    </div>
+</ui:composition>

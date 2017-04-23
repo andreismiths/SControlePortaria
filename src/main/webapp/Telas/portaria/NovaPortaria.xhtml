@@ -1,89 +1,69 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-        xmlns:x="http://xpert.com/faces"
-        template="/WEB-INF/templates/Adm_Layout.xhtml">
-    <head>
-        <h:outputScript library="arquivos" name="javascripts/locale-primefaces.js"/>
-    </head>
-<ui:define name="content">
-  <h1 class="aw-page-title">Nova Portaria</h1> 
-   
-                     
-<p:tab title="Portaria" rendered="true">
-    <div class="ui-fluid">
-    <p:messages  id="messages" autoUpdate="true" closable="true"/>
-    <h:form id="NovaPortaria" style="margin-left: auto" class="ui-fluid">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/Adm_Layout.xhtml">
 
-<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder" columnClasses="ui-grid-col-2, ui-grid-col-4">
+    <ui:define name="content">
+        <h1 class="aw-page-title">Nova Portaria</h1> 
+        <h:form>
+            <p:wizard nextLabel="próximo"
+                      backLabel="voltar" >
 
-                        <p:outputLabel value="Número Portaria: *" />
-                        <p:inputText  placeholder="Ex: 001/2016" required="true" requiredMessage="Informe o Número da Portaria!" value="#{CadastroPort.portaria.numeroPort}"/>
-                        
-                        <p:outputLabel value="Ementa: *"/>
-                        <p:inputText placeholder="Informe a Ementa" required="true" requiredMessage="Informe a Ementa!" value="#{CadastroPort.portaria.ementaPort}"/>
-                        
-                        <p:outputLabel value="Projeto: *" />
-                        <p:selectOneMenu id="city"  effect="fold" required="true" requiredMessage="Informe o Projeto!"  editable="true" value="#{CadastroPort.portaria.projeto}">
-                            <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
-                            <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
-                            <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
-                        </p:selectOneMenu>
-                        
-                        <p:outputLabel value="Título do Projeto: *"/>
-                        <p:inputText placeholder="Informe a Ementa" required="true" requiredMessage="Informe o Título do Projeto!" value="#{CadastroPort.portaria.titulo}"/>
-                                             
-                        <p:outputLabel value="Faculdade: *"/>
-                        <p:selectOneMenu effect="fold" required="true" requiredMessage="Informe a Faculdade!" editable="true" value="#{CadastroPort.portaria.faculdade}">
-                            <f:selectItem itemLabel="Faculdade de Computação" itemValue="Computação" />
-                            <f:selectItem itemLabel="Faculdade de Matematica" itemValue="Matematica" />
-                            <f:selectItem itemLabel="Faculdade de Letras" itemValue="Letras" />  
-                            <f:selectItem itemLabel="Faculdade de Educação Física" itemValue="Educação Física" />
-                            <f:selectItem itemLabel="Faculdade de Pedagogia" itemValue="Pedagogia" />
-                            <f:selectItem itemLabel="EJA" itemValue="EJA" /> 
-                        </p:selectOneMenu>
-                        
-                        <p:outputLabel value="Professor Coordenador: *"/>
-                        <p:inputText required="true" requiredMessage="Informe o Professor Coordenador" value="#{CadastroPort.portaria.profCoordenador}"/>
-                        
-                        <p:outputLabel value="Siape Professor Coordenador: *"/>
-                        <p:inputText required="true" requiredMessage="Informe o Siape Professor Coordenador!" value="#{CadastroPort.portaria.siapeCoordenador}"/>
-                        
-                        
-                        <p:outputLabel value="Vigência Início:*" />
-                        <p:calendar id="vigenciaInicio" required="true" requiredMessage="Informe a Vigência Início" maxlength="10" value="#{CadastroPort.portaria.vigenciaInicio}" 
-                                    locale="pt" navigator="true" pattern="dd-mm-yyyy"/>
-                        
-                        <p:outputLabel value="Vigência Fim:*" />
-                        <p:calendar id="vigenciaFim" required="true" requiredMessage="Informe a Vigência Fim" maxlength="10" value="#{CadastroPort.portaria.vigenciaFim}" 
-                                    locale="pt" navigator="true" pattern="dd-mm-yyyy"/>
-                        
-                     <p:outputLabel value="Colaborador 1:"/>
-                        <p:inputText value="#{CadastroPort.portaria.colaborador1}"/>
-                        
-                        <p:outputLabel value="Siape Colaborador 1:"/>
-                        <p:inputText value="#{CadastroPort.portaria.siapeColaborador1}"/>
-                       
-                        <p:outputLabel value="Status:*"/>
-                        <p:selectOneMenu  effect="fold" editable="true" value="#{CadastroPort.portaria.status}">
-                            <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
-                            <f:selectItem itemLabel="Expirada" itemValue="Expirada" />                            
-                        </p:selectOneMenu>
+                <p:tab id="etapa1portaria" title="Dados da Portaria" >
+                    <p:panel>
+                        <ui:include src="/forms/formPortaria.xhtml" />
 
-</p:panelGrid>
- 
-<p:panelGrid columns="3" layout="grid" style="margin-top: 25px" styleClass="panelgrid-noborder" columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
-<p:button icon="fa fa-undo" value="Voltar" outcome="/Telas/PaginaInicial"/>
-<p:commandButton type="reset" id="LimparCampos" icon="fa fa-eraser" value="Limpar" update="grid"/>
-<p:commandButton value="Relatório" action="#{CadastroPort.gerarRelatorioAction()}" ajax="false" onclick="this.form.target='_blank'"/>
-<p:commandButton id="SalvarPortaria" icon="fa fa-save" actionListener="#{CadastroPort.criaPort()}" value="Salvar"/>
-</p:panelGrid>
-    
-</h:form>
-</div>
-</p:tab>
-    
-</ui:define>
+                        <p:commandButton type="reset" 
+                                         id="LimparCampos" 
+                                         icon="fa fa-eraser" 
+                                         value="Limpar cadastro" 
+                                         action="#" />
+                    </p:panel>
+                </p:tab>
+
+
+                <p:tab id="etapa2portaria" title="Dados dos Coordenadores" >
+                    <p:panel>
+                        <ui:include src="/forms/formPortariaCoordColab.xhtml" />
+                    </p:panel>
+                </p:tab>
+
+
+                <p:tab id="etapa3portaria" title="Confirmação dos Dados">
+                    <p:panel>
+
+                        <ui:include src="/forms/formPortariaInfo.xhtml" />
+
+                        <ui:include src="/forms/formPortariaCoordColabInfo.xhtml" />
+
+                        <div style="float: right; line-height: 58px; margin-right: -20px" >
+
+                            <p:commandButton action="#{MBportaria.cadastrarPortaria()}" 
+                                             value="Salvar"
+                                             style="width: 170px;"
+                                             icon="fa fa-save"
+                                             disabled="false" />
+
+                            <p:button value="Novo Cadastro" 
+                                      outcome="/Telas/portaria/NovaPortaria.xhtml"
+                                      icon="fa fa-user-plus" 
+                                      style="width: 170px;" />
+
+                            <p:button value="Sair" 
+                                      outcome="/Telas/PaginaInicial.xhtml"
+                                      icon="fa fa-home" 
+                                      style="width: 170px;" />
+
+                        </div>
+                    </p:panel>
+                </p:tab>
+
+
+            </p:wizard>
+
+        </h:form>
+
+    </ui:define>
 </ui:composition>

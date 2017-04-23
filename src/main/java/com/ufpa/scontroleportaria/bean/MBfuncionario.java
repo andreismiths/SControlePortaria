@@ -20,7 +20,7 @@ public class MBfuncionario extends AbstractBean {
     public void cadastrarFuncionario() {
         try {
             getDaoGenerico().save(funcionario);
-            getObjMessage().info("Cadastro efetuado!", "Cinema cadastrado com sucesso");
+            getObjMessage().info("Cadastro efetuado!", "Funcionario cadastrado com sucesso");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
         }
