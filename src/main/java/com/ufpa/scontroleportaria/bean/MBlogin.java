@@ -24,14 +24,16 @@ public class MBlogin extends AbstractBean {
          FacesMessage message = null;
         
         if(getSiape()!= null && getSiape().equals("admin") && getSenha() != null && getSenha().equals("admin")) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
-            (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape()));
+           getObjMessage().info("Bem vindo!", getSiape());
+            /* FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+            (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape())); */
             return "/Telas/PaginaInicial";
             
         } 
         if(getSiape()!= null && getSiape().equals("prof") && getSenha() != null && getSenha().equals("prof")) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
-            (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape()));
+            getObjMessage().info("Bem vindo!", getSiape());
+            /*FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+            (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape()));*/
             return "/Telas/funcionario/MinhasPortarias";
            
         } 

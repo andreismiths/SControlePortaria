@@ -20,7 +20,7 @@
                            rendered="true"
                            for="nome" />
             <p:inputText id="nome" 
-  <!--ALTERAR-->                       value="#{CadastroFunc.funcionario.nomeUsuario}" 
+                         value="#{MBfuncionario.funcionario.nomeFuncionario}" 
                          title="Beltrano Silva"
                          maxlength="100"
                          rendered="true"
@@ -37,7 +37,7 @@
             <p:inputMask mask="999.999.999-99"
                          id="cpf"
                          rendered="true"
-      <!--ALTERAR-->                   value="#{CadastroFunc.funcionario.cpfUsuario}" 
+                         value="#{MBfuncionario.funcionario.cpfFuncionario}" 
                          title="Ex.: 999.999.999-99" 
                          required="true" 
                          requiredMessage="Informe o CPF!" />
@@ -53,20 +53,34 @@
             <p:inputMask mask="999999"
                          id="siape"
                          rendered="true"
-       <!--ALTERAR-->                  value="#{CadastroFunc.funcionario.siapeUsuario}" 
+                         value="#{MBfuncionario.funcionario.siapeFuncionario}" 
                          title="Ex.: 999999" 
                          required="true" 
                          requiredMessage="Informe o Siape!" />
             <p:message for="siape"
                        rendered="true" />
           
+            <p:outputLabel value="Data de Nascimento:"
+                           for="dataNascimento" />
+            <p:calendar id="dataNascimento"
+                        value="#{MBfuncionario.funcionario.dataNascimentoFuncionario}"
+                        maxlength="10" 
+                        disabled="false" 
+                        title="" 
+                        required="true"  
+                        requiredMessage="Digite sua data de Nascimento!" 
+                        locale="pt" 
+                        navigator="true"  
+                        pattern="dd-mm-yyyy" 
+                        style="margin-bottom: 20px;" /> 
+            <p:message for="dataNascimento" rendered="true" />
             
             
             <p:outputLabel value="Email:"
                            rendered="true"
                            for="email_obr" />
             <p:inputText id="email_obr" 
-       <!--ALTERAR-->                  value="#{CadastroFunc.funcionario.emailUsuario}" 
+                         value="#{MBfuncionario.funcionario.emailFuncionario}" 
                          title="Ex.: usuario@email.com"
                          rendered="true"
                          maxlength="100"
@@ -87,7 +101,7 @@
                         feedback="true"
                         inline="true"
                         match="senha2"
-       <!--ALTERAR-->                 value="#{CadastroFunc.funcionario.senhaUsuario}"
+                        value="#{MBfuncionario.funcionario.senhaFuncionario}"
                         title="A senha pode conter números, letras e caracteres especiais."
                         promptLabel="Digite uma senha"
                         weakLabel="Fraca"
@@ -120,7 +134,7 @@
               <p:outputLabel value="Tipo de Usuário:"
                            for="tipousu" />                             
             <p:selectOneMenu id="tipousu"
-       <!--ALTERAR-->                      value="#{CadastroFunc.funcionario.tipoUsuario}"
+                             value="#{MBfuncionario.funcionario.tipoFuncionario}"
                              required="true"
                              requiredMessage="Informe o seu tipo de usuário!">
                 <f:selectItem itemLabel=" --- " itemValue="" />

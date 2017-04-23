@@ -41,7 +41,6 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="SControlePortaria"/>
-  <table-filter match-name="Portaria"/>
-  <table-filter match-name="Relatorio"/>
   <table-filter match-name="Funcionario"/>
+  <table-filter match-name="Portaria"/>
 </hibernate-reverse-engineering>

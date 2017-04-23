@@ -1,15 +1,16 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 22/04/2017 13:14:41 by Hibernate Tools 4.3.1
+// Generated 23/04/2017 12:10:30 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +25,8 @@ import javax.persistence.TemporalType;
 public class Portaria  implements java.io.Serializable {
 
 
-     private int idPortaria;
+     private PortariaId id;
+     private Funcionario funcionario;
      private String numeroPortaria;
      private String ementaPortaria;
      private String projetoPortaria;
@@ -41,15 +43,14 @@ public class Portaria  implements java.io.Serializable {
      private String colaborador3;
      private String siapeColaborador3;
      private String statusPortaria;
-     private Set<Funcionario> funcionarios = new HashSet<Funcionario>(0);
-     private Set<Relatorio> relatorios = new HashSet<Relatorio>(0);
 
     public Portaria() {
     }
 
 	
-    public Portaria(int idPortaria, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String statusPortaria) {
-        this.idPortaria = idPortaria;
+    public Portaria(PortariaId id, Funcionario funcionario, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String statusPortaria) {
+        this.id = id;
+        this.funcionario = funcionario;
         this.numeroPortaria = numeroPortaria;
         this.ementaPortaria = ementaPortaria;
         this.projetoPortaria = projetoPortaria;
@@ -61,8 +62,9 @@ public class Portaria  implements java.io.Serializable {
         this.fimVigencia = fimVigencia;
         this.statusPortaria = statusPortaria;
     }
-    public Portaria(int idPortaria, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String colaborador1, String siapeColaborador1, String colaborador2, String siapeColaborador2, String colaborador3, String siapeColaborador3, String statusPortaria, Set<Funcionario> funcionarios, Set<Relatorio> relatorios) {
-       this.idPortaria = idPortaria;
+    public Portaria(PortariaId id, Funcionario funcionario, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String colaborador1, String siapeColaborador1, String colaborador2, String siapeColaborador2, String colaborador3, String siapeColaborador3, String statusPortaria) {
+       this.id = id;
+       this.funcionario = funcionario;
        this.numeroPortaria = numeroPortaria;
        this.ementaPortaria = ementaPortaria;
        this.projetoPortaria = projetoPortaria;
@@ -79,20 +81,30 @@ public class Portaria  implements java.io.Serializable {
        this.colaborador3 = colaborador3;
        this.siapeColaborador3 = siapeColaborador3;
        this.statusPortaria = statusPortaria;
-       this.funcionarios = funcionarios;
-       this.relatorios = relatorios;
     }
    
-     @Id 
+     @EmbeddedId
 
     
-    @Column(name="idPortaria", unique=true, nullable=false)
-    public int getIdPortaria() {
-        return this.idPortaria;
+    @AttributeOverrides( {
+        @AttributeOverride(name="idPortaria", column=@Column(name="idPortaria", nullable=false) ), 
+        @AttributeOverride(name="funcionarioSiapeFuncionario", column=@Column(name="Funcionario_siapeFuncionario", nullable=false) ) } )
+    public PortariaId getId() {
+        return this.id;
     }
     
-    public void setIdPortaria(int idPortaria) {
-        this.idPortaria = idPortaria;
+    public void setId(PortariaId id) {
+        this.id = id;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="Funcionario_siapeFuncionario", nullable=false, insertable=false, updatable=false)
+    public Funcionario getFuncionario() {
+        return this.funcionario;
+    }
+    
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     
@@ -253,24 +265,6 @@ public class Portaria  implements java.io.Serializable {
     
     public void setStatusPortaria(String statusPortaria) {
         this.statusPortaria = statusPortaria;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="portaria")
-    public Set<Funcionario> getFuncionarios() {
-        return this.funcionarios;
-    }
-    
-    public void setFuncionarios(Set<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="portaria")
-    public Set<Relatorio> getRelatorios() {
-        return this.relatorios;
-    }
-    
-    public void setRelatorios(Set<Relatorio> relatorios) {
-        this.relatorios = relatorios;
     }
 
 

@@ -1,13 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/04/2017 13:14:41 by Hibernate Tools 4.3.1 -->
+<!-- Generated 23/04/2017 12:10:30 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.Portaria" table="Portaria" catalog="SControlePortaria" optimistic-lock="version">
-        <id name="idPortaria" type="int">
-            <column name="idPortaria" />
-            <generator class="assigned" />
-        </id>
+        <composite-id name="id" class="com.ufpa.scontroleportaria.model.PortariaId">
+            <key-property name="idPortaria" type="int">
+                <column name="idPortaria" />
+            </key-property>
+            <key-property name="funcionarioSiapeFuncionario" type="int">
+                <column name="Funcionario_siapeFuncionario" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="funcionario" class="com.ufpa.scontroleportaria.model.Funcionario" update="false" insert="false" fetch="select">
+            <column name="Funcionario_siapeFuncionario" not-null="true" />
+        </many-to-one>
         <property name="numeroPortaria" type="string">
             <column name="numeroPortaria" length="45" not-null="true" />
         </property>
@@ -56,17 +63,5 @@
         <property name="statusPortaria" type="string">
             <column name="statusPortaria" length="45" not-null="true" />
         </property>
-        <set name="funcionarios" table="Funcionario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="Portaria_idPortaria" not-null="true" />
-            </key>
-            <one-to-many class="com.ufpa.scontroleportaria.model.Funcionario" />
-        </set>
-        <set name="relatorios" table="Relatorio" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="Portaria_idPortaria" not-null="true" />
-            </key>
-            <one-to-many class="com.ufpa.scontroleportaria.model.Relatorio" />
-        </set>
     </class>
 </hibernate-mapping>
