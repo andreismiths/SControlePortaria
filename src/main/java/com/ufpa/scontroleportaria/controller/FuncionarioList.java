@@ -17,14 +17,14 @@ public class FuncionarioList extends AbstractBean {
     
     private Funcionario funcionario;
     private List<Funcionario> listFuncionario;
-    private String tipoPesquisa;
-    private String textoPesquisa;
+    private String tipoPesquisaFuncionario;
+    private String textoPesquisaFuncionario;
 
     
-    public void listPortaria() {
+    public void listFuncionario() {
         listFuncionario = getDaoGenerico().
-                list("select c from Cidade c where "
-                        + "c." + tipoPesquisa + " like '%" + textoPesquisa + "%'");
+                list("select f from Funcionario f where "
+                        + "f." + tipoPesquisaFuncionario + " like '%" + textoPesquisaFuncionario + "%'");
         if (!listFuncionario.isEmpty()) {
             getObjMessage().warn("Item não encontrado!", "A cidade não foi encontrada.");
         }
@@ -46,21 +46,20 @@ public class FuncionarioList extends AbstractBean {
         this.listFuncionario = listFuncionario;
     }
 
-    public String getTipoPesquisa() {
-        return tipoPesquisa;
+    public String getTipoPesquisaFuncionario() {
+        return tipoPesquisaFuncionario;
     }
 
-    public void setTipoPesquisa(String tipoPesquisa) {
-        this.tipoPesquisa = tipoPesquisa;
+    public void setTipoPesquisaFuncionario(String tipoPesquisaFuncionario) {
+        this.tipoPesquisaFuncionario = tipoPesquisaFuncionario;
     }
 
-    public String getTextoPesquisa() {
-        return textoPesquisa;
+    public String getTextoPesquisaFuncionario() {
+        return textoPesquisaFuncionario;
     }
 
-    public void setTextoPesquisa(String textoPesquisa) {
-        this.textoPesquisa = textoPesquisa;
+    public void setTextoPesquisaFuncionario(String textoPesquisaFuncionario) {
+        this.textoPesquisaFuncionario = textoPesquisaFuncionario;
     }
-    
-    
+
 }
