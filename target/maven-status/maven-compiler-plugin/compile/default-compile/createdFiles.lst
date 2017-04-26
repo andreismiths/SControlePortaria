@@ -5,6 +5,7 @@ com/ufpa/scontroleportaria/model/PortariaId.class
 com/ufpa/scontroleportaria/tools/FacesMessages.class
 com/ufpa/scontroleportaria/model/Portaria.class
 com/ufpa/scontroleportaria/DAO/GenericoDAOImpl.class
+com/ufpa/scontroleportaria/model/RelatorioF.class
 com/ufpa/scontroleportaria/bean/MBportaria.class
 com/ufpa/scontroleportaria/tools/Security.class
 com/ufpa/scontroleportaria/bean/MBlogin.class

@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 23/04/2017 12:10:30 by Hibernate Tools 4.3.1
+// Generated 26/04/2017 12:22:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,52 +26,44 @@ import javax.persistence.TemporalType;
 public class Funcionario  implements java.io.Serializable {
 
 
-     private int siapeFuncionario;
+     private Integer pkFuncionario;
      private String nomeFuncionario;
+     private Integer siapeFuncionario;
      private String cpfFuncionario;
      private String senhaFuncionario;
      private Date dataNascimentoFuncionario;
      private String emailFuncionario;
      private String tipoFuncionario;
-     private Set<Portaria> portarias = new HashSet<Portaria>(0);
+     private Set<FuncionarioHasPortaria> funcionarioHasPortarias = new HashSet<FuncionarioHasPortaria>(0);
 
     public Funcionario() {
     }
 
-	
-    public Funcionario(int siapeFuncionario, String nomeFuncionario, String cpfFuncionario, String senhaFuncionario, String emailFuncionario, String tipoFuncionario) {
-        this.siapeFuncionario = siapeFuncionario;
-        this.nomeFuncionario = nomeFuncionario;
-        this.cpfFuncionario = cpfFuncionario;
-        this.senhaFuncionario = senhaFuncionario;
-        this.emailFuncionario = emailFuncionario;
-        this.tipoFuncionario = tipoFuncionario;
-    }
-    public Funcionario(int siapeFuncionario, String nomeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<Portaria> portarias) {
-       this.siapeFuncionario = siapeFuncionario;
+    public Funcionario(String nomeFuncionario, Integer siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<FuncionarioHasPortaria> funcionarioHasPortarias) {
        this.nomeFuncionario = nomeFuncionario;
+       this.siapeFuncionario = siapeFuncionario;
        this.cpfFuncionario = cpfFuncionario;
        this.senhaFuncionario = senhaFuncionario;
        this.dataNascimentoFuncionario = dataNascimentoFuncionario;
        this.emailFuncionario = emailFuncionario;
        this.tipoFuncionario = tipoFuncionario;
-       this.portarias = portarias;
+       this.funcionarioHasPortarias = funcionarioHasPortarias;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="siapeFuncionario", unique=true, nullable=false)
-    public int getSiapeFuncionario() {
-        return this.siapeFuncionario;
+    @Column(name="PK_funcionario", unique=true, nullable=false)
+    public Integer getPkFuncionario() {
+        return this.pkFuncionario;
     }
     
-    public void setSiapeFuncionario(int siapeFuncionario) {
-        this.siapeFuncionario = siapeFuncionario;
+    public void setPkFuncionario(Integer pkFuncionario) {
+        this.pkFuncionario = pkFuncionario;
     }
 
     
-    @Column(name="nomeFuncionario", nullable=false, length=45)
+    @Column(name="nomeFuncionario", length=45)
     public String getNomeFuncionario() {
         return this.nomeFuncionario;
     }
@@ -79,7 +73,17 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="cpfFuncionario", nullable=false, length=45)
+    @Column(name="siapeFuncionario")
+    public Integer getSiapeFuncionario() {
+        return this.siapeFuncionario;
+    }
+    
+    public void setSiapeFuncionario(Integer siapeFuncionario) {
+        this.siapeFuncionario = siapeFuncionario;
+    }
+
+    
+    @Column(name="cpfFuncionario", length=45)
     public String getCpfFuncionario() {
         return this.cpfFuncionario;
     }
@@ -89,7 +93,7 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="senhaFuncionario", nullable=false, length=45)
+    @Column(name="senhaFuncionario", length=45)
     public String getSenhaFuncionario() {
         return this.senhaFuncionario;
     }
@@ -109,7 +113,7 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="emailFuncionario", nullable=false, length=45)
+    @Column(name="emailFuncionario", length=45)
     public String getEmailFuncionario() {
         return this.emailFuncionario;
     }
@@ -119,7 +123,7 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="tipoFuncionario", nullable=false, length=45)
+    @Column(name="tipoFuncionario", length=45)
     public String getTipoFuncionario() {
         return this.tipoFuncionario;
     }
@@ -129,12 +133,12 @@ public class Funcionario  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
-    public Set<Portaria> getPortarias() {
-        return this.portarias;
+    public Set<FuncionarioHasPortaria> getFuncionarioHasPortarias() {
+        return this.funcionarioHasPortarias;
     }
     
-    public void setPortarias(Set<Portaria> portarias) {
-        this.portarias = portarias;
+    public void setFuncionarioHasPortarias(Set<FuncionarioHasPortaria> funcionarioHasPortarias) {
+        this.funcionarioHasPortarias = funcionarioHasPortarias;
     }
 
 

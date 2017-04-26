@@ -1,20 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/04/2017 12:10:30 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/04/2017 12:22:50 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.Portaria" table="Portaria" catalog="SControlePortaria" optimistic-lock="version">
-        <composite-id name="id" class="com.ufpa.scontroleportaria.model.PortariaId">
-            <key-property name="idPortaria" type="int">
-                <column name="idPortaria" />
-            </key-property>
-            <key-property name="funcionarioSiapeFuncionario" type="int">
-                <column name="Funcionario_siapeFuncionario" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="funcionario" class="com.ufpa.scontroleportaria.model.Funcionario" update="false" insert="false" fetch="select">
-            <column name="Funcionario_siapeFuncionario" not-null="true" />
-        </many-to-one>
+        <id name="pkPortaria" type="java.lang.Integer">
+            <column name="PK_portaria" />
+            <generator class="identity" />
+        </id>
         <property name="numeroPortaria" type="string">
             <column name="numeroPortaria" length="45" not-null="true" />
         </property>
@@ -63,5 +56,11 @@
         <property name="statusPortaria" type="string">
             <column name="statusPortaria" length="45" not-null="true" />
         </property>
+        <set name="funcionarioHasPortarias" table="Funcionario_has_Portaria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_portaria" not-null="true" />
+            </key>
+            <one-to-many class="com.ufpa.scontroleportaria.model.FuncionarioHasPortaria" />
+        </set>
     </class>
 </hibernate-mapping>
