@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/04/2017 12:22:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ufpa.scontroleportaria.model.FuncionarioHasPortaria" table="Funcionario_has_Portaria" catalog="SControlePortaria" optimistic-lock="version">
+        <composite-id name="id" class="com.ufpa.scontroleportaria.model.FuncionarioHasPortariaId">
+            <key-property name="pkFuncionarioHasPortaria" type="int">
+                <column name="PK_Funcionario_has_Portaria" />
+            </key-property>
+            <key-property name="fkFuncionario" type="int">
+                <column name="FK_funcionario" />
+            </key-property>
+            <key-property name="fkPortaria" type="int">
+                <column name="FK_portaria" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="funcionario" class="com.ufpa.scontroleportaria.model.Funcionario" update="false" insert="false" fetch="select">
+            <column name="FK_funcionario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="portaria" class="com.ufpa.scontroleportaria.model.Portaria" update="false" insert="false" fetch="select">
+            <column name="FK_portaria" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

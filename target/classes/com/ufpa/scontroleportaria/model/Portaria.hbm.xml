@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/04/2017 12:22:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ufpa.scontroleportaria.model.Portaria" table="Portaria" catalog="SControlePortaria" optimistic-lock="version">
+        <id name="pkPortaria" type="java.lang.Integer">
+            <column name="PK_portaria" />
+            <generator class="identity" />
+        </id>
+        <property name="numeroPortaria" type="string">
+            <column name="numeroPortaria" length="45" not-null="true" />
+        </property>
+        <property name="ementaPortaria" type="string">
+            <column name="ementaPortaria" length="45" not-null="true" />
+        </property>
+        <property name="projetoPortaria" type="string">
+            <column name="projetoPortaria" length="45" not-null="true" />
+        </property>
+        <property name="tituloProjetoPortaria" type="string">
+            <column name="tituloProjetoPortaria" length="45" not-null="true" />
+        </property>
+        <property name="faculdadePortaria" type="string">
+            <column name="faculdadePortaria" length="45" not-null="true" />
+        </property>
+        <property name="professorCoordenador" type="string">
+            <column name="professorCoordenador" length="45" not-null="true" />
+        </property>
+        <property name="siapeCoordenador" type="string">
+            <column name="siapeCoordenador" length="45" not-null="true" />
+        </property>
+        <property name="inicioVigencia" type="date">
+            <column name="inicioVigencia" length="10" not-null="true" />
+        </property>
+        <property name="fimVigencia" type="date">
+            <column name="fimVigencia" length="10" not-null="true" />
+        </property>
+        <property name="colaborador1" type="string">
+            <column name="colaborador1" length="45" />
+        </property>
+        <property name="siapeColaborador1" type="string">
+            <column name="siapeColaborador1" length="45" />
+        </property>
+        <property name="colaborador2" type="string">
+            <column name="colaborador2" length="45" />
+        </property>
+        <property name="siapeColaborador2" type="string">
+            <column name="siapeColaborador2" length="45" />
+        </property>
+        <property name="colaborador3" type="string">
+            <column name="colaborador3" length="45" />
+        </property>
+        <property name="siapeColaborador3" type="string">
+            <column name="siapeColaborador3" length="45" />
+        </property>
+        <property name="statusPortaria" type="string">
+            <column name="statusPortaria" length="45" not-null="true" />
+        </property>
+        <set name="funcionarioHasPortarias" table="Funcionario_has_Portaria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_portaria" not-null="true" />
+            </key>
+            <one-to-many class="com.ufpa.scontroleportaria.model.FuncionarioHasPortaria" />
+        </set>
+    </class>
+</hibernate-mapping>

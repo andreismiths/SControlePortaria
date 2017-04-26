@@ -4,9 +4,10 @@
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/DAO/AuthorizationFilter.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBfuncionario.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/AbstractBean.java
-/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/PortariaId.java
+/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/FuncionarioHasPortaria.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/Funcionario.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBlogin.java
+/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/FuncionarioHasPortariaId.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/tools/FacesMessages.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/tools/Security.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/controller/PortariaList.java
