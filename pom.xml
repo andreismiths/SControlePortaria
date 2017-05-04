@@ -51,6 +51,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -114,6 +119,10 @@
             <name>PrimeFaces Maven Repository</name>
             <url>http://repository.primefaces.org</url>
             <layout>default</layout>
+        </repository>
+        <repository>
+            <id>sonatype-releases</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
     </repositories>
 </project>
