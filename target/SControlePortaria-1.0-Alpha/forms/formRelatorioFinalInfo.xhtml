@@ -13,37 +13,84 @@
                      columnClasses="ui-grid-col-4, ui-grid-col-3" >
 
 
-            <p:outputLabel value="Número Portaria: *" />
-            <p:outputLabel value="#{MBportaria.portaria.numeroPortaria}" />
+            <p:outputLabel value="Número de Protocolo:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.numeroDeProtocolo}" />
 
 
             <p:outputLabel value="Ementa: *" />
             <p:outputLabel value="#{MBportaria.portaria.ementaPortaria}" />
 
 
-            <p:outputLabel value="Projeto: *"/>
-            <p:outputLabel value="#{MBportaria.portaria.projetoPortaria}" />
+            <p:outputLabel value="Faculdade:"/>
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.faculdadeRelatorioF}" />
 
 
-            <p:outputLabel value="Título do Projeto: *"/>
-            <p:outputLabel value="#{MBportaria.portaria.tituloProjetoPortaria}" />
+            <p:outputLabel value="Título do Projeto:"/>
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.relatorioFtituloDoProjeto}" />
 
 
-            <p:outputLabel value="Faculdade: *" />
-            <p:outputLabel value="#{MBportaria.portaria.faculdadePortaria}" />            
+            <p:outputLabel value="Coordenador(a):" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.relatorioFcoordenador}" />            
 
 
-            <p:outputLabel value="Vigência Início: *" />
-            <p:outputLabel value="#{MBportaria.portaria.inicioVigencia}" />
+            <p:outputLabel value="Recebido em:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.dataRecebido}" />
 
 
-            <p:outputLabel value="Vigência Fim: *" />
-            <p:outputLabel value="#{MBportaria.portaria.fimVigencia}" />
+            <p:outputLabel value="Responsável pela entrega. Prof.:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.assinaturaRespEntrega}" />
 
 
-            <p:outputLabel value="Status Portaria: *" />
-            <p:outputLabel value="#{MBportaria.portaria.statusPortaria}" />
+            <p:outputLabel value="Responsável pelo Recebimento:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.assinaturaRescRecebimento}" />
 
+            <p:outputLabel value="Memorando da Direção da Faculdade" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.memorandoDireçaoFaculdade}" />
+
+
+            <p:outputLabel value="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
+                           Final do Projeto. (com frequência em anexo):" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.ataReuniao}" />
+
+
+            <p:outputLabel value="Relatório Final do Projeto executado, de acordo com formato definido
+                           pela Pró-Reitoria:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.relatorioFexecutadoFormatoProReitoria}" />
+
+
+            <p:outputLabel value="Parecer em Relatório Final de Projeto, assinado pelo Parecerista" 
+                           for="parecer:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.parecerRelatorioFinal}" />
+
+            <p:outputLabel value="Formação de Recursos Humanos para a Pesquisa:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.formacaoRecursosHumanosPesquisa}" />
+
+
+            <p:outputLabel value="Contatos Nacionais e Internacionais efetivamente ocorridos em função do
+                           projeto:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.contatosNacionaisInternacionais}" />
+
+
+            <p:outputLabel value="Trabalhos publicados e/ou aceitos para publicação no período,
+                           relacionados com o projeto em pauta: livros, capítulos de livros, artigos
+                           em periódicos nacionais e internacionais, etc:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.trabalhosPublicadosAceitos}" />
+
+
+            <p:outputLabel value="Patente ou registro de invenção ou técnica:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.patenteRegistroInvencao}" />
+
+
+            <p:outputLabel value="Atividades científicas/administrativas: organização de ou participação em
+                           eventos científicos, consultorias, assessorias a órgãos de fomento ou a
+                           outras instituições, participação em colegiados, bancas de doutorado ou
+                           concursos públicos, etc:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.atividadesCientificasAdministrativas}" />
+
+
+            <p:outputLabel value="Contribuição para o ensino de graduação, inclusive discriminando as
+                           disciplinas teóricas e/ou experimentais beneficiadas:" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.contribuicaoPensinoGraduacao}" />
         </p:panelGrid>
     </div>
 

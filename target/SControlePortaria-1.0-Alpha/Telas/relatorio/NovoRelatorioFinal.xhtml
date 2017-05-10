@@ -18,11 +18,11 @@
                         <p:commandButton type="reset" 
                                          id="LimparCampos1" 
                                          icon="fa fa-eraser" 
-                                         value="Limpar cadastro" 
+                                         value="Limpar" 
                                          action="#" />
                     </p:panel>
                 </p:tab>
-                
+
                 <p:tab id="etapa1re2atorioF" title="Documentos Recebidos" >
                     <p:panel>
                         <ui:include src="/forms/formRelatorioFinalDocsRecebidos.xhtml" />
@@ -30,12 +30,12 @@
                         <p:commandButton type="reset" 
                                          id="LimparCampos2" 
                                          icon="fa fa-eraser" 
-                                         value="Limpar cadastro" 
+                                         value="Limpar" 
                                          action="#" />
                     </p:panel>
                 </p:tab>
-                
-                
+
+
                 <p:tab id="etapa3relatorioF" title="Tópicos Avaliados" >
                     <p:panel>
                         <ui:include src="/forms/formRelatorioFinalTopsAvaliados.xhtml" />
@@ -43,11 +43,11 @@
                         <p:commandButton type="reset" 
                                          id="LimparCampos3" 
                                          icon="fa fa-eraser" 
-                                         value="Limpar cadastro" 
+                                         value="Limpar" 
                                          action="#" />
                     </p:panel>
                 </p:tab>
-                
+
 
                 <p:tab id="etapa4relatorioF" title="Confirme os Dados Preenchidos">
                     <p:panel>
@@ -56,14 +56,21 @@
 
                         <div style="float: right; line-height: 58px; margin-right: -20px" >
 
-                            <p:commandButton action="#" 
-                                             value="Gerar PDF"
-                                             style="width: 170px;"
-                                             icon="fa fa-save"
-                                             disabled="false" />
+                            <p:commandButton action="#{MBrelatorioF.cadastrarRelatorioF()}"
+                                value="Cadastrar"
+                                style="width: 170px;"
+                                icon="fa fa-save"
+                                disabled="false" />
 
-                            <p:button value="Novo Relatório Final" 
-                                      outcome="/Telas/portaria/NovoRelatorioFinal.xhtml"
+                            <p:commandButton action="#{MBrelatorioF.gerarPDFRelatorioFinal()}"
+                                value="Gerar PDF"
+                                onclick="this.form.target='_blank'"
+                                style="width: 170px;"
+                                icon="fa fa-file-text-o"
+                                disabled="false" />
+                            
+                            <p:button value="Novo Relatório" 
+                                      outcome="/Telas/relatorio/NovoRelatorioFinal.xhtml"
                                       icon="fa fa-user-plus" 
                                       style="width: 170px;" />
 

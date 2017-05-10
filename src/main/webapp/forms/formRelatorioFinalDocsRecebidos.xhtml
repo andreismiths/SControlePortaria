@@ -13,9 +13,8 @@
                      columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
             <h3>Documentos Recebidos</h3>
 
-            <p:outputLabel value="Memorando da Direção da Faculdade" 
-                           for="memorando"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:outputLabel value="Memorando da Direção da Faculdade:" 
+                           for="memorando"/>                                
             <p:selectOneRadio id="memorando" 
                               value="#{MBrelatorioF.relatorioF.memorandoDireçaoFaculdade}"
                               layout="responsive"
@@ -28,9 +27,8 @@
             <p:message for="memorando" />
 
             <p:outputLabel value="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
-                           Final do Projeto. (com frequência em anexo)" 
-                           for="atareuniao"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+                           Final do Projeto. (com frequência em anexo):" 
+                           for="atareuniao"/>                                
             <p:selectOneRadio id="atareuniao" 
                               value="#{MBrelatorioF.relatorioF.ataReuniao}"
                               layout="responsive"
@@ -44,9 +42,8 @@
 
 
             <p:outputLabel value="Relatório Final do Projeto executado, de acordo com formato definido
-                           pela Pró-Reitoria" 
-                           for="relatoriofinaldoprojetoexe"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+                           pela Pró-Reitoria:" 
+                           for="relatoriofinaldoprojetoexe"/>                                
             <p:selectOneRadio id="relatoriofinaldoprojetoexe" 
                               value="#{MBrelatorioF.relatorioF.relatorioFexecutadoFormatoProReitoria}"
                               layout="responsive"
@@ -60,8 +57,7 @@
             
             
             <p:outputLabel value="Parecer em Relatório Final de Projeto, assinado pelo Parecerista" 
-                           for="parecer"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+                           for="parecer:"/>                                
             <p:selectOneRadio id="parecer" 
                               value="#{MBrelatorioF.relatorioF.parecerRelatorioFinal}"
                               layout="responsive"

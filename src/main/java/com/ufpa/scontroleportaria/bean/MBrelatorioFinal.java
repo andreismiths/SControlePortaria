@@ -7,6 +7,9 @@ package com.ufpa.scontroleportaria.bean;
 
 import com.ufpa.scontroleportaria.controller.RelatorioFList;
 import com.ufpa.scontroleportaria.model.RelatorioF;
+import com.ufpa.scontroleportaria.relatorio.RelatorioFinalGerarPDF;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -20,7 +23,7 @@ public class MBrelatorioFinal extends AbstractBean {
     
     private RelatorioF relatorioF;
     private RelatorioFList objListRelatorioF;
-    
+    private List<RelatorioF> listaRFPDF = new ArrayList<RelatorioF>();
     
     public void cadastrarRelatorioF() {
         try {
@@ -31,6 +34,11 @@ public class MBrelatorioFinal extends AbstractBean {
         }
         
     }
+    
+    public void gerarPDFRelatorioFinal() {
+        RelatorioFinalGerarPDF relatoriof = new RelatorioFinalGerarPDF();
+        relatoriof.getRelatorio(listaRFPDF);
+}
 
     public RelatorioF getRelatorioF() {
         if (relatorioF == null) {
@@ -53,6 +61,15 @@ public class MBrelatorioFinal extends AbstractBean {
     public void setObjListRelatorioF(RelatorioFList objListRelatorioF) {
         this.objListRelatorioF = objListRelatorioF;
     }
+
+    public List<RelatorioF> getListaRFPDF() {
+        return listaRFPDF;
+    }
+
+    public void setListaRFPDF(List<RelatorioF> listaRFPDF) {
+        this.listaRFPDF = listaRFPDF;
+    }
+    
     
 }
 

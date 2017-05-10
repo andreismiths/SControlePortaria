@@ -4,7 +4,7 @@
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/DAO/GenericoDAO.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/DAO/AuthorizationFilter.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBfuncionario.java
-/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/relatorio/RelatorioGerarPDFPortaria.java
+/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/relatorio/GerarPDFPortaria.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/AbstractBean.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/FuncionarioHasPortaria.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBlogin.java

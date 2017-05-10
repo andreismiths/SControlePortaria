@@ -29,8 +29,7 @@
                        rendered="true" />
 
             <p:outputLabel value="Selecione:" 
-                           for="pesquisaExtensao"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+                           for="pesquisaExtensao"/>                                
             <p:selectOneRadio id="pesquisaExtensao" 
                               value="#{MBrelatorioF.relatorioF.pes}"
                               layout="responsive"
@@ -41,8 +40,7 @@
             </p:selectOneRadio>
             <p:message for="pesquisaExtensao" />
             <p:outputLabel value="Selecione:" 
-                           for="extensao"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                           for="extensao"/>
             <p:selectOneRadio id="extensao" 
                               value="#{MBrelatorioF.relatorioF.ext}"
                               layout="responsive"
@@ -126,7 +124,7 @@
                        rendered="true" />
 
 
-            <p:outputLabel value="Responsável pelo Recebimento"
+            <p:outputLabel value="Responsável pelo Recebimento:"
                            rendered="true"
                            for="recebimento" />
             <p:inputText id="recebimento" 
