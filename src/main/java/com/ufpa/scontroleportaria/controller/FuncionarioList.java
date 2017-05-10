@@ -26,7 +26,7 @@ public class FuncionarioList extends AbstractBean {
                 list("select f from Funcionario f where "
                         + "f." + tipoPesquisaFuncionario + " like '%" + textoPesquisaFuncionario + "%'");
         if (!listFuncionario.isEmpty()) {
-            getObjMessage().warn("Item não encontrado!", "A cidade não foi encontrada.");
+            getObjMessage().warn("Item não encontrado!", "O funcionário não foi encontrado.");
         }
     }
 

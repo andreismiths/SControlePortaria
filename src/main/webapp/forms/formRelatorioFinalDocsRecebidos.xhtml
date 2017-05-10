@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div class="ui-fluid">
+        
+        <p:panelGrid id="relatorioFinal3Form"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
+            <h3>Documentos Recebidos</h3>
+
+            <p:outputLabel value="Memorando da Direção da Faculdade" 
+                           for="memorando"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="memorando" 
+                              value="#{MBrelatorioF.relatorioF.memorandoDireçaoFaculdade}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Memorando da Direção..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="memorando" />
+
+            <p:outputLabel value="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
+                           Final do Projeto. (com frequência em anexo)" 
+                           for="atareuniao"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="atareuniao" 
+                              value="#{MBrelatorioF.relatorioF.ataReuniao}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Ata da Reunião..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="atareuniao" />
+
+
+            <p:outputLabel value="Relatório Final do Projeto executado, de acordo com formato definido
+                           pela Pró-Reitoria" 
+                           for="relatoriofinaldoprojetoexe"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="relatoriofinaldoprojetoexe" 
+                              value="#{MBrelatorioF.relatorioF.relatorioFexecutadoFormatoProReitoria}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Relatório Final..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="relatoriofinaldoprojetoexe" />
+            
+            
+            <p:outputLabel value="Parecer em Relatório Final de Projeto, assinado pelo Parecerista" 
+                           for="parecer"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="parecer" 
+                              value="#{MBrelatorioF.relatorioF.parecerRelatorioFinal}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Parecer em..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="parecer" />
+        </p:panelGrid>
+    </div>
+</ui:composition>

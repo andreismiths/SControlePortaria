@@ -120,9 +120,6 @@
             <url>http://repository.primefaces.org</url>
             <layout>default</layout>
         </repository>
-        <repository>
-            <id>sonatype-releases</id>
-            <url>https://oss.sonatype.org/content/repositories/releases/</url>
-        </repository>
+        
     </repositories>
 </project>

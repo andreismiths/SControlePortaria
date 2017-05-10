@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div class="ui-fluid">
+
+        <p:panelGrid id="relatorioFinal2Form"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
+            <h3>Tópicos Avaliados</h3>
+
+            <p:outputLabel value="Formação de Recursos Humanos para a Pesquisa" 
+                           for="formacaoRecursosH"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="formacaoRecursosH" 
+                              value="#{MBrelatorioF.relatorioF.formacaoRecursosHumanosPesquisa}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Formação de Recursos..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="formacaoRecursosH" />
+
+
+            <p:outputLabel value="Contatos Nacionais e Internacionais efetivamente ocorridos em função do
+                           projeto" 
+                           for="contatosNacInter"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="contatosNacInter" 
+                              value="#{MBrelatorioF.relatorioF.contatosNacionaisInternacionais}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Contatos Nacionais..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="contatosNacInter" />
+
+
+            <p:outputLabel value="Trabalhos publicados e/ou aceitos para publicação no período,
+                           relacionados com o projeto em pauta: livros, capítulos de livros, artigos
+                           em periódicos nacionais e internacionais, etc" 
+                           for="trabalhospublicados"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="trabalhospublicados" 
+                              value="#{MBrelatorioF.relatorioF.trabalhosPublicadosAceitos}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Trabalhos publicados..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="trabalhospublicados" />
+
+
+            <p:outputLabel value="Patente ou registro de invenção ou técnica" 
+                           for="patenteOUregistro"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="patenteOUregistro" 
+                              value="#{MBrelatorioF.relatorioF.patenteRegistroInvencao}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Patente ou registro..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="patenteOUregistro" />
+
+
+
+            <p:outputLabel value="Atividades científicas/administrativas: organização de ou participação em
+                           eventos científicos, consultorias, assessorias a órgãos de fomento ou a
+                           outras instituições, participação em colegiados, bancas de doutorado ou
+                           concursos públicos, etc" 
+                           for="atividadescientificas"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="atividadescientificas" 
+                              value="#{MBrelatorioF.relatorioF.atividadesCientificasAdministrativas}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Atividades científicas..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="atividadescientificas" />
+
+
+
+            <p:outputLabel value="Contribuição para o ensino de graduação, inclusive discriminando as
+                           disciplinas teóricas e/ou experimentais beneficiadas" 
+                           for="contribuicaoensino"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
+            <p:selectOneRadio id="contribuicaoensino" 
+                              value="#{MBrelatorioF.relatorioF.contribuicaoPensinoGraduacao}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Escolha Sim ou Não para Contribuição para o..">
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+            </p:selectOneRadio>
+            <p:message for="contribuicaoensino" />
+
+        </p:panelGrid>
+    </div>
+</ui:composition>

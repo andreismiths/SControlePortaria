@@ -21,7 +21,7 @@ public class PortariaList extends AbstractBean {
                 list("select p from Portaria p where "
                         + "p." + tipoPesquisaPortaria + " like '%" + textoPesquisaPortaria + "%'");
         if (!listPortaria.isEmpty()) {
-            getObjMessage().warn("Item não encontrado!", "A cidade não foi encontrada.");
+            getObjMessage().warn("Item não encontrado!", "A portaria não foi encontrada.");
         }
     }
 

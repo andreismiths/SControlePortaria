@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 26/04/2017 12:22:50 by Hibernate Tools 4.3.1
+// Generated 10/05/2017 14:42:19 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -21,13 +21,15 @@ public class RelatorioF  implements java.io.Serializable {
 
      private Integer pkRelatorioF;
      private String numeroDeProtocolo;
-     private String pesquisaExtensao;
+     private String pes;
+     private String ext;
      private String relatorioFtituloDoProjeto;
      private String relatorioFcoordenador;
      private String memorandoDireçaoFaculdade;
      private String ataReuniao;
      private String relatorioFexecutadoFormatoProReitoria;
      private String parecerRelatorioFinal;
+     private String dataRecebido;
      private String assinaturaRespEntrega;
      private String assinaturaRescRecebimento;
      private String formacaoRecursosHumanosPesquisa;
@@ -41,34 +43,17 @@ public class RelatorioF  implements java.io.Serializable {
     public RelatorioF() {
     }
 
-	
-    public RelatorioF(String numeroDeProtocolo, String pesquisaExtensao, String relatorioFtituloDoProjeto, String relatorioFcoordenador, String memorandoDireçaoFaculdade, String ataReuniao, String relatorioFexecutadoFormatoProReitoria, String parecerRelatorioFinal, String assinaturaRespEntrega, String assinaturaRescRecebimento, String formacaoRecursosHumanosPesquisa, String contatosNacionaisInternacionais, String trabalhosPublicadosAceitos, String patenteRegistroInvencao, String atividadesCientificasAdministrativas, String contribuicaoPensinoGraduacao) {
-        this.numeroDeProtocolo = numeroDeProtocolo;
-        this.pesquisaExtensao = pesquisaExtensao;
-        this.relatorioFtituloDoProjeto = relatorioFtituloDoProjeto;
-        this.relatorioFcoordenador = relatorioFcoordenador;
-        this.memorandoDireçaoFaculdade = memorandoDireçaoFaculdade;
-        this.ataReuniao = ataReuniao;
-        this.relatorioFexecutadoFormatoProReitoria = relatorioFexecutadoFormatoProReitoria;
-        this.parecerRelatorioFinal = parecerRelatorioFinal;
-        this.assinaturaRespEntrega = assinaturaRespEntrega;
-        this.assinaturaRescRecebimento = assinaturaRescRecebimento;
-        this.formacaoRecursosHumanosPesquisa = formacaoRecursosHumanosPesquisa;
-        this.contatosNacionaisInternacionais = contatosNacionaisInternacionais;
-        this.trabalhosPublicadosAceitos = trabalhosPublicadosAceitos;
-        this.patenteRegistroInvencao = patenteRegistroInvencao;
-        this.atividadesCientificasAdministrativas = atividadesCientificasAdministrativas;
-        this.contribuicaoPensinoGraduacao = contribuicaoPensinoGraduacao;
-    }
-    public RelatorioF(String numeroDeProtocolo, String pesquisaExtensao, String relatorioFtituloDoProjeto, String relatorioFcoordenador, String memorandoDireçaoFaculdade, String ataReuniao, String relatorioFexecutadoFormatoProReitoria, String parecerRelatorioFinal, String assinaturaRespEntrega, String assinaturaRescRecebimento, String formacaoRecursosHumanosPesquisa, String contatosNacionaisInternacionais, String trabalhosPublicadosAceitos, String patenteRegistroInvencao, String atividadesCientificasAdministrativas, String contribuicaoPensinoGraduacao, String faculdadeRelatorioF) {
+    public RelatorioF(String numeroDeProtocolo, String pes, String ext, String relatorioFtituloDoProjeto, String relatorioFcoordenador, String memorandoDireçaoFaculdade, String ataReuniao, String relatorioFexecutadoFormatoProReitoria, String parecerRelatorioFinal, String dataRecebido, String assinaturaRespEntrega, String assinaturaRescRecebimento, String formacaoRecursosHumanosPesquisa, String contatosNacionaisInternacionais, String trabalhosPublicadosAceitos, String patenteRegistroInvencao, String atividadesCientificasAdministrativas, String contribuicaoPensinoGraduacao, String faculdadeRelatorioF) {
        this.numeroDeProtocolo = numeroDeProtocolo;
-       this.pesquisaExtensao = pesquisaExtensao;
+       this.pes = pes;
+       this.ext = ext;
        this.relatorioFtituloDoProjeto = relatorioFtituloDoProjeto;
        this.relatorioFcoordenador = relatorioFcoordenador;
        this.memorandoDireçaoFaculdade = memorandoDireçaoFaculdade;
        this.ataReuniao = ataReuniao;
        this.relatorioFexecutadoFormatoProReitoria = relatorioFexecutadoFormatoProReitoria;
        this.parecerRelatorioFinal = parecerRelatorioFinal;
+       this.dataRecebido = dataRecebido;
        this.assinaturaRespEntrega = assinaturaRespEntrega;
        this.assinaturaRescRecebimento = assinaturaRescRecebimento;
        this.formacaoRecursosHumanosPesquisa = formacaoRecursosHumanosPesquisa;
@@ -103,13 +88,23 @@ public class RelatorioF  implements java.io.Serializable {
     }
 
     
-    @Column(name="pesquisaExtensao", nullable=false, length=45)
-    public String getPesquisaExtensao() {
-        return this.pesquisaExtensao;
+    @Column(name="pes", nullable=false, length=45)
+    public String getPes() {
+        return this.pes;
     }
     
-    public void setPesquisaExtensao(String pesquisaExtensao) {
-        this.pesquisaExtensao = pesquisaExtensao;
+    public void setPes(String pes) {
+        this.pes = pes;
+    }
+
+    
+    @Column(name="ext", nullable=false, length=45)
+    public String getExt() {
+        return this.ext;
+    }
+    
+    public void setExt(String ext) {
+        this.ext = ext;
     }
 
     
@@ -170,6 +165,16 @@ public class RelatorioF  implements java.io.Serializable {
     
     public void setParecerRelatorioFinal(String parecerRelatorioFinal) {
         this.parecerRelatorioFinal = parecerRelatorioFinal;
+    }
+
+    
+    @Column(name="dataRecebido", nullable=false, length=45)
+    public String getDataRecebido() {
+        return this.dataRecebido;
+    }
+    
+    public void setDataRecebido(String dataRecebido) {
+        this.dataRecebido = dataRecebido;
     }
 
     
@@ -253,7 +258,7 @@ public class RelatorioF  implements java.io.Serializable {
     }
 
     
-    @Column(name="faculdadeRelatorioF", length=45)
+    @Column(name="faculdadeRelatorioF", nullable=false, length=45)
     public String getFaculdadeRelatorioF() {
         return this.faculdadeRelatorioF;
     }

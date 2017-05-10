@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/04/2017 12:22:50 by Hibernate Tools 4.3.1 -->
+<!-- Generated 10/05/2017 14:42:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.RelatorioF" table="RelatorioF" catalog="SControlePortaria" optimistic-lock="version">
         <id name="pkRelatorioF" type="java.lang.Integer">
@@ -11,8 +11,11 @@
         <property name="numeroDeProtocolo" type="string">
             <column name="numeroDeProtocolo" length="45" not-null="true" />
         </property>
-        <property name="pesquisaExtensao" type="string">
-            <column name="pesquisaExtensao" length="45" not-null="true" />
+        <property name="pes" type="string">
+            <column name="pes" length="45" not-null="true" />
+        </property>
+        <property name="ext" type="string">
+            <column name="ext" length="45" not-null="true" />
         </property>
         <property name="relatorioFtituloDoProjeto" type="string">
             <column name="relatorioFTituloDoProjeto" length="45" not-null="true" />
@@ -31,6 +34,9 @@
         </property>
         <property name="parecerRelatorioFinal" type="string">
             <column name="parecerRelatorioFinal" length="45" not-null="true" />
+        </property>
+        <property name="dataRecebido" type="string">
+            <column name="dataRecebido" length="45" not-null="true" />
         </property>
         <property name="assinaturaRespEntrega" type="string">
             <column name="assinaturaRespEntrega" length="45" not-null="true" />
@@ -57,7 +63,7 @@
             <column name="contribuicaoPEnsinoGraduacao" length="45" not-null="true" />
         </property>
         <property name="faculdadeRelatorioF" type="string">
-            <column name="faculdadeRelatorioF" length="45" />
+            <column name="faculdadeRelatorioF" length="45" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

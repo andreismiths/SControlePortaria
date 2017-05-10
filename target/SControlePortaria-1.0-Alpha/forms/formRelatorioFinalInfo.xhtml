@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <div class="ui-fluid">
+        <p:panelGrid id="relatorioFinalFormInfo"
+                     columns="2"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-4, ui-grid-col-3" >
+
+
+            <p:outputLabel value="Número Portaria: *" />
+            <p:outputLabel value="#{MBportaria.portaria.numeroPortaria}" />
+
+
+            <p:outputLabel value="Ementa: *" />
+            <p:outputLabel value="#{MBportaria.portaria.ementaPortaria}" />
+
+
+            <p:outputLabel value="Projeto: *"/>
+            <p:outputLabel value="#{MBportaria.portaria.projetoPortaria}" />
+
+
+            <p:outputLabel value="Título do Projeto: *"/>
+            <p:outputLabel value="#{MBportaria.portaria.tituloProjetoPortaria}" />
+
+
+            <p:outputLabel value="Faculdade: *" />
+            <p:outputLabel value="#{MBportaria.portaria.faculdadePortaria}" />            
+
+
+            <p:outputLabel value="Vigência Início: *" />
+            <p:outputLabel value="#{MBportaria.portaria.inicioVigencia}" />
+
+
+            <p:outputLabel value="Vigência Fim: *" />
+            <p:outputLabel value="#{MBportaria.portaria.fimVigencia}" />
+
+
+            <p:outputLabel value="Status Portaria: *" />
+            <p:outputLabel value="#{MBportaria.portaria.statusPortaria}" />
+
+        </p:panelGrid>
+    </div>
+
+</ui:composition>
