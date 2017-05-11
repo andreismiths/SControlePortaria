@@ -31,28 +31,16 @@
             <p:outputLabel value="Selecione:" 
                            for="pesquisaExtensao"/>                                
             <p:selectOneRadio id="pesquisaExtensao" 
-                              value="#{MBrelatorioF.relatorioF.pes}"
+                              value="#{MBrelatorioF.relatorioF.pesquisaExtensao}"
                               layout="responsive"
                               columns="2"
                               required="true"
                               requiredMessage="Escolha Pesquisa ou Extensão">
-                <f:selectItem itemLabel="Pesquisa" itemValue="X" />
+                <f:selectItem itemLabel="Pesquisa" itemValue="pesquisa" />
+                <f:selectItem itemLabel="Extensão" itemValue="extensão" />
             </p:selectOneRadio>
             <p:message for="pesquisaExtensao" />
-            <p:outputLabel value="Selecione:" 
-                           for="extensao"/>
-            <p:selectOneRadio id="extensao" 
-                              value="#{MBrelatorioF.relatorioF.ext}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Escolha Pesquisa ou Extensão">
-                <f:selectItem itemLabel="Extensão" itemValue="X" />
-            </p:selectOneRadio>
-            <p:message for="extensao" />
-
-
-
+            
             <p:outputLabel value="Faculdade:"
                            for="faculdadeRelatorioF" />                             
             <p:selectOneMenu id="faculdadeRelatorioF"

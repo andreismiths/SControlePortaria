@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 10/05/2017 14:42:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/05/2017 10:12:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.RelatorioF" table="RelatorioF" catalog="SControlePortaria" optimistic-lock="version">
         <id name="pkRelatorioF" type="java.lang.Integer">
@@ -11,11 +11,8 @@
         <property name="numeroDeProtocolo" type="string">
             <column name="numeroDeProtocolo" length="45" not-null="true" />
         </property>
-        <property name="pes" type="string">
-            <column name="pes" length="45" not-null="true" />
-        </property>
-        <property name="ext" type="string">
-            <column name="ext" length="45" not-null="true" />
+        <property name="pesquisaExtensao" type="string">
+            <column name="pesquisaExtensao" length="17" not-null="true" />
         </property>
         <property name="relatorioFtituloDoProjeto" type="string">
             <column name="relatorioFTituloDoProjeto" length="45" not-null="true" />
@@ -23,8 +20,8 @@
         <property name="relatorioFcoordenador" type="string">
             <column name="relatorioFCoordenador" length="45" not-null="true" />
         </property>
-        <property name="memorandoDire&#195;&#167;aoFaculdade" type="string">
-            <column name="memorandoDire&#195;&#167;aoFaculdade" length="45" not-null="true" />
+        <property name="memorandoDirecaoFaculdade" type="string">
+            <column name="memorandoDirecaoFaculdade" length="45" not-null="true" />
         </property>
         <property name="ataReuniao" type="string">
             <column name="ataReuniao" length="45" not-null="true" />

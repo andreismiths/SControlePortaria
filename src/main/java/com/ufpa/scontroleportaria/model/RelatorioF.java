@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 10/05/2017 14:42:19 by Hibernate Tools 4.3.1
+// Generated 11/05/2017 10:12:52 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -21,11 +21,10 @@ public class RelatorioF  implements java.io.Serializable {
 
      private Integer pkRelatorioF;
      private String numeroDeProtocolo;
-     private String pes;
-     private String ext;
+     private String pesquisaExtensao;
      private String relatorioFtituloDoProjeto;
      private String relatorioFcoordenador;
-     private String memorandoDireçaoFaculdade;
+     private String memorandoDirecaoFaculdade;
      private String ataReuniao;
      private String relatorioFexecutadoFormatoProReitoria;
      private String parecerRelatorioFinal;
@@ -43,13 +42,12 @@ public class RelatorioF  implements java.io.Serializable {
     public RelatorioF() {
     }
 
-    public RelatorioF(String numeroDeProtocolo, String pes, String ext, String relatorioFtituloDoProjeto, String relatorioFcoordenador, String memorandoDireçaoFaculdade, String ataReuniao, String relatorioFexecutadoFormatoProReitoria, String parecerRelatorioFinal, String dataRecebido, String assinaturaRespEntrega, String assinaturaRescRecebimento, String formacaoRecursosHumanosPesquisa, String contatosNacionaisInternacionais, String trabalhosPublicadosAceitos, String patenteRegistroInvencao, String atividadesCientificasAdministrativas, String contribuicaoPensinoGraduacao, String faculdadeRelatorioF) {
+    public RelatorioF(String numeroDeProtocolo, String pesquisaExtensao, String relatorioFtituloDoProjeto, String relatorioFcoordenador, String memorandoDirecaoFaculdade, String ataReuniao, String relatorioFexecutadoFormatoProReitoria, String parecerRelatorioFinal, String dataRecebido, String assinaturaRespEntrega, String assinaturaRescRecebimento, String formacaoRecursosHumanosPesquisa, String contatosNacionaisInternacionais, String trabalhosPublicadosAceitos, String patenteRegistroInvencao, String atividadesCientificasAdministrativas, String contribuicaoPensinoGraduacao, String faculdadeRelatorioF) {
        this.numeroDeProtocolo = numeroDeProtocolo;
-       this.pes = pes;
-       this.ext = ext;
+       this.pesquisaExtensao = pesquisaExtensao;
        this.relatorioFtituloDoProjeto = relatorioFtituloDoProjeto;
        this.relatorioFcoordenador = relatorioFcoordenador;
-       this.memorandoDireçaoFaculdade = memorandoDireçaoFaculdade;
+       this.memorandoDirecaoFaculdade = memorandoDirecaoFaculdade;
        this.ataReuniao = ataReuniao;
        this.relatorioFexecutadoFormatoProReitoria = relatorioFexecutadoFormatoProReitoria;
        this.parecerRelatorioFinal = parecerRelatorioFinal;
@@ -88,23 +86,13 @@ public class RelatorioF  implements java.io.Serializable {
     }
 
     
-    @Column(name="pes", nullable=false, length=45)
-    public String getPes() {
-        return this.pes;
+    @Column(name="pesquisaExtensao", nullable=false, length=17)
+    public String getPesquisaExtensao() {
+        return this.pesquisaExtensao;
     }
     
-    public void setPes(String pes) {
-        this.pes = pes;
-    }
-
-    
-    @Column(name="ext", nullable=false, length=45)
-    public String getExt() {
-        return this.ext;
-    }
-    
-    public void setExt(String ext) {
-        this.ext = ext;
+    public void setPesquisaExtensao(String pesquisaExtensao) {
+        this.pesquisaExtensao = pesquisaExtensao;
     }
 
     
@@ -128,13 +116,13 @@ public class RelatorioF  implements java.io.Serializable {
     }
 
     
-    @Column(name="memorandoDireçaoFaculdade", nullable=false, length=45)
-    public String getMemorandoDireçaoFaculdade() {
-        return this.memorandoDireçaoFaculdade;
+    @Column(name="memorandoDirecaoFaculdade", nullable=false, length=45)
+    public String getMemorandoDirecaoFaculdade() {
+        return this.memorandoDirecaoFaculdade;
     }
     
-    public void setMemorandoDireçaoFaculdade(String memorandoDireçaoFaculdade) {
-        this.memorandoDireçaoFaculdade = memorandoDireçaoFaculdade;
+    public void setMemorandoDirecaoFaculdade(String memorandoDirecaoFaculdade) {
+        this.memorandoDirecaoFaculdade = memorandoDirecaoFaculdade;
     }
 
     
