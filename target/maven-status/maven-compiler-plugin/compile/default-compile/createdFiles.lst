@@ -5,6 +5,7 @@ com/ufpa/scontroleportaria/bean/MBportaria.class
 com/ufpa/scontroleportaria/model/RelatorioF.class
 com/ufpa/scontroleportaria/controller/RelatorioFList.class
 com/ufpa/scontroleportaria/bean/AbstractBean.class
+com/ufpa/scontroleportaria/bean/MBpesquisa.class
 com/ufpa/scontroleportaria/DAO/HibernateUtil.class
 com/ufpa/scontroleportaria/model/FuncionarioHasPortaria.class
 com/ufpa/scontroleportaria/relatorio/GerarPDFPortaria.class
@@ -18,5 +19,6 @@ com/ufpa/scontroleportaria/bean/MBlogin.class
 com/ufpa/scontroleportaria/DAO/SessionUtils.class
 com/ufpa/scontroleportaria/model/FuncionarioHasPortariaId.class
 com/ufpa/scontroleportaria/DAO/AuthorizationFilter.class
+com/ufpa/scontroleportaria/Molde/CollectionClasses.class
 com/ufpa/scontroleportaria/relatorio/RelatorioFinalGerarPDF.class
 com/ufpa/scontroleportaria/DAO/GenericoDAO.class

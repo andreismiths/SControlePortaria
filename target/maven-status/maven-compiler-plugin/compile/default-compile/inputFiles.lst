@@ -10,6 +10,8 @@
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBlogin.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/Funcionario.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/controller/RelatorioFList.java
+/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/Molde/CollectionClasses.java
+/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBpesquisa.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/FuncionarioHasPortariaId.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/relatorio/RelatorioFinalGerarPDF.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/tools/FacesMessages.java
