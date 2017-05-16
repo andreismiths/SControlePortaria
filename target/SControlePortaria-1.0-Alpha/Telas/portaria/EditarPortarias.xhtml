@@ -8,6 +8,136 @@
     <ui:define name="content">
         <h1 class="aw-page-title">Portarias</h1>
 
+          <p:growl id="growl" sticky="true" showDetail="true"/>
+        <p:panel>
+            <div class="ui-fluid">
+
+                <h:form>
+                    <p:panelGrid columns="2"
+                                 layout="grid"
+                                 style="margin: 5px 0px 5px;"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3"> 
+
+                        <p:outputLabel value="Escolha a Pesquisa:" 
+
+                                       for="TipoPesquisa" />
+                        <p:selectOneButton id="TipoPesquisa"
+                                          
+                                          value="#{MBpesquisa.itemPesquisa}"
+                                          required="true"
+                                          requiredMessage="Escolha um tipo de pesquisa!">
+
+                            <f:selectItem itemLabel="Número" itemValue="numeroPortaria" />
+                            <f:selectItem itemLabel="Título" itemValue="tituloProjetoPortaria" />
+                            <f:selectItem itemLabel="Coordenador" itemValue="professorCoordenador" />
+                            <f:selectItem itemLabel="Faculdade" itemValue="faculdadePortaria" />
+
+                            <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
+                        </p:selectOneButton>
+                        <p:message for="TipoPesquisa" />
+                    </p:panelGrid>
+
+                    <p:panelGrid id="search"
+                                 columns="3"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                 style="margin-bottom: 20px;" >
+
+
+                        <p:inputMask
+                            mask="#{MBpesquisa.searchMask}"
+                            id="ValorPesquisa"
+                            value="#{MBpesquisa.textoPesquisa}" 
+                            title="#{MBpesquisa.searchTip}"
+                            maxlength="#{MBpesquisa.maxLength}"
+                            required="true" 
+                            requiredMessage="Informe o valor de pesquisa!"/>
+
+
+                        <p:commandButton actionListener="#{MBpesquisa.multipleItemList()}"
+                                         value="Pesquisar" 
+                                         disabled="false"
+                                         icon="fa fa-search"
+                                         update="@([id$=:GridBusca])" />
+                        <p:message for="ValorPesquisa" />
+                    </p:panelGrid>
+
+                </h:form>
+
+
+
+                <p:panelGrid id="GridBusca"
+                             columns="1"
+                             layout="grid"
+                             style="margin: 10px 0px 15px;"
+                             styleClass="panelgrid-noborder"
+                             columnClasses="ui-grid-col-12" >
+
+ 
+                    <p:dataTable id="portariaBuscada"
+                                 var="collection"
+                                 rendered="#{MBpesquisa.showDataTablePortaria}"
+                                 value="#{MBpesquisa.objBuscados}"
+                                 paginator="true"
+                                 rows="10"
+                                 reflow="true" >
+
+                        <f:facet name="header">
+                            Portarias Encontradas
+                        </f:facet>
+
+                        <p:column headerText="Código">
+                            <h:outputText value="#{collection.Portaria.pkportaria}" />
+                        </p:column>
+
+                        <p:column headerText="Número" >
+                            <h:outputText value="#{collection.Portaria.numeroPortaria}" />
+                        </p:column>
+
+                        <p:column headerText="Ementa" >
+                            <h:outputText value="#{collection.Portaria.ementaPortaria}" />
+                        </p:column>
+
+                        <p:column headerText="Projeto" >
+                            <h:outputText value="#{collection.Portaria.projetoPortaria}" />
+                        </p:column>
+
+                        <p:column headerText="Título" >
+                            <h:outputText value="#{collection.Portaria.tituloPortaria}" />
+                        </p:column>
+
+                        <p:column headerText="Faculdade">
+                            <h:outputText value="#{collection.Portaria.faculdadePortaria}"/>
+                        </p:column>
+
+                        <p:column headerText="Processor Coordenador">
+                            <h:outputText value="#{collection.Portaria.professorCoordenador}"/>
+                        </p:column>
+
+                        <p:column headerText="Siape Coordenador">
+                            <h:outputText value="#{collection.Portaria.siapeCoordenador}"/>
+                        </p:column>
+
+                        <p:column headerText="Início Vigência">
+                            <h:outputText value="#{collection.Portaria.inicioVigencia}"/>
+                        </p:column>
+
+                        <p:column headerText="Fim Vigência">
+                            <h:outputText value="#{collection.Portaria.fimVigencia}"/>
+                        </p:column>
+
+                        <p:column headerText="" >
+                            <h:outputText value="" />
+                        </p:column>
+
+                    </p:dataTable>
+
+                </p:panelGrid>
+            </div>
+        </p:panel>
+        
         <f:metadata>
             <f:viewAction action="#{MBportaria.listarPortaria()}">  </f:viewAction>    
         </f:metadata>

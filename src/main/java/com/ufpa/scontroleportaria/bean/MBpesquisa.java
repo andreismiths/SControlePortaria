@@ -50,6 +50,8 @@ public class MBpesquisa extends AbstractBean {
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
+                
+                
             case "numeroPortaria":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
@@ -71,6 +73,7 @@ public class MBpesquisa extends AbstractBean {
                 maxLength = "10";
                 break;
 
+                
             case "numeroDeProtocolo":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";

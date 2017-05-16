@@ -8,7 +8,6 @@ com/ufpa/scontroleportaria/bean/AbstractBean.class
 com/ufpa/scontroleportaria/bean/MBpesquisa.class
 com/ufpa/scontroleportaria/DAO/HibernateUtil.class
 com/ufpa/scontroleportaria/model/FuncionarioHasPortaria.class
-.netbeans_automatic_build
 com/ufpa/scontroleportaria/relatorio/GerarPDFPortaria.class
 com/ufpa/scontroleportaria/controller/PortariaList.class
 com/ufpa/scontroleportaria/controller/FuncionarioList.class

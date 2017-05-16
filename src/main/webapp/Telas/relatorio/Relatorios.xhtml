@@ -8,6 +8,168 @@
 	<ui:define name="content">
             <h1 class="aw-page-title">Relatórios</h1>
             
+              <p:growl id="growl" sticky="true" showDetail="true"/>
+        <p:panel>
+            <div class="ui-fluid">
+
+                <h:form>
+                    <p:panelGrid columns="2"
+                                 layout="grid"
+                                 style="margin: 5px 0px 5px;"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3"> 
+
+                        <p:outputLabel value="Escolha a Pesquisa:" 
+
+                                       for="TipoPesquisa" />
+                        <p:selectOneButton id="TipoPesquisa"
+                                          
+                                          value="#{MBpesquisa.itemPesquisa}"
+                                          required="true"
+                                          requiredMessage="Escolha um tipo de pesquisa!">
+
+                            <f:selectItem itemLabel="Número" itemValue="numeroPortaria" />
+                            <f:selectItem itemLabel="Título" itemValue="tituloProjetoPortaria" />
+                            <f:selectItem itemLabel="Coordenador" itemValue="professorCoordenador" />
+                            <f:selectItem itemLabel="Faculdade" itemValue="faculdadePortaria" />
+
+                            <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
+                        </p:selectOneButton>
+                        <p:message for="TipoPesquisa" />
+                    </p:panelGrid>
+
+                    <p:panelGrid id="search"
+                                 columns="3"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                 style="margin-bottom: 20px;" >
+
+
+                        <p:inputMask
+                            mask="#{MBpesquisa.searchMask}"
+                            id="ValorPesquisa"
+                            value="#{MBpesquisa.textoPesquisa}" 
+                            title="#{MBpesquisa.searchTip}"
+                            maxlength="#{MBpesquisa.maxLength}"
+                            required="true" 
+                            requiredMessage="Informe o valor de pesquisa!"/>
+
+
+                        <p:commandButton actionListener="#{MBpesquisa.multipleItemList()}"
+                                         value="Pesquisar" 
+                                         disabled="false"
+                                         icon="fa fa-search"
+                                         update="@([id$=:GridBusca])" />
+                        <p:message for="ValorPesquisa" />
+                    </p:panelGrid>
+
+                </h:form>
+
+
+
+                <p:panelGrid id="GridBusca"
+                             columns="1"
+                             layout="grid"
+                             style="margin: 10px 0px 15px;"
+                             styleClass="panelgrid-noborder"
+                             columnClasses="ui-grid-col-12" >
+
+
+                    <p:dataTable id="relatorioFBuscado"
+                                 var="collection"
+                                 rendered="#{MBpesquisa.showDataTableRelatorioF}"
+                                 value="#{MBpesquisa.objBuscados}"
+                                 paginator="true"
+                                 rows="10"
+                                 reflow="true" >
+
+                        <f:facet name="header">
+                            Relatórios Encontrados
+                        </f:facet>
+
+                        <p:column headerText="Código">
+                            <h:outputText value="#{collection.RelatorioF.pkrelatorioF}" />
+                        </p:column>
+
+                        <p:column headerText="Número de Protocolo" >
+                            <h:outputText value="#{collection.RelatorioF.numeroDeProtocolo}" />
+                        </p:column>
+
+                        <p:column headerText="Tipo" >
+                            <h:outputText value="#{collection.RelatorioF.pesquisaExtensao}" />
+                        </p:column>
+
+                        <p:column headerText="Título do Projeto" >
+                            <h:outputText value="#{collection.RelatorioF.relatorioFTituloDoProjeto}" />
+                        </p:column>
+
+                        <p:column headerText="Coordenador" >
+                            <h:outputText value="#{collection.RelatorioF.relatorioFCoordenador}" />
+                        </p:column>
+
+                        <p:column headerText="Memorando da Direção da Faculdade">
+                            <h:outputText value="#{collection.RelatorioF.memorandoDirecaoFaculdade}"/>
+                        </p:column>
+
+                        <p:column headerText="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
+                                  Final do Projeto. (com frequência em anexo)">
+                            <h:outputText value="#{collection.RelatorioF.ataReuniao}"/>
+                        </p:column>
+
+                        <p:column headerText="Relatório Final do Projeto executado, de acordo com formato definido
+                                  pela Pró-Reitoria">
+                            <h:outputText value="#{collection.RelatorioF.relatorioFExecutadoFormatoProReitoria}"/>
+                        </p:column>
+
+                        <p:column headerText="Parecer em Relatório Final de Projeto, assinado pelo Parecerista">
+                            <h:outputText value="#{collection.RelatorioF.parecerRelatorioFinal}"/>
+                        </p:column>
+
+                        <p:column headerText="Formação de Recursos Humanos para a Pesquisa">
+                            <h:outputText value="#{collection.RelatorioF.formacaoRecursosHumanosPesquisa}"/>
+                        </p:column>
+
+                        <p:column headerText="Data Recebido" >
+                            <h:outputText value="#{collection.RelatorioF.dataRecebido}" />
+                        </p:column>
+
+                        <p:column headerText="Contatos Nacionais e Internacionais efetivamente ocorridos em função do
+                                  projeto" >
+                            <h:outputText value="#{collection.RelatorioF.contatosNacionaisInternacionais}" />
+                        </p:column>
+
+                        <p:column headerText="Trabalhos publicados e/ou aceitos para publicação no período,
+                                  relacionados com o projeto em pauta: livros, capítulos de livros, artigos
+                                  em periódicos nacionais e internacionais, etc" >
+                            <h:outputText value="#{collection.RelatorioF.trabalhosPublicadosAceitos}" />
+                        </p:column>
+
+                        <p:column headerText="Patente ou registro de invenção ou técnica" >
+                            <h:outputText value="#{collection.RelatorioF.patenteRegistroInvencao}" />
+                        </p:column>
+
+                        <p:column headerText="Atividades científicas/administrativas: organização de ou participação em
+                                  eventos científicos, consultorias, assessorias a órgãos de fomento ou a
+                                  outras instituições, participação em colegiados, bancas de doutorado ou
+                                  concursos públicos, etc" >
+                            <h:outputText value="#{collection.RelatorioF.atividadesCientificasAdministrativas}" />
+                        </p:column>
+
+                        <p:column headerText="Contribuição para o ensino de graduação, inclusive discriminando as
+                                  disciplinas teóricas e/ou experimentais beneficiadas" >
+                            <h:outputText value="#{collection.RelatorioF.contribuicaoPensinoGraduacao}" />
+                        </p:column>
+
+                        <p:column headerText="" >
+                            <h:outputText value="" />
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panelGrid>
+            </div>
+        </p:panel>
+            
             <f:metadata>
                 <f:viewAction action="#">  </f:viewAction>   
             </f:metadata>
