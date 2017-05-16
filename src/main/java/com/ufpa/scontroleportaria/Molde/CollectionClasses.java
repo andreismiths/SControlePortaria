@@ -13,24 +13,23 @@ import java.io.Serializable;
 
 /**
  *
- * @author thiberius
+ * @author andreismiths
  */
 public class CollectionClasses implements Serializable {
-    
+
     private Funcionario funcionario;
     private Portaria portaria;
     private RelatorioF relatoriof;
-    
-    
-    public void geraObj(){
+
+    public void geraObj() {
         funcionario = new Funcionario();
         portaria = new Portaria();
         relatoriof = new RelatorioF();
     }
 
     public Funcionario getFuncionario() {
-        if(funcionario == null){
-            funcionario  =  new Funcionario();
+        if (funcionario == null) {
+            funcionario = new Funcionario();
         }
         return funcionario;
     }
@@ -40,7 +39,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public Portaria getPortaria() {
-        if(portaria == null){
+        if (portaria == null) {
             portaria = new Portaria();
         }
         return portaria;
@@ -51,7 +50,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public RelatorioF getRelatoriof() {
-        if(relatoriof == null){
+        if (relatoriof == null) {
             relatoriof = new RelatorioF();
         }
         return relatoriof;
@@ -60,7 +59,5 @@ public class CollectionClasses implements Serializable {
     public void setRelatoriof(RelatorioF relatoriof) {
         this.relatoriof = relatoriof;
     }
-
-
 
 }

@@ -12,7 +12,7 @@
 
         </f:metadata>
 
-        <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
+
         <p:growl id="growl" sticky="true" showDetail="true"/>
         <p:panel>
             <div class="ui-fluid">
@@ -33,18 +33,18 @@
                                           value="#{MBpesquisa.itemPesquisa}"
                                           required="true"
                                           requiredMessage="Escolha um tipo de pesquisa!">
-                            <f:selectItem itemLabel="Pesquisar Funcionário por nome" itemValue="nome" />
-                            <f:selectItem itemLabel="Pesquisar Funcionário por CPF" itemValue="cpf" />
-                            <f:selectItem itemLabel="Pesquisar Funcionário por SIAPE" itemValue="siape" />
+                            <f:selectItem itemLabel="Pesquisar Funcionário por nome" itemValue="nomeFuncionario" />
+                            <f:selectItem itemLabel="Pesquisar Funcionário por CPF" itemValue="cpfFuncionario" />
+                            <f:selectItem itemLabel="Pesquisar Funcionário por SIAPE" itemValue="siapeFuncionario" />
 
                             <f:selectItem itemLabel="Pesquisar Portaria por Número" itemValue="numeroPortaria" />
-                            <f:selectItem itemLabel="Pesquisar Portaria por Título" itemValue="tituloPortaria" />
-                            <f:selectItem itemLabel="Pesquisar Portaria por Coordenador" itemValue="professorCoord" />
+                            <f:selectItem itemLabel="Pesquisar Portaria por Título" itemValue="tituloProjetoPortaria" />
+                            <f:selectItem itemLabel="Pesquisar Portaria por Coordenador" itemValue="professorCoordenador" />
                             <f:selectItem itemLabel="Pesquisar Portaria pela Faculdade" itemValue="faculdadePortaria" />
 
-                            <f:selectItem itemLabel="Pesquisar Relatório Final por Número de Protocolo" itemValue="numeroProtocolo" />
-                            <f:selectItem itemLabel="Pesquisar Relatório por Responsável pela Entrega" itemValue="responsavelEntrega" />
-                            <f:selectItem itemLabel="Pesquisar Relatório Final pela Faculdade" itemValue="faculdadeRelatorio" />
+                            <f:selectItem itemLabel="Pesquisar Relatório Final por Número de Protocolo" itemValue="numeroDeProtocolo" />
+                            <f:selectItem itemLabel="Pesquisar Relatório por Responsável pela Entrega" itemValue="assinaturaRespEntrega" />
+                            <f:selectItem itemLabel="Pesquisar Relatório Final pela Faculdade" itemValue="faculdadeRelatorioF" />
 
                             <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
                         </p:selectOneRadio>
@@ -101,32 +101,32 @@
                         </f:facet>
 
                         <p:column headerText="Código">
-                            <h:outputText value="#{collection.funcionario.PK_funcionario}" />
+                            <h:outputText value="#{collection.Funcionario.pkfuncionario}" />
                         </p:column>
 
                         <p:column headerText="Nome" >
-                            <h:outputText value="#{collection.funcionario.nomeFuncionario}" />
+                            <h:outputText value="#{collection.Funcionario.nomeFuncionario}" />
 
                         </p:column>
 
                         <p:column headerText="SIAPE" >
-                            <h:outputText value="#{collection.funcionario.siapeFuncionario}" />
+                            <h:outputText value="#{collection.Funcionario.siapeFuncionario}" />
 
                         </p:column>
                         <p:column headerText="CPF" >
-                            <h:outputText value="#{collection.funcionario.cpfFuncionario}" />
+                            <h:outputText value="#{collection.Funcionario.cpfFuncionario}" />
 
                         </p:column>
                         <p:column headerText="Data de Nascimento">
-                            <h:outputText value="#{collection.funcionario.dataNascimentoFuncionario}"/>
+                            <h:outputText value="#{collection.Funcionario.dataNascimentoFuncionario}"/>
                         </p:column>
 
                         <p:column headerText="E-mail">
-                            <h:outputText value="#{collection.funcionario.emailFuncionario}"/>
+                            <h:outputText value="#{collection.Funcionario.emailFuncionario}"/>
                         </p:column>
 
                         <p:column headerText="Tipo">
-                            <h:outputText value="#{collection.funcionario.tipoFuncionario}"/>
+                            <h:outputText value="#{collection.Funcionario.tipoFuncionario}"/>
                         </p:column>
 
 
@@ -152,43 +152,43 @@
                         </f:facet>
 
                         <p:column headerText="Código">
-                            <h:outputText value="#{collection.portaria.PK_portaria}" />
+                            <h:outputText value="#{collection.Portaria.pkportaria}" />
                         </p:column>
 
                         <p:column headerText="Número" >
-                            <h:outputText value="#{collection.portaria.numeroPortaria}" />
+                            <h:outputText value="#{collection.Portaria.numeroPortaria}" />
                         </p:column>
 
                         <p:column headerText="Ementa" >
-                            <h:outputText value="#{collection.portaria.ementaPortaria}" />
+                            <h:outputText value="#{collection.Portaria.ementaPortaria}" />
                         </p:column>
 
                         <p:column headerText="Projeto" >
-                            <h:outputText value="#{collection.portaria.projetoPortaria}" />
+                            <h:outputText value="#{collection.Portaria.projetoPortaria}" />
                         </p:column>
 
                         <p:column headerText="Título" >
-                            <h:outputText value="#{collection.portaria.tituloPortaria}" />
+                            <h:outputText value="#{collection.Portaria.tituloPortaria}" />
                         </p:column>
 
                         <p:column headerText="Faculdade">
-                            <h:outputText value="#{collection.portaria.faculdadePortaria}"/>
+                            <h:outputText value="#{collection.Portaria.faculdadePortaria}"/>
                         </p:column>
 
                         <p:column headerText="Processor Coordenador">
-                            <h:outputText value="#{collection.portaria.professorCoordenador}"/>
+                            <h:outputText value="#{collection.Portaria.professorCoordenador}"/>
                         </p:column>
 
                         <p:column headerText="Siape Coordenador">
-                            <h:outputText value="#{collection.portaria.siapeCoordenador}"/>
+                            <h:outputText value="#{collection.Portaria.siapeCoordenador}"/>
                         </p:column>
 
                         <p:column headerText="Início Vigência">
-                            <h:outputText value="#{collection.portaria.inicioVigencia}"/>
+                            <h:outputText value="#{collection.Portaria.inicioVigencia}"/>
                         </p:column>
 
                         <p:column headerText="Fim Vigência">
-                            <h:outputText value="#{collection.portaria.fimVigencia}"/>
+                            <h:outputText value="#{collection.Portaria.fimVigencia}"/>
                         </p:column>
 
                         <p:column headerText="" >
@@ -206,80 +206,80 @@
                                  reflow="true" >
 
                         <f:facet name="header">
-                            Animais encontrados
+                            Relatórios Encontrados
                         </f:facet>
 
                         <p:column headerText="Código">
-                            <h:outputText value="#{collection.relatorioF.PK_relatorioF}" />
+                            <h:outputText value="#{collection.RelatorioF.pkrelatorioF}" />
                         </p:column>
 
                         <p:column headerText="Número de Protocolo" >
-                            <h:outputText value="#{collection.relatorioF.numeroDeProtocolo}" />
+                            <h:outputText value="#{collection.RelatorioF.numeroDeProtocolo}" />
                         </p:column>
 
                         <p:column headerText="Tipo" >
-                            <h:outputText value="#{collection.relatorioF.pesquisaExtensao}" />
+                            <h:outputText value="#{collection.RelatorioF.pesquisaExtensao}" />
                         </p:column>
 
                         <p:column headerText="Título do Projeto" >
-                            <h:outputText value="#{collection.relatorioF.relatorioFTituloDoProjeto}" />
+                            <h:outputText value="#{collection.RelatorioF.relatorioFTituloDoProjeto}" />
                         </p:column>
 
                         <p:column headerText="Coordenador" >
-                            <h:outputText value="#{collection.relatorioF.relatorioFCoordenador}" />
+                            <h:outputText value="#{collection.RelatorioF.relatorioFCoordenador}" />
                         </p:column>
 
                         <p:column headerText="Memorando da Direção da Faculdade">
-                            <h:outputText value="#{collection.relatorioF.memorandoDirecaoFaculdade}"/>
+                            <h:outputText value="#{collection.RelatorioF.memorandoDirecaoFaculdade}"/>
                         </p:column>
 
                         <p:column headerText="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
-                           Final do Projeto. (com frequência em anexo)">
-                            <h:outputText value="#{collection.relatorioF.ataReuniao}"/>
+                                  Final do Projeto. (com frequência em anexo)">
+                            <h:outputText value="#{collection.RelatorioF.ataReuniao}"/>
                         </p:column>
 
                         <p:column headerText="Relatório Final do Projeto executado, de acordo com formato definido
-                           pela Pró-Reitoria">
-                            <h:outputText value="#{collection.relatorioF.relatorioFExecutadoFormatoProReitoria}"/>
+                                  pela Pró-Reitoria">
+                            <h:outputText value="#{collection.RelatorioF.relatorioFExecutadoFormatoProReitoria}"/>
                         </p:column>
 
                         <p:column headerText="Parecer em Relatório Final de Projeto, assinado pelo Parecerista">
-                            <h:outputText value="#{collection.relatorioF.parecerRelatorioFinal}"/>
+                            <h:outputText value="#{collection.RelatorioF.parecerRelatorioFinal}"/>
                         </p:column>
 
                         <p:column headerText="Formação de Recursos Humanos para a Pesquisa">
-                            <h:outputText value="#{collection.relatorioF.formacaoRecursosHumanosPesquisa}"/>
+                            <h:outputText value="#{collection.RelatorioF.formacaoRecursosHumanosPesquisa}"/>
                         </p:column>
 
                         <p:column headerText="Data Recebido" >
-                            <h:outputText value="#{collection.relatorioF.dataRecebido}" />
+                            <h:outputText value="#{collection.RelatorioF.dataRecebido}" />
                         </p:column>
 
                         <p:column headerText="Contatos Nacionais e Internacionais efetivamente ocorridos em função do
-                           projeto" >
-                            <h:outputText value="#{collection.relatorioF.contatosNacionaisInternacionais}" />
+                                  projeto" >
+                            <h:outputText value="#{collection.RelatorioF.contatosNacionaisInternacionais}" />
                         </p:column>
-                        
-                          <p:column headerText="Trabalhos publicados e/ou aceitos para publicação no período,
-                           relacionados com o projeto em pauta: livros, capítulos de livros, artigos
-                           em periódicos nacionais e internacionais, etc" >
-                            <h:outputText value="#{collection.relatorioF.trabalhosPublicadosAceitos}" />
+
+                        <p:column headerText="Trabalhos publicados e/ou aceitos para publicação no período,
+                                  relacionados com o projeto em pauta: livros, capítulos de livros, artigos
+                                  em periódicos nacionais e internacionais, etc" >
+                            <h:outputText value="#{collection.RelatorioF.trabalhosPublicadosAceitos}" />
                         </p:column>
-                        
-                          <p:column headerText="Patente ou registro de invenção ou técnica" >
-                            <h:outputText value="#{collection.relatorioF.patenteRegistroInvencao}" />
+
+                        <p:column headerText="Patente ou registro de invenção ou técnica" >
+                            <h:outputText value="#{collection.RelatorioF.patenteRegistroInvencao}" />
                         </p:column>
-                        
-                          <p:column headerText="Atividades científicas/administrativas: organização de ou participação em
-                           eventos científicos, consultorias, assessorias a órgãos de fomento ou a
-                           outras instituições, participação em colegiados, bancas de doutorado ou
-                           concursos públicos, etc" >
-                            <h:outputText value="#{collection.relatorioF.atividadesCientificasAdministrativas}" />
+
+                        <p:column headerText="Atividades científicas/administrativas: organização de ou participação em
+                                  eventos científicos, consultorias, assessorias a órgãos de fomento ou a
+                                  outras instituições, participação em colegiados, bancas de doutorado ou
+                                  concursos públicos, etc" >
+                            <h:outputText value="#{collection.RelatorioF.atividadesCientificasAdministrativas}" />
                         </p:column>
-                        
-                         <p:column headerText="Contribuição para o ensino de graduação, inclusive discriminando as
-                           disciplinas teóricas e/ou experimentais beneficiadas" >
-                            <h:outputText value="#{collection.relatorioF.contribuicaoPensinoGraduacao}" />
+
+                        <p:column headerText="Contribuição para o ensino de graduação, inclusive discriminando as
+                                  disciplinas teóricas e/ou experimentais beneficiadas" >
+                            <h:outputText value="#{collection.RelatorioF.contribuicaoPensinoGraduacao}" />
                         </p:column>
 
                         <p:column headerText="" >

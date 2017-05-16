@@ -3,8 +3,9 @@ package com.ufpa.scontroleportaria.DAO;
 
 import com.ufpa.scontroleportaria.Molde.CollectionClasses;
 import com.ufpa.scontroleportaria.model.Funcionario;
+import com.ufpa.scontroleportaria.model.Portaria;
+import com.ufpa.scontroleportaria.model.RelatorioF;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.Session;
@@ -124,17 +125,17 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
     }
 
     @Override
-    public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search) {
+    public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) {
+    public List<Portaria> listBySearchPORTARIA(String searchMode, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) {
+    public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

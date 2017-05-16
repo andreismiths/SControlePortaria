@@ -2,6 +2,8 @@ package com.ufpa.scontroleportaria.DAO;
 
 import com.ufpa.scontroleportaria.Molde.CollectionClasses;
 import com.ufpa.scontroleportaria.model.Funcionario;
+import com.ufpa.scontroleportaria.model.Portaria;
+import com.ufpa.scontroleportaria.model.RelatorioF;
 
 import java.util.List;
 
@@ -16,9 +18,9 @@ public interface GenericoDAO<T> {
     
     public List<T> list(String sqlHQL);    
     public List<CollectionClasses> generalSearchList(String searchMode, String search);
-    public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search);
-    public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search);
-    public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search);
+    public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search);
+    public List<Portaria> listBySearchPORTARIA(String searchMode, String search);
+    public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search);
     public List<String> getPelagemNames();    
     public void remove(Object entidade);
     public void update(Object entidade);

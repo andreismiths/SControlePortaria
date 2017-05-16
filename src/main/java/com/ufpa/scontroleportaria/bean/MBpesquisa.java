@@ -35,33 +35,32 @@ public class MBpesquisa extends AbstractBean {
     public void changeMask() {
         textoPesquisa = "";
         switch (itemPesquisa) {
-            case "cpf":
-                searchMask = "999.999.999-99";
-                searchTip = "Ex: 999.999.999-99";
-                maxLength = "14";
-                break;
-            case "siape":
-                searchMask = "99.999.999";
-                searchTip = "Ex: 99.999.999";
-                maxLength = "10";
-                break;
-            case "nome":
+            case "nomeFuncionario":
                 searchMask = "";
                 searchTip = (itemPesquisa.equals("nome")) ? "Ex: Tássio" : "Ex: Luciana";
                 maxLength = "100";
                 break;
-                
+            case "cpfFuncionario":
+                searchMask = "999.999.999-99";
+                searchTip = "Ex: 999.999.999-99";
+                maxLength = "14";
+                break;
+            case "siapeFuncionario":
+                searchMask = "99.999.999";
+                searchTip = "Ex: 99.999.999";
+                maxLength = "10";
+                break;
             case "numeroPortaria":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
-            case "tituloPortaria":
+            case "tituloProjetoPortaria":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
-            case "professorCoord":
+            case "professorCoordenador":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
@@ -71,18 +70,18 @@ public class MBpesquisa extends AbstractBean {
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
-                
-            case "numeroProtocolo":
+
+            case "numeroDeProtocolo":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
-            case "responsavelEntrega":
+            case "assinaturaRespEntrega":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
-            case "faculdadeRelatorio":
+            case "faculdadeRelatorioF":
                 searchMask = "99.999.999";
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
@@ -103,7 +102,7 @@ public class MBpesquisa extends AbstractBean {
             case "Portaria":
                 objBuscados = getDaoGenerico().listBySearchPORTARIA(itemPesquisa, textoPesquisa);
                 break;
-            case "Relatório":
+            case "RelatórioF":
                 objBuscados = getDaoGenerico().listBySearchRELATORIOF(itemPesquisa, textoPesquisa);
                 break;
             default:
@@ -130,27 +129,28 @@ public class MBpesquisa extends AbstractBean {
         showDataTableFuncionario = false;
         showDataTablePortaria = false;
         showDataTableRelatorioF = false;
+
         if (maximumCharacters(100, textoPesquisa)) {
             objBuscados = getDaoGenerico().generalSearchList(itemPesquisa, textoPesquisa);
             boolean fullList = (objBuscados.size() > 0);
 
             switch (itemPesquisa) {
-                case "cpf":
-                case "siape":
-                case "nome":
-
+                case "nomeFuncionario":
+                case "cpfFuncionario":
+                case "siapeFuncionario":
                     showDataTableFuncionario = fullList;
                     break;
+
                 case "numeroPortaria":
-                case "tituloPortaria":
-                case "professorCoord":
+                case "tituloProjetoPortaria":
+                case "professorCoordenador":
                 case "faculdadePortaria":
                     showDataTablePortaria = fullList;
                     break;
-                case "numeroProtocolo":
-                case "responsavelEntrega":
-                case "faculdadeRelatorio":
 
+                case "numeroDeProtocolo":
+                case "assinaturaRespEntrega":
+                case "faculdadeRelatorioF":
                     showDataTableRelatorioF = fullList;
                     break;
                 default:
@@ -172,11 +172,8 @@ public class MBpesquisa extends AbstractBean {
     private boolean maximumCharacters(int num, String text) {
         return text.length() <= num;
     }
-    
-    
-    
-    //gets e setts
 
+    //gets e setts
     public String getTextoPesquisa() {
         return textoPesquisa;
     }
@@ -205,24 +202,12 @@ public class MBpesquisa extends AbstractBean {
         return showDataTableFuncionario;
     }
 
-    public void setShowDataTableFuncionario(boolean showDataTableFuncionario) {
-        this.showDataTableFuncionario = showDataTableFuncionario;
-    }
-
     public boolean isShowDataTablePortaria() {
         return showDataTablePortaria;
     }
 
-    public void setShowDataTablePortaria(boolean showDataTablePortaria) {
-        this.showDataTablePortaria = showDataTablePortaria;
-    }
-
     public boolean isShowDataTableRelatorioF() {
         return showDataTableRelatorioF;
-    }
-
-    public void setShowDataTableRelatorioF(boolean showDataTableRelatorioF) {
-        this.showDataTableRelatorioF = showDataTableRelatorioF;
     }
 
     public List<?> getObjBuscados() {
@@ -256,6 +241,5 @@ public class MBpesquisa extends AbstractBean {
     public void setMaxLength(String maxLength) {
         this.maxLength = maxLength;
     }
-    
-    
+
 }

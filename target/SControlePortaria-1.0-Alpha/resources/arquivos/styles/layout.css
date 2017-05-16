@@ -20,6 +20,18 @@
 
 }
 
+.footer {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: #4361fd;
+  text-align: center;
+  border-radius: 4px;
+  margin-top: 166px;
+}
+
 .aw-topbar-banner {
 	position: fixed;
 	

@@ -2,6 +2,9 @@ package com.ufpa.scontroleportaria.bean;
 
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.controller.PortariaList;
+import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,6 +18,7 @@ public class MBportaria extends AbstractBean {
 
     private Portaria portaria;
     private PortariaList objListPortaria;
+    private List<Portaria> listaPDFPortaria = new ArrayList<Portaria>();
     
     
     public void cadastrarPortaria() {
@@ -26,6 +30,22 @@ public class MBportaria extends AbstractBean {
         }
         
     }
+    
+    public void listarPortaria(){
+        try{
+            listaPDFPortaria = getDaoGenerico().list(portaria);
+            getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
+        } catch (Exception e) {
+            getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
+        }
+        
+    }
+    
+    public void gerarPDF(){
+        GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
+        gerarPDFPortaria.getRelatorio(listaPDFPortaria);
+    }
+    
 
     public Portaria getPortaria() {
         if (portaria == null) {
@@ -43,6 +63,14 @@ public class MBportaria extends AbstractBean {
             objListPortaria = new PortariaList();
         }
         return objListPortaria;
+    }
+
+    public List<Portaria> getListaPDFPortaria() {
+        return listaPDFPortaria;
+    }
+
+    public void setListaPDFPortaria(List<Portaria> listaPDFPortaria) {
+        this.listaPDFPortaria = listaPDFPortaria;
     }
 
 }
