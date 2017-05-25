@@ -10,6 +10,7 @@ com/ufpa/scontroleportaria/bean/MBpesquisa.class
 com/ufpa/scontroleportaria/DAO/HibernateUtil.class
 com/ufpa/scontroleportaria/testeEmail/IndexController.class
 com/ufpa/scontroleportaria/model/FuncionarioHasPortaria.class
+com/ufpa/scontroleportaria/controller/BeautyText.class
 com/ufpa/scontroleportaria/relatorio/GerarPDFPortaria.class
 com/ufpa/scontroleportaria/controller/PortariaList.class
 com/ufpa/scontroleportaria/controller/FuncionarioList.class

@@ -30,7 +30,7 @@ public class EmailUtils {
  Email email = new SimpleEmail();
  email.setDebug(true);
  email.setHostName(HOSTNAME);
- email.setSmtpPort(465);
+ email.setSmtpPort(587);
  email.setAuthenticator(new DefaultAuthenticator(USERNAME, PASSWORD));
  email.setSSLOnConnect(true);
  email.setTLS(true);

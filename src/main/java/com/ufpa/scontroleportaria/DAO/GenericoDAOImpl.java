@@ -1,7 +1,7 @@
 package com.ufpa.scontroleportaria.DAO;
 
-
 import com.ufpa.scontroleportaria.Molde.CollectionClasses;
+import com.ufpa.scontroleportaria.controller.BeautyText;
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.model.RelatorioF;
@@ -121,22 +121,110 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
     @Override
     public List<CollectionClasses> generalSearchList(String searchMode, String search) {
+        search = "'%" + search + "%'";
+
+        //---------------------------------------------------------------------
+
+        /*A variável determina o tipo de indivíduo a ser
+        pesquisado: proprietário, animal. -----------------------------------*/
+        String tipoIndividuo = "";
+
+        switch (searchMode) {
+//---------------------------------------------------------------------
+            case "nomeFuncionario":
+                searchMode = "f.nomeFuncionario";
+                tipoIndividuo = "funcionario";
+                break;
+
+            case "cpfFuncionario":
+                searchMode = "f.cpfFuncionario";
+                tipoIndividuo = "funcionario";
+                break;
+
+            case "siapeFuncionario":
+                searchMode = "f.siapeFuncionario";
+                tipoIndividuo = "funcionario";
+                break;
+//---------------------------------------------------------------------
+            case "numeroPortaria":
+                searchMode = "p.numeroPortaria";
+                tipoIndividuo = "portaria";
+                break;
+
+            case "tituloProjetoPortaria":
+                searchMode = "p.tituloProjetoPortaria";
+                tipoIndividuo = "portaria";
+                break;
+
+            case "professorCoordenador":
+                searchMode = "p.professorCoordenador";
+                tipoIndividuo = "portaria";
+                break;
+
+            case "faculdadePortaria":
+                searchMode = "p.faculdadePortaria";
+                tipoIndividuo = "portaria";
+                break;
+//---------------------------------------------------------------------
+            case "numeroDeProtocolo":
+                searchMode = "r.numeroDeProtocolo";
+                tipoIndividuo = "relatoriof";
+                break;
+
+            case "assinaturaRespEntrega":
+                searchMode = "r.assinaturaRespEntrega";
+                tipoIndividuo = "relatoriof";
+                break;
+
+            case "faculdadeRelatorioF":
+                searchMode = "r.faculdadeRelatorioF";
+                tipoIndividuo = "relatoriof";
+                break;
+        }
+        List<CollectionClasses> listCollection = new ArrayList<>();
+
+        switch (tipoIndividuo) {
+            case "proprietario":
+                List<Funcionario> listFuncionario
+                        = (List<Funcionario>) this.list("SELECT f from Funcionario f"
+                                + searchMode + " like " + search);
+
+                break;
+
+            case "portaria":
+                List<Portaria> listPortaria
+                        = (List<Portaria>) this.list("SELECT p from Portaria p"
+                                + searchMode + " like " + search);
+
+                break;
+
+            case "relatoriof":
+                List<RelatorioF> listRelatorioF
+                        = (List<RelatorioF>) this.list("SELECT r from RelatorioF r"
+                                + searchMode + " like " + search);
+
+                break;
+
+            default:
+                break;
+        }
+
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> generalSearchList(String searchMode, String search) ]");
+        return listCollection;
+    }
+
+    @Override
+    public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search) {
+    public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Portaria> listBySearchPORTARIA(String searchMode, String search) {
+    public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

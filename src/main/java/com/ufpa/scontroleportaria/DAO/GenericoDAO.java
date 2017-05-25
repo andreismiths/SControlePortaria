@@ -14,13 +14,13 @@ public interface GenericoDAO<T> {
     public void save(T entidade);
     public T getById(String model, Integer id);
     //acredito que possa exibir a lista daquela entidade
-    public List<T> list(T entidade);
+    public List<T> list(T entidade); //falta implementar o método dentro do implements
     
     public List<T> list(String sqlHQL);    
     public List<CollectionClasses> generalSearchList(String searchMode, String search);
-    public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search);
-    public List<Portaria> listBySearchPORTARIA(String searchMode, String search);
-    public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search);
+    public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search);
+    public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search);
+    public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search);
     public List<String> getPelagemNames();    
     public void remove(Object entidade);
     public void update(Object entidade);

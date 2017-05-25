@@ -100,7 +100,7 @@ public class MBpesquisa extends AbstractBean {
 
         switch (item) {
             case "Funcionario":
-                objBuscados = getDaoGenerico().listBySearchFUNCIONARIO(itemPesquisa, textoPesquisa);
+                objBuscados = getDaoGenerico().generalSearchList(itemPesquisa, textoPesquisa);
                 break;
             case "Portaria":
                 objBuscados = getDaoGenerico().listBySearchPORTARIA(itemPesquisa, textoPesquisa);
