@@ -184,7 +184,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         List<CollectionClasses> listCollection = new ArrayList<>();
 
         switch (tipoIndividuo) {
-            case "proprietario":
+            case "funcionario":
                 List<Funcionario> listFuncionario
                         = (List<Funcionario>) this.list("SELECT f from Funcionario f"
                                 + searchMode + " like " + search);
@@ -215,16 +215,137 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
     @Override
     public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        search = "'%" + search + "%'";
+
+        //---------------------------------------------------------------------
+
+        /*A variável determina o tipo de indivíduo a ser
+        pesquisado: proprietário, animal. -----------------------------------*/
+        String tipoIndividuo = "";
+
+        switch (searchMode) {
+//---------------------------------------------------------------------
+            case "nomeFuncionario":
+                searchMode = "f.nomeFuncionario";
+                tipoIndividuo = "funcionario";
+                break;
+
+            case "cpfFuncionario":
+                searchMode = "f.cpfFuncionario";
+                tipoIndividuo = "funcionario";
+                break;
+
+            case "siapeFuncionario":
+                searchMode = "f.siapeFuncionario";
+                tipoIndividuo = "funcionario";
+                break;
+
+        }
+        List<CollectionClasses> listCollection = new ArrayList<>();
+
+        switch (tipoIndividuo) {
+            case "proprietario":
+                List<Funcionario> listFuncionario
+                        = (List<Funcionario>) this.list("SELECT f from Funcionario f"
+                                + searchMode + " like " + search);
+
+                break;
+        }
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search) ]");
+        return listCollection;
     }
 
     @Override
     public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        search = "'%" + search + "%'";
+
+        //---------------------------------------------------------------------
+
+        /*A variável determina o tipo de indivíduo a ser
+        pesquisado: proprietário, animal. -----------------------------------*/
+        String tipoIndividuo = "";
+
+        switch (searchMode) {
+
+            case "numeroPortaria":
+                searchMode = "p.numeroPortaria";
+                tipoIndividuo = "portaria";
+                break;
+
+            case "tituloProjetoPortaria":
+                searchMode = "p.tituloProjetoPortaria";
+                tipoIndividuo = "portaria";
+                break;
+
+            case "professorCoordenador":
+                searchMode = "p.professorCoordenador";
+                tipoIndividuo = "portaria";
+                break;
+
+            case "faculdadePortaria":
+                searchMode = "p.faculdadePortaria";
+                tipoIndividuo = "portaria";
+                break;
+        }
+        List<CollectionClasses> listCollection = new ArrayList<>();
+
+        switch (tipoIndividuo) {
+
+            case "portaria":
+                List<Portaria> listPortaria
+                        = (List<Portaria>) this.list("SELECT p from Portaria p"
+                                + searchMode + " like " + search);
+            default:
+                break;
+        }
+                System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) ]");
+        return listCollection;
     }
 
     @Override
     public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       search = "'%" + search + "%'";
+
+        //---------------------------------------------------------------------
+
+        /*A variável determina o tipo de indivíduo a ser
+        pesquisado: proprietário, animal. -----------------------------------*/
+        String tipoIndividuo = "";
+
+        switch (searchMode) {
+
+            case "numeroDeProtocolo":
+                searchMode = "r.numeroDeProtocolo";
+                tipoIndividuo = "relatoriof";
+                break;
+
+            case "assinaturaRespEntrega":
+                searchMode = "r.assinaturaRespEntrega";
+                tipoIndividuo = "relatoriof";
+                break;
+
+            case "faculdadeRelatorioF":
+                searchMode = "r.faculdadeRelatorioF";
+                tipoIndividuo = "relatoriof";
+                break;
+        }
+        List<CollectionClasses> listCollection = new ArrayList<>();
+
+        switch (tipoIndividuo) {
+
+
+            case "relatoriof":
+                List<RelatorioF> listRelatorioF
+                        = (List<RelatorioF>) this.list("SELECT r from RelatorioF r"
+                                + searchMode + " like " + search);
+
+                break;
+
+            default:
+                break;
+        }
+
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) ]");
+        return listCollection;
     }
 }
