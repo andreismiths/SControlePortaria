@@ -31,9 +31,9 @@ public class MBportaria extends AbstractBean {
         
     }
     
-    public void listarPortaria(){
+    public void listarTodasPortarias(){
         try{
-            listaPDFPortaria = getDaoGenerico().list(portaria);
+            listaPDFPortaria = getDaoGenerico().list("SELECT p FROM Portaria p");
             getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");

@@ -35,6 +35,17 @@ public class MBrelatorioFinal extends AbstractBean {
         
     }
     
+    
+            public void listarTodosRelatoriosFinais(){
+        try{
+            listaRFPDF = getDaoGenerico().list("SELECT r FROM RelatorioF r");
+            getObjMessage().info("Exibindo Relatórios Finais", "Todas os Relatórios Finais estão sendo listados!");
+        } catch (Exception e) {
+            getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
+        }
+        
+    }
+    
     public void gerarPDFRelatorioFinal() {
         RelatorioFinalGerarPDF relatoriof = new RelatorioFinalGerarPDF();
         relatoriof.getRelatorio(listaRFPDF);

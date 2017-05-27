@@ -2,6 +2,9 @@ package com.ufpa.scontroleportaria.bean;
 
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.controller.FuncionarioList;
+import com.ufpa.scontroleportaria.model.Portaria;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,6 +18,7 @@ public class MBfuncionario extends AbstractBean {
 
     private Funcionario funcionario;
     private FuncionarioList objListFuncionario;
+    private List<Funcionario> listaPDFFuncionario = new ArrayList<Funcionario>();
     
     
     public void cadastrarFuncionario() {
@@ -23,6 +27,16 @@ public class MBfuncionario extends AbstractBean {
             getObjMessage().info("Cadastro efetuado!", "Funcionario cadastrado com sucesso");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
+        }
+        
+    }
+    
+        public void listarTodosFuncionarios(){
+        try{
+            listaPDFFuncionario = getDaoGenerico().list("SELECT f FROM Funcionario f");
+            getObjMessage().info("Exibindo Funcionários", "Todas os Funcionários estão sendo listados!");
+        } catch (Exception e) {
+            getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
         }
         
     }
