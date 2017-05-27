@@ -18,7 +18,7 @@ public interface GenericoDAO<T> {
     
     public List<T> list(String sqlHQL);    
     public List<CollectionClasses> generalSearchList(String searchMode, String search);
-    public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search);
+    public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search);
     public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search);
     public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search);
     public List<String> getPelagemNames();    

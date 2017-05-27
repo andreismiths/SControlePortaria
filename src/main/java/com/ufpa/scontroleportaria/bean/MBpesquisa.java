@@ -50,11 +50,10 @@ public class MBpesquisa extends AbstractBean {
                 searchTip = "Ex: 99.999.999";
                 maxLength = "10";
                 break;
-                
-                
+
             case "numeroPortaria":
-                searchMask = "001/2017";
-                searchTip = "Ex: 001/2017";
+                searchMask = "999/9999";
+                searchTip = "Ex: 999/9999";
                 maxLength = "8";
                 break;
             case "tituloProjetoPortaria":
@@ -73,10 +72,9 @@ public class MBpesquisa extends AbstractBean {
                 maxLength = "30";
                 break;
 
-                
             case "numeroDeProtocolo":
-                searchMask = "001/2017";
-                searchTip = "Ex: 001/2017";
+                searchMask = "999/9999";
+                searchTip = "Ex: 999/9999";
                 maxLength = "8";
                 break;
             case "assinaturaRespEntrega":
@@ -134,7 +132,7 @@ public class MBpesquisa extends AbstractBean {
         showDataTableRelatorioF = false;
 
         if (maximumCharacters(100, textoPesquisa)) {
-            objBuscados = getDaoGenerico().generalSearchList(itemPesquisa, textoPesquisa);
+            objBuscados = getDaoGenerico().listBySearchFUNCIONARIO(itemPesquisa, textoPesquisa);
             boolean fullList = (objBuscados.size() > 0);
 
             switch (itemPesquisa) {

@@ -187,25 +187,22 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
             case "funcionario":
                 List<Funcionario> listFuncionario
                         = (List<Funcionario>) this.list("SELECT f from Funcionario f"
-                                + searchMode + " like " + search);
+                                + " where " + searchMode + " like " + search);
 
                 break;
 
             case "portaria":
                 List<Portaria> listPortaria
                         = (List<Portaria>) this.list("SELECT p from Portaria p"
-                                + searchMode + " like " + search);
+                                + " where " + searchMode + " like " + search);
 
                 break;
 
             case "relatoriof":
                 List<RelatorioF> listRelatorioF
                         = (List<RelatorioF>) this.list("SELECT r from RelatorioF r"
-                                + searchMode + " like " + search);
+                                + " where " + searchMode + " like " + search);
 
-                break;
-
-            default:
                 break;
         }
 
@@ -214,7 +211,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
     }
 
     @Override
-    public List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search) {
+    public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search) {
         search = "'%" + search + "%'";
 
         //---------------------------------------------------------------------
@@ -241,17 +238,17 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
                 break;
 
         }
-        List<CollectionClasses> listCollection = new ArrayList<>();
+        List<Funcionario> listCollection = new ArrayList<>();
 
         switch (tipoIndividuo) {
-            case "proprietario":
+            case "funcionario":
                 List<Funcionario> listFuncionario
                         = (List<Funcionario>) this.list("SELECT f from Funcionario f"
-                                + searchMode + " like " + search);
+                                + " where " + searchMode + " like " + search);
 
                 break;
         }
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ List<CollectionClasses> listBySearchFUNCIONARIO(String searchMode, String search) ]");
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search) ]");
         return listCollection;
     }
 
@@ -294,17 +291,16 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
             case "portaria":
                 List<Portaria> listPortaria
                         = (List<Portaria>) this.list("SELECT p from Portaria p"
-                                + searchMode + " like " + search);
-            default:
-                break;
+                                + " where " + searchMode + " like " + search);
+
         }
-                System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) ]");
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) ]");
         return listCollection;
     }
 
     @Override
     public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) {
-       search = "'%" + search + "%'";
+        search = "'%" + search + "%'";
 
         //---------------------------------------------------------------------
 
@@ -333,15 +329,11 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
         switch (tipoIndividuo) {
 
-
             case "relatoriof":
                 List<RelatorioF> listRelatorioF
                         = (List<RelatorioF>) this.list("SELECT r from RelatorioF r"
-                                + searchMode + " like " + search);
+                                + " where " + searchMode + " like " + search);
 
-                break;
-
-            default:
                 break;
         }
 

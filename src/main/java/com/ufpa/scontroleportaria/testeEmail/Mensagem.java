@@ -14,6 +14,7 @@ public class Mensagem {
     private String destino;
     private String titulo;
     private String mensagem;
+    private byte anexo;
 
     public String getDestino() {
         return destino;
@@ -38,4 +39,14 @@ public class Mensagem {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    public byte getAnexo() {
+        return anexo;
+    }
+
+    public void setAnexo(byte anexo) {
+        this.anexo = anexo;
+    }
+    
+    
 }
