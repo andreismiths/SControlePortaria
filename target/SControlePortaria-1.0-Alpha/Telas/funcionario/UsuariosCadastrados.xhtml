@@ -131,78 +131,78 @@
             </div>
         </p:panel>
 
+
         <f:metadata>
-            <f:viewAction action="#">  </f:viewAction>    
+            <f:viewAction action="#{MBfuncionario.listarTodosFuncionarios()}">  </f:viewAction>    
         </f:metadata>
 
         <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
         <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
-
-            <h:form id="usuarioscadastrados" >
-                <p:dataTable id="listaFuncionario"
-                             var="funcionario" 
-                             value="#{CadastroFunc.listaFuncionario}" 
-                             editable="true" reflow="true" >
+            <h:form id="Portarias" >
+                <p:dataTable var="funcionario" value="#{MBfuncionario.listaPDFFuncionario}" editable="true" 
+                             paginator="true" selectionMode="single" selection="#{MBfuncionario.funcionario}" rowKey="#{funcionario.pkFuncionario}" >
 
                     <f:facet name="header">
-                        USUÁRIOS CADASTRADOS
+                        Funcionários
                     </f:facet>
 
-                    <p:ajax event="rowEdit" />
-                    <p:ajax event="rowEditCancel"  />
 
-                    <p:column headerText="Nome" width="255" >
+                    <p:ajax event="rowSelect" update="@form" />
+
+
+                    <p:column headerText="PK" width="1" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{funcionario.nomeUsuario}" /></f:facet>
+                            <f:facet name="output"><p:outputLabel value="#{funcionario.pkFuncionario}" /></f:facet>
                             <f:facet name="input">
-                                <p:inputText disabled="true" value="#{CadastroFunc.funcionario.nomeUsuario}" 
-                                             placeholder="#{funcionario.nomeUsuario}" 
+                                <p:inputText disabled="true" 
+                                             placeholder="#{funcionario.pkFuncionario}" 
                                              style="width: 100%;" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
 
-
-
-
-                    <p:column headerText="Email" >
+                    <p:column headerText="Nome" width="50" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{funcionario.emailUsuario}" /></f:facet>
+                            <f:facet name="output"><p:outputLabel value="#{funcionario.nomeFuncionario}" /></f:facet>
                             <f:facet name="input">
-                                <p:inputTextarea value="#{CadastroFunc.funcionario.emailUsuario}" 
-                                                 placeholder="#{funcionario.emailUsuario}"
-                                                 maxlength="150"
-                                                 style="width: 100%;" />
+                                <p:inputText disabled="true" 
+                                             placeholder="#{funcionario.nomeFuncionario}" 
+                                             style="width: 100%;" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column headerText="Data de Nascimento" >
+                    <p:column headerText="Data Nascimento" width="20" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{funcionario.dataNascimUsuario}" /></f:facet>
+                            <f:facet name="output"><p:outputLabel value="#{funcionario.dataNascimentoFuncionario}" /></f:facet>
                             <f:facet name="input">
-                                <p:inputTextarea value="#{CadastroFunc.funcionario.dataNascimUsuario}" 
-                                                 placeholder="#{funcionario.dataNascimUsuario}"
-                                                 maxlength="100"
-                                                 style="width: 100%;" />
+                                <p:inputText disabled="true" 
+                                             placeholder="#{funcionario.dataNascimentoFuncionario}" 
+                                             style="width: 100%;" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column headerText="Tipo" width="100" >
+                    <p:column headerText="Email" width="50" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{funcionario.tipoUsuario}" /></f:facet>
+                            <f:facet name="output"><p:outputLabel value="#{funcionario.emailFuncionario}" /></f:facet>
                             <f:facet name="input">
-                                <p:selectOneMenu value="#{CadastroFunc.funcionario.tipoUsuario}" >
-                                    <f:selectItem itemLabel="Professor" itemValue="Professor" />
-                                    <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-                                </p:selectOneMenu>
+                                <p:inputText disabled="true" 
+                                             placeholder="#{funcionario.emailFuncionario}" 
+                                             style="width: 100%;" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column style="width:32px">
-                        <p:rowEditor />
+                    <p:column headerText="Tipo" width="10" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{funcionario.tipoFuncionario}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText disabled="true" 
+                                             placeholder="#{funcionario.tipoFuncionario}" 
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
                 </p:dataTable>

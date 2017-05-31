@@ -266,7 +266,7 @@
                     </p:column>
                     <!-- gerar o pdf para uma unica linha da tabela :D -->     
                     <p:column headerText="PDF" style="width: 100px; text-align: center;" >
-                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update="@form, formPortaria" title="Gerar PDF">
+                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update="formPortaria, Portarias" title="Gerar PDF">
                             <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
                         </p:commandButton>
 
@@ -293,9 +293,9 @@
                                     <p:inputText value="#{portaria.statusPortaria}"/>
 
                                     <p:fieldset>
-                                        <p:commandButton value="Imprimir" action="#{MBportaria.gerarPDF()}" ajax="false" oncomplete="PF('portariaDialog').hide()"
-                                                         update="@form, :Portarias" />
-                                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="@form, :Portarias" />
+                                        <p:commandButton value="Imprimir" action="#{MBportaria.imprimir()}" ajax="false" oncomplete="PF('portariaDialog').hide()"
+                                                         update="@form, formPortaria" onclick="this.form.target='_blank'"/>
+                                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update=":Portarias" />
                                     </p:fieldset>
 
                                 </p:panelGrid> 

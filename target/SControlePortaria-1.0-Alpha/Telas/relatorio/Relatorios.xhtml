@@ -1,14 +1,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-        template="/WEB-INF/template/Adm_Layout.xhtml">
-	
-	<ui:define name="content">
-            <h1 class="aw-page-title">Relatórios</h1>
-            
-              <p:growl id="growl" sticky="true" showDetail="true"/>
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/Adm_Layout.xhtml">
+
+    <ui:define name="content">
+        <h1 class="aw-page-title">Relatórios</h1>
+
+        <p:growl id="growl" sticky="true" showDetail="true"/>
         <p:panel>
             <div class="ui-fluid">
 
@@ -23,10 +23,10 @@
 
                                        for="TipoPesquisa" />
                         <p:selectOneButton id="TipoPesquisa"
-                                          
-                                          value="#{MBpesquisa.itemPesquisa}"
-                                          required="true"
-                                          requiredMessage="Escolha um tipo de pesquisa!">
+
+                                           value="#{MBpesquisa.itemPesquisa}"
+                                           required="true"
+                                           requiredMessage="Escolha um tipo de pesquisa!">
 
                             <f:selectItem itemLabel="Número" itemValue="numeroPortaria" />
                             <f:selectItem itemLabel="Título" itemValue="tituloProjetoPortaria" />
@@ -169,62 +169,88 @@
                 </p:panelGrid>
             </div>
         </p:panel>
-            
-            <f:metadata>
-                <f:viewAction action="#">  </f:viewAction>   
-            </f:metadata>
-            
-            <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
-            <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
-            
-            <h:form id="Relarórios" >
-                <p:dataTable id="relatorio"
-                             var="relatorio" 
-                             
-                             editable="true" reflow="true" >
-                    
+
+
+        <f:metadata>
+            <f:viewAction action="#{MBrelatorioF.listarTodosRelatoriosFinais()}">  </f:viewAction>    
+        </f:metadata>
+
+        <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
+        <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
+            <h:form id="Portarias" >
+                <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRFPDF}" editable="true" 
+                             paginator="true" selectionMode="single" selection="#{MBrelatorioF.relatorioF}" rowKey="#{relatorioF.pkRelatorioF}" >
+
                     <f:facet name="header">
-                        Relarórios
+                        Relatórios Final
                     </f:facet>
-                    
-                   
-                    <p:ajax event="rowEdit" />
-                    <p:ajax event="rowEditCancel"  />
-                    
-                    <p:column headerText="Id" width="50" >
+
+
+                    <p:ajax event="rowSelect" update="@form" />
+
+                    <p:column headerText="Número de Protocolo" width="35" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel /></f:facet>
+                            <f:facet name="output"><p:outputLabel value="#{relatorioF.numeroDeProtocolo}" /></f:facet>
                             <f:facet name="input">
                                 <p:inputText disabled="true" 
-                                              
+                                             placeholder="#{relatorioF.numeroDeProtocolo}" 
                                              style="width: 100%;" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
-                    
-                    <p:column headerText="Nome" >
+
+                    <p:column headerText="Título do Projeto" width="90" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel /></f:facet>
+                            <f:facet name="output"><p:outputLabel value="#{relatorioF.relatorioFtituloDoProjeto}" /></f:facet>
                             <f:facet name="input">
-                                <p:inputText class="maiuscula" 
-                                             
-                                             maxlength="50"
+                                <p:inputText disabled="true" 
+                                             placeholder="#{relatorioF.relatorioFtituloDoProjeto}" 
                                              style="width: 100%;" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
-                                                            
-                    <p:column style="width:32px">
-                        <p:rowEditor />
+
+                    <p:column headerText="Coordenador" width="30" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{relatorioF.relatorioFcoordenador}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText disabled="true" 
+                                             placeholder="#{relatorioF.relatorioFcoordenador}" 
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    
+
+                    <p:column headerText="Pesq/Ext" width="20" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{relatorioF.pesquisaExtensao}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText disabled="true" 
+                                             placeholder="#{relatorioF.pesquisaExtensao}" 
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+
+                    <p:column headerText="Responsável pela Entrega" width="40" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{relatorioF.assinaturaRespEntrega}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText disabled="true" 
+                                             placeholder="#{relatorioF.assinaturaRespEntrega}" 
+                                             style="width: 100%;" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
                 </p:dataTable>
-                
-                
+
+
             </h:form>
-                
-            </p:panelGrid>
-            
-	</ui:define>
-	
+
+        </p:panelGrid>
+
+    </ui:define>
+
 </ui:composition>

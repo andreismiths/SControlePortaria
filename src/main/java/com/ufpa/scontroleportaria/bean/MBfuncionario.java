@@ -59,4 +59,12 @@ public class MBfuncionario extends AbstractBean {
         return objListFuncionario;
     }
 
+    public List<Funcionario> getListaPDFFuncionario() {
+        return listaPDFFuncionario;
+    }
+
+    public void setListaPDFFuncionario(List<Funcionario> listaPDFFuncionario) {
+        this.listaPDFFuncionario = listaPDFFuncionario;
+    }
+
 }

@@ -48,8 +48,8 @@ public class GerarPDFPortaria {
     /*
     defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
     */
-    public void getRelatorio(List<Portaria> lista){
-        stream = this.getClass().getResourceAsStream("/report/Relatório_Portaria_15_março_2017.jasper");
+    public void getRelatorio(List<Portaria> listaPDFPortaria){
+        stream = this.getClass().getResourceAsStream("/report/PortariaPDF_scontroleportaria_19_Maio_2017.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         
@@ -60,7 +60,7 @@ public class GerarPDFPortaria {
             /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
             mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
             */
-            JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(lista));
+            JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(listaPDFPortaria));
             JasperExportManager.exportReportToPdfStream(print, baos);
             
             response.reset();
@@ -84,7 +84,7 @@ public class GerarPDFPortaria {
     public Connection getConexao(){        
         try {            
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ControledePortarias?zeroDateTimeBehavior=convertToNull", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SControlePortaria?zeroDateTimeBehavior=convertToNull", "root", "root");
             return con;
             
         } catch (SQLException ex) {
