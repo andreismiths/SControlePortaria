@@ -2,31 +2,29 @@ package com.ufpa.scontroleportaria.DAO;
 
 import com.ufpa.scontroleportaria.Molde.CollectionClasses;
 import com.ufpa.scontroleportaria.model.Funcionario;
-import com.ufpa.scontroleportaria.model.Portaria;
-import com.ufpa.scontroleportaria.model.RelatorioF;
 
 import java.util.List;
 
-
-
 public interface GenericoDAO<T> {
-    
+
     public void save(T entidade);
-    public T getById(String model, Integer id);
-    //acredito que possa exibir a lista daquela entidade
-    public List<T> list(T entidade); //falta implementar o método dentro do implements
-    
-    public List<T> list(String sqlHQL);    
+
+    public List<T> list(String sqlHQL);
+
     public List<CollectionClasses> generalSearchList(String searchMode, String search);
+
     public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search);
+
     public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search);
+
     public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search);
-    public List<String> getPelagemNames();    
+
     public void remove(Object entidade);
+
     public void update(Object entidade);
-    
+
     public int validate(String username, String password);
-    
+
 //        void inserir(T entidade);
 //    
 //	T atualizar(T entidade);
@@ -82,5 +80,4 @@ public interface GenericoDAO<T> {
 //	T get(String namedQuery, Map<String, Object> parametros) throws NoResultException;
 //
 //	List<T> listar(String sql, Map<String, Object> parametros);
-	
 }

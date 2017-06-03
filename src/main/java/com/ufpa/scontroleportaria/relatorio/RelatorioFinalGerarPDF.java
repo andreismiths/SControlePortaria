@@ -29,7 +29,7 @@ import com.ufpa.scontroleportaria.model.RelatorioF;
 
 /**
  *
- * @author Ramon
+ * @author andreismiths
  */
 public class RelatorioFinalGerarPDF {
     

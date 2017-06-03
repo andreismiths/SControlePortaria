@@ -8,7 +8,7 @@
     <ui:define name="content">
         <h1 class="aw-page-title">Portarias</h1>
 
-          <p:growl id="growl" sticky="true" showDetail="true"/>
+        <p:growl id="growl"/>
         <p:panel>
             <div class="ui-fluid">
 
@@ -23,10 +23,10 @@
 
                                        for="TipoPesquisa" />
                         <p:selectOneButton id="TipoPesquisa"
-                                          
-                                          value="#{MBpesquisa.itemPesquisa}"
-                                          required="true"
-                                          requiredMessage="Escolha um tipo de pesquisa!">
+
+                                           value="#{MBpesquisa.itemPesquisa}"
+                                           required="true"
+                                           requiredMessage="Escolha um tipo de pesquisa!">
 
                             <f:selectItem itemLabel="Número" itemValue="numeroPortaria" />
                             <f:selectItem itemLabel="Título" itemValue="tituloProjetoPortaria" />
@@ -75,7 +75,7 @@
                              styleClass="panelgrid-noborder"
                              columnClasses="ui-grid-col-12" >
 
- 
+
                     <p:dataTable id="portariaBuscada"
                                  var="collection"
                                  rendered="#{MBpesquisa.showDataTablePortaria}"
@@ -137,165 +137,84 @@
                 </p:panelGrid>
             </div>
         </p:panel>
-        
+
         <f:metadata>
             <f:viewAction action="#{MBportaria.listarTodasPortarias()}">  </f:viewAction>    
         </f:metadata>
 
         <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
         <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
-              <h:form id="Portarias" >
-                  <p:dataTable var="portaria" value="#{MBportaria.listaPDFPortaria}" editable="true" 
+            <h:form id="Portarias" >
+                <p:dataTable var="portaria" value="#{MBportaria.listaPDFPortaria}" 
                              paginator="true" selectionMode="single" selection="#{MBportaria.portaria}" rowKey="#{portaria.pkPortaria}" >
 
                     <f:facet name="header">
                         Portarias
                     </f:facet>
-
-
                     <p:ajax event="rowSelect" update="@form" />
 
-
                     <p:column headerText="Número" width="50" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.numeroPortaria}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText disabled="true" 
-                                             placeholder="#{portaria.numeroPortaria}" 
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.numeroPortaria}" />
                     </p:column>
 
                     <p:column headerText="Ementa" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.ementaPortaria}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{portaria.ementaPortaria}" 
-                                             placeholder="#{portaria.ementaPortaria}"
-                                             maxlength="255"
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.ementaPortaria}" />
                     </p:column>
 
                     <p:column headerText="Título do Projeto" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.tituloProjetoPortaria}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{portaria.tituloProjetoPortaria}" 
-                                             placeholder="#{portaria.tituloProjetoPortaria}"
-                                             maxlength="255"
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.tituloProjetoPortaria}" />
                     </p:column>
 
                     <p:column headerText="Projeto" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.projetoPortaria}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputTextarea value="#{portaria.projetoPortaria}" 
-                                                 placeholder="#{portaria.projetoPortaria}"
-                                                 maxlength="255"
-                                                 style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.projetoPortaria}" />
                     </p:column>
 
                     <p:column headerText="Professor Coordenador" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.professorCoordenador}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputTextarea value="#{portaria.professorCoordenador}" 
-                                                 placeholder="#{portaria.professorCoordenador}"
-                                                 maxlength="255"
-                                                 style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="Siape Prof Coordenador" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.siapeCoordenador}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputTextarea value="#{portaria.siapeCoordenador}" 
-                                                 placeholder="#{portaria.siapeCoordenador}"
-                                                 maxlength="255"
-                                                 style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.professorCoordenador}" />
                     </p:column>
 
                     <p:column headerText="Vigêcia Início" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.inicioVigencia}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputTextarea value="#{portaria.inicioVigencia}" 
-                                                 placeholder="#{portaria.inicioVigencia}"
-                                                 maxlength="255"
-                                                 style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.inicioVigencia}" />
                     </p:column>
-
 
                     <p:column headerText="Vigêcia Fim" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.fimVigencia}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputTextarea value="#{portaria.fimVigencia}" 
-                                                 placeholder="#{portaria.fimVigencia}"
-                                                 maxlength="255"
-                                                 style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{portaria.fimVigencia}" />
                     </p:column>
 
-
-                    <p:column headerText="Status" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{portaria.statusPortaria}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputTextarea value="#{portaria.statusPortaria}" 
-                                                 placeholder="#{portaria.statusPortaria}"
-                                                 maxlength="255"
-                                                 style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
                     <!-- gerar o pdf para uma unica linha da tabela :D -->     
-                    <p:column headerText="PDF" style="width: 100px; text-align: center;" >
-                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update="formPortaria, Portarias" title="Gerar PDF">
+                    <p:column headerText="Ações" style="width: 120px; text-align: center;" >
+                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update="Portarias" title="Gerar PDF">
                             <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
                         </p:commandButton>
 
-                        <p:dialog widgetVar="portariaDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false">
+
+
+                        <p:dialog widgetVar="portariaDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
                             <h:form id="formPortaria">
                                 <p:panelGrid columns="2">
                                     <p:outputLabel value="Numero Portaria"/>
-                                    <p:inputText value="#{portaria.numeroPortaria}"/>
+                                    <p:inputText value="#{portaria.numeroPortaria}" disabled="true"/>
                                     <p:outputLabel value="Ementa Portaria"/>
-                                    <p:inputText value="#{portaria.ementaPortaria}"/>
+                                    <p:inputText value="#{portaria.ementaPortaria}" disabled="true"/>
                                     <p:outputLabel value="Título"/>
-                                    <p:inputText value="#{portaria.tituloProjetoPortaria}"/>
+                                    <p:inputText value="#{portaria.tituloProjetoPortaria}" disabled="true"/>
                                     <p:outputLabel value="Projeto"/>
-                                    <p:inputText value="#{portaria.projetoPortaria}"/>
+                                    <p:inputText value="#{portaria.projetoPortaria}" disabled="true"/>
                                     <p:outputLabel value="Professor Coordenador"/>
-                                    <p:inputText value="#{portaria.professorCoordenador}"/>
+                                    <p:inputText value="#{portaria.professorCoordenador}" disabled="true"/>
                                     <p:outputLabel value="Siape Prof. Coord."/>
-                                    <p:inputText value="#{portaria.siapeCoordenador}"/>
+                                    <p:inputText value="#{portaria.siapeCoordenador}" disabled="true"/>
                                     <p:outputLabel value="Vigência Inicio"/>
-                                    <p:inputText value="#{portaria.inicioVigencia}"/>
+                                    <p:inputText value="#{portaria.inicioVigencia}" disabled="true"/>
                                     <p:outputLabel value="Vigência Fim"/>
-                                    <p:inputText value="#{portaria.fimVigencia}"/>
+                                    <p:inputText value="#{portaria.fimVigencia}" disabled="true"/>
                                     <p:outputLabel value="Status"/>
-                                    <p:inputText value="#{portaria.statusPortaria}"/>
+                                    <p:inputText value="#{portaria.statusPortaria}" disabled="true"/>
 
                                     <p:fieldset>
-                                        <p:commandButton value="Imprimir" action="#{MBportaria.imprimir()}" ajax="false" oncomplete="PF('portariaDialog').hide()"
-                                                         update="@form, formPortaria" onclick="this.form.target='_blank'"/>
-                                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update=":Portarias" />
+                                        <p:commandButton value="Imprimir"  ajax="false" action="#{MBportaria.imprimir()}" oncomplete="PF('portariaDialog').hide()"
+                                                         update="@form, :Portarias, :growl" onclick="this.form.target = '_blank'"/>
+                                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="@form, :Portarias" />
                                     </p:fieldset>
 
                                 </p:panelGrid> 
@@ -303,8 +222,49 @@
                         </p:dialog>
 
 
+
+                        <!--DIALOG PARA EDIÇÃO-->
+                        <p:commandButton icon="fa fa-pencil-square-o"  oncomplete="PF('portariaEditDialog').show()" update="Portarias" title="Editar">
+                            <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
+                        </p:commandButton>
+
+
+                        <p:dialog widgetVar="portariaEditDialog" header="EDITAR PORTARIA" modal="true" dynamic="true" resizable="false" width="600">
+                            <h:form id="formEditPortaria">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Numero Portaria"/>
+                                    <p:inputText value="#{portaria.numeroPortaria}"/>
+                                    <p:outputLabel value="Ementa Portaria"/>
+                                    <p:inputText value="#{portaria.ementaPortaria}" />
+                                    <p:outputLabel value="Título"/>
+                                    <p:inputText value="#{portaria.tituloProjetoPortaria}" />
+                                    <p:outputLabel value="Projeto"/>
+                                    <p:inputText value="#{portaria.projetoPortaria}" />
+                                    <p:outputLabel value="Professor Coordenador"/>
+                                    <p:inputText value="#{portaria.professorCoordenador}" />
+                                    <p:outputLabel value="Siape Prof. Coord."/>
+                                    <p:inputText value="#{portaria.siapeCoordenador}" />
+                                    <p:outputLabel value="Vigência Inicio"/>
+                                    <p:inputText value="#{portaria.inicioVigencia}" />
+                                    <p:outputLabel value="Vigência Fim"/>
+                                    <p:inputText value="#{portaria.fimVigencia}" />
+                                    <p:outputLabel value="Status"/>
+                                    <p:inputText value="#{portaria.statusPortaria}" />
+
+                                    <p:fieldset>
+                                        <p:commandButton value="Editar"  ajax="false" action="#{MBportaria.editarPortaria(p)}" oncomplete="PF('portariaEditDialog').hide()"
+                                                         update="@form, :Portarias, :growl, formEditPortaria"/>
+                                        <p:commandButton value="Fechar" oncomplete="PF('portariaEditDialog').hide()" update="@form, :Portarias, formEditPortaria" />
+                                    </p:fieldset>
+
+                                </p:panelGrid> 
+                            </h:form>
+                        </p:dialog>
+
+                        <!--BOTÃO DE EXCLUSÃO-->
+                        <p:commandButton icon="fa fa-trash-o" title="Deletar" action="#{MBportaria.deletarPortaria()}" update="@form, :Portarias, :growl"/>
                     </p:column>
-                    
+
 
                 </p:dataTable>
 

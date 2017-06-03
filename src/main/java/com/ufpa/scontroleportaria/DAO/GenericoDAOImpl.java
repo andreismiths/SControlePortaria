@@ -1,7 +1,6 @@
 package com.ufpa.scontroleportaria.DAO;
 
 import com.ufpa.scontroleportaria.Molde.CollectionClasses;
-import com.ufpa.scontroleportaria.controller.BeautyText;
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.model.RelatorioF;
@@ -14,20 +13,6 @@ import org.hibernate.Transaction;
 @Stateless
 public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
-//	protected HashMap<String, Object> parametros(Object... valores) {
-//		List<Object> par = Arrays.asList(valores);
-//
-//		HashMap<String, Object> parametros = new HashMap<>();
-//
-//		for (int i = 0; i < par.size() - 1; i = i + 2) {
-//			parametros.put(par.get(i).toString(), par.get(i + 1));
-//		}
-//		return parametros;
-//	}
-    /**
-     *
-     * @param entidade
-     */
     //Método genérico para persistir Classes que representam entidades
     @Override
     public void save(T entidade) {
@@ -39,19 +24,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         System.out.println("BACK-END WARNING: OBJECT SAVED! [ public void save(T entidade) ]");
     }
 
-    //Método genérico para recuperação de objetos do banco de dados
-    @Override
-    public T getById(String model, Integer id) {
-        List<T> getObject = new java.util.ArrayList<T>();
-        String idType = "pk";
-        if (model.equals("User") || model.equals("Animais") || model.equals("Cliente")) {
-            idType = "id.pk";
-        }
-        getObject = this.list("SELECT o from " + model + " o where o." + idType + model + "=" + id);
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public T getById(String model, Integer id) ]");
-        return (T) getObject.get(0);
-    }
-
+  
     //Método genérico para listar objetos baseado em uma Query HQL
     @Override
     public List<T> list(String sqlHQL) {
@@ -101,22 +74,6 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
             System.out.println("BACK-END WARNING: USER NOT FOUND! [ public int validate(String username, String password) ]");
         }
         return resposta;
-    }
-
-    //Método para listar os nomes de pelagens inseridas no banco de dados
-    @Override
-    public List<String> getPelagemNames() {
-        List<String> listaPelagens = new ArrayList<>();
-        for (Object obj : (List<Object>) this.list("SELECT pl.nomePelagem from Pelagem pl")) {
-            listaPelagens.add((String) obj);
-        }
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<String> getPelagemNames() ]");
-        return listaPelagens;
-    }
-
-    @Override
-    public List<T> list(T entidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -243,8 +200,8 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         switch (tipoIndividuo) {
             case "funcionario":
                 List<Funcionario> listFuncionario
-                        = (List<Funcionario>) this.list("SELECT f from Funcionario f"
-                                + " where " + searchMode + " like " + search);
+                        = (List<Funcionario>) this.list("select f from Funcionario f where "
+                        + searchMode + " like '%" + search + "%'");
 
                 break;
         }
@@ -290,9 +247,13 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
             case "portaria":
                 List<Portaria> listPortaria
-                        = (List<Portaria>) this.list("SELECT p from Portaria p"
-                                + " where " + searchMode + " like " + search);
-
+                        = (List<Portaria>) this.list("select p from Portaria p where "
+                        + searchMode + " like '%" + search + "%'");
+/*("select p from Portaria p where "
+                        + "p." + searchMode + " like '%" + search + "%'");*/
+/*("SELECT p from Portaria p"
+                                + " where " + searchMode + " like " + search);*/
+                
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) ]");
         return listCollection;
@@ -331,8 +292,8 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
             case "relatoriof":
                 List<RelatorioF> listRelatorioF
-                        = (List<RelatorioF>) this.list("SELECT r from RelatorioF r"
-                                + " where " + searchMode + " like " + search);
+                        = (List<RelatorioF>) this.list("select r from RelatorioF r where "
+                        + searchMode + " like '%" + search + "%'");
 
                 break;
         }

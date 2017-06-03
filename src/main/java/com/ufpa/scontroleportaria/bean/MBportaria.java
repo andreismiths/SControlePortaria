@@ -6,7 +6,6 @@ import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,17 +15,12 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name = "MBportaria")
 @ViewScoped
-public class MBportaria extends AbstractBean implements Serializable {
+public class MBportaria extends AbstractBean {
 
     private Portaria portaria;
     private PortariaList objListPortaria;
     private List<Portaria> listaPDFPortaria = new ArrayList<Portaria>();
-    
-    @PostConstruct
-    public void inicio(){
-        listaPDFPortaria = getDaoGenerico().list("SELECT p FROM Portaria p");
-    }
-    
+
     public void cadastrarPortaria() {
         try {
             getDaoGenerico().save(portaria);
@@ -34,31 +28,56 @@ public class MBportaria extends AbstractBean implements Serializable {
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
         }
-        
+
     }
-    
-    public void listarTodasPortarias(){
-        try{
+
+    public void editarPortaria(Portaria p) {
+        try {
+
+            getDaoGenerico().update(p);
+            getObjMessage().info("Portaria Atualizada!", "Com sucesso!");
+        } catch (Exception e) {
+            getObjMessage().warn("ERRO na Atualização Efetuada!", "Erro na atualização!");
+        }
+
+    }
+
+    public void deletarPortaria() {
+        try {
+            getDaoGenerico().remove(portaria);
+            getObjMessage().info("Portaria Excluída!", "Com sucesso!");
+        } catch (Exception e) {
+            getObjMessage().warn("ERRO na Exclusão Efetuada!", "Erro na Exclusão!");
+        }
+
+    }
+
+    public void listarTodasPortarias() {
+        try {
             listaPDFPortaria = getDaoGenerico().list("SELECT p FROM Portaria p");
             getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
         }
-        
+
     }
     //gera pdf de todas as portarias do banco 
-    //NECESSITA DO ARQUIVO COM A CONEXAO COM O BANCO
-    public void gerarPDF(){
+
+    public void gerarPDF() {
         GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
         gerarPDFPortaria.getRelatorio(listaPDFPortaria);
     }
-    
-    
-    public void imprimir(){
+
+    public void imprimir() {
+        System.out.println("1111111111");
         GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
+        System.out.println("2222222222");
         List<Portaria> item = new ArrayList<>();
+        System.out.println("3333333333");
         item.add(portaria);
+        System.out.println("4444444444");
         gerarPDFPortaria.getRelatorio(item);
+        System.out.println("5555555555");
     }
 
     public Portaria getPortaria() {

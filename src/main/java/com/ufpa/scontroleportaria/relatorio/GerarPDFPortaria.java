@@ -30,7 +30,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
- * @author Ramon
+ * @author andreismiths
  */
 public class GerarPDFPortaria {
     
@@ -41,6 +41,7 @@ public class GerarPDFPortaria {
     private Connection con;
 
     public GerarPDFPortaria() {
+        System.out.println("Entrou no GerarPortaria");
         this.context = FacesContext.getCurrentInstance();
         this.response = (HttpServletResponse) context.getExternalContext().getResponse();
     }
@@ -48,7 +49,8 @@ public class GerarPDFPortaria {
     /*
     defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
     */
-    public void getRelatorio(List<Portaria> listaPDFPortaria){
+    public void getRelatorio(List<Portaria> lista){
+        System.out.println("Entrou no GetRelatorio");
         stream = this.getClass().getResourceAsStream("/report/PortariaPDF_scontroleportaria_19_Maio_2017.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
@@ -60,7 +62,7 @@ public class GerarPDFPortaria {
             /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
             mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
             */
-            JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(listaPDFPortaria));
+            JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(lista));
             JasperExportManager.exportReportToPdfStream(print, baos);
             
             response.reset();
