@@ -6,6 +6,7 @@ import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,7 +16,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name = "MBportaria")
 @ViewScoped
-public class MBportaria extends AbstractBean {
+public class MBportaria extends AbstractBean implements Serializable {
 
     private Portaria portaria;
     private PortariaList objListPortaria;
@@ -31,11 +32,12 @@ public class MBportaria extends AbstractBean {
 
     }
 
-    public void editarPortaria(Portaria p) {
+    public void editarPortaria() {
         try {
 
-            getDaoGenerico().update(p);
+            getDaoGenerico().update(portaria);
             getObjMessage().info("Portaria Atualizada!", "Com sucesso!");
+            listarTodasPortarias();
         } catch (Exception e) {
             getObjMessage().warn("ERRO na Atualização Efetuada!", "Erro na atualização!");
         }
@@ -46,6 +48,7 @@ public class MBportaria extends AbstractBean {
         try {
             getDaoGenerico().remove(portaria);
             getObjMessage().info("Portaria Excluída!", "Com sucesso!");
+            listarTodasPortarias();
         } catch (Exception e) {
             getObjMessage().warn("ERRO na Exclusão Efetuada!", "Erro na Exclusão!");
         }
@@ -63,12 +66,13 @@ public class MBportaria extends AbstractBean {
     }
     //gera pdf de todas as portarias do banco 
 
-    public void gerarPDF() {
-        GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
-        gerarPDFPortaria.getRelatorio(listaPDFPortaria);
+    public void imprimirTodas() {
+        GerarPDFPortaria gPDFPortaria = new GerarPDFPortaria();
+        gPDFPortaria.getRelatorioTodas();
     }
-
-    public void imprimir() {
+    
+//gera pdf de uma portaria apenas, uma unica linha
+    public void imprimirUnicoItem() {
         System.out.println("1111111111");
         GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
         System.out.println("2222222222");
@@ -76,7 +80,7 @@ public class MBportaria extends AbstractBean {
         System.out.println("3333333333");
         item.add(portaria);
         System.out.println("4444444444");
-        gerarPDFPortaria.getRelatorio(item);
+        gerarPDFPortaria.getRelatorioUmaLinha(item);
         System.out.println("5555555555");
     }
 

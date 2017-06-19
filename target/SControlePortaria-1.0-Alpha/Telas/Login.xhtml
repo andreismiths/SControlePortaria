@@ -1,45 +1,45 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-        template="/WEB-INF/template/Login_Layout.xhtml">
-	
-<ui:define name="content">
-    <h1 class="aw-page-title"></h1> 
-                      
-<p:tab title="Portaria" rendered="true">
-<h:form id="LoginPortaria" class="ui-fluid">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/Login_Layout.xhtml">
 
-<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder" columnClasses="ui-grid-col-3, ui-grid-col-4">
-<p:growl id="campoObrigatorio" life="4000" showDetail="false"
-                                             rendered="#{facesContext.validationFailed == true}" />
-                                    <p:growl for="atencao" id="atencao" life="4000" showDetail="true" />
-                                    <p:growl for="erro" id="erro" life="4000" showDetail="true" />
-                                  <p:growl for="sucesso" id="sucesso" life="4000" showDetail="true" autoUpdate="true" />
-                                  
-                                    <p:panelGrid styleClass="painel_login" columns="1">
-                                        <h3>ACESSE SUA CONTA</h3>
-                                        <p:inputText id="usuario" value="#{MBlogin.siape}"
-                                                     required="true" style="width: 300px !important; padding: 10px;"
-                                                     requiredMessage="Campo Siape Obrigatório!"
-                                                     >
-                                            <p:watermark for="usuario" value="Usuário" />
-                                            <p:focus for="usuario" />
-                                        </p:inputText>
-                                        <p:password id="senha" value="#{MBlogin.senha}" required="true" style="width: 300px !important; padding: 10px;"
-                                                    requiredMessage="Campo Senha Obrigatório!"
-                                                    >
-                                            <p:watermark for="senha" value="Senha" />
-                                        </p:password>
-                                        <p:commandButton action="#{MBlogin.login()}" value="Entrar" icon="ui-icon-key" />
-    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                                    </p:panelGrid>
-</p:panelGrid>
+    <ui:define name="content">
+        <h1 class="aw-page-title"></h1> 
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+        <p:tab title="Portaria" rendered="true">
+            <h:form id="LoginPortaria" class="ui-fluid">
 
-</h:form>
-</p:tab>
-</ui:define>
+                <p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder" columnClasses="ui-grid-col-3, ui-grid-col-4">
+                    <p:growl id="campoObrigatorio" life="4000" showDetail="false"
+                             rendered="#{facesContext.validationFailed == true}" />
+                    <p:growl for="atencao" id="atencao" life="4000" showDetail="true" />
+                    <p:growl for="erro" id="erro" life="4000" showDetail="true" />
+                    <p:growl for="sucesso" id="sucesso" life="4000" showDetail="true" autoUpdate="true" />
+
+                    <p:panelGrid styleClass="painel_login" columns="1">
+                        <h3>ACESSE SUA CONTA</h3>
+                        <p:inputText id="usuario" value="#{MBlogin.siape}"
+                                     required="true" style="width: 300px !important; padding: 10px;"
+                                     requiredMessage="Campo Siape Obrigatório!"
+                                     >
+                            <p:watermark for="usuario" value="Usuário" />
+                            <p:focus for="usuario" />
+                        </p:inputText>
+                        <p:password id="senha" value="#{MBlogin.senha}" required="true" style="width: 300px !important; padding: 10px;"
+                                    requiredMessage="Campo Senha Obrigatório!"
+                                    >
+                            <p:watermark for="senha" value="Senha" />
+                        </p:password>
+                        <p:commandButton action="#{MBlogin.login()}" value="Entrar" icon="ui-icon-key" />
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    </p:panelGrid>
+                </p:panelGrid>
+
+            </h:form>
+        </p:tab>
+    </ui:define>
 </ui:composition>
 
 

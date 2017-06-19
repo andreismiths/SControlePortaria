@@ -52,15 +52,16 @@ public class EmailUtils {
         EmailAttachment attachment = new EmailAttachment();
         attachment.setPath("/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/webapp/resources/arquivos/images/banner_controle_portarias.png");
         attachment.setDisposition(EmailAttachment.ATTACHMENT);
-        attachment.setDescription("Picture of John");
-        attachment.setName("John");
+        attachment.setDescription("anexo");
+        attachment.setName("anexo");
         email.attach(attachment);
 
         //envia o email
         String resposta = email.send();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
     }
-
+    
     public static String getUsername() {
         return username;
     }
@@ -72,6 +73,5 @@ public class EmailUtils {
     public static String getEmailOrigem() {
         return emailOrigem;
     }
-    
     
 }
