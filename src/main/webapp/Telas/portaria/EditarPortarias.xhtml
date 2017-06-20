@@ -189,31 +189,31 @@
                         <p:outputLabel value="#{portaria.statusPortaria}"/>
                     </p:column>
 
-                    <!--BOTÃO PARA gerar o pdf para uma unica linha da tabela :D -->     
+                    <!--BOTÃO PARA gerar o pdf de todas :D -->     
                     <p:column headerText="Ações" style="width: 170px; text-align: center;" >
-                        
-                        <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target='_blank'" action="#{MBportaria.imprimirTodas()}" title="Gerar PDF"/>
-                        
-                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update=":formPortaria" title="Gerar PDF">
+
+                        <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'" action="#{MBportaria.imprimirTodas()}" title="Gerar PDF"/>
+                        <!--BOTÃO PARA gerar o pdf para uma unica linha da tabela :D --> 
+                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update="Portarias" title="Gerar PDF">
                             <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
                         </p:commandButton>
 
                         <!--BOTÃO PARA EDIÇÃO-->
-                        <p:commandButton icon="fa fa-pencil-square-o"  oncomplete="PF('portariaEditDialog').show()" update=":formEditPortaria" title="Editar">
+                        <p:commandButton icon="fa fa-pencil-square-o"  oncomplete="PF('portariaEditDialog').show()" update="Portarias" title="Editar">
                             <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
                         </p:commandButton>
 
                         <!--BOTÃO DE EXCLUSÃO-->
-                        <p:commandButton icon="fa fa-trash-o" title="Deletar" action="#{MBportaria.deletarPortaria()}" update="@form, :Portarias, :growl"/>
+                        <p:commandButton icon="fa fa-trash-o" title="Deletar" action="#{MBportaria.deletarPortaria()}" update="Portarias"/>
                     </p:column>
                 </p:dataTable>
-            </h:form>
 
+                <!--DIALOG PARA GERAR O PDF-->
+                <p:dialog widgetVar="portariaDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
 
-            <!--DIALOG PARA GERAR O PDF-->
-            <p:dialog widgetVar="portariaDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
-                <h:form id="formPortaria">
                     <p:panelGrid columns="2">
+                        <p:outputLabel value="PK"/>
+                        <p:inputText value="#{portaria.pkPortaria}" disabled="true"/>
                         <p:outputLabel value="Numero Portaria"/>
                         <p:inputText value="#{portaria.numeroPortaria}" disabled="true"/>
                         <p:outputLabel value="Ementa Portaria"/>
@@ -236,16 +236,18 @@
                     </p:panelGrid> 
                     <p:fieldset>
                         <p:commandButton value="Imprimir"  ajax="false" action="#{MBportaria.imprimirUnicoItem()}" oncomplete="PF('portariaDialog').hide()"
-                                         update="@form, :Portarias" onclick="this.form.target = '_blank'"/>
-                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="@form, :Portarias" />
+                                         update="Portarias" onclick="this.form.target = '_blank'"/>
+                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="Portarias" />
                     </p:fieldset>
-                </h:form>
-            </p:dialog>                     
 
-            <!--DIALOG PARA EDIÇÃO-->
-            <p:dialog widgetVar="portariaEditDialog" header="EDITAR PORTARIA" modal="true" dynamic="true" resizable="false" width="600">
-                <h:form id="formEditPortaria">
+                </p:dialog>                     
+
+                <!--DIALOG PARA EDIÇÃO-->
+                <p:dialog widgetVar="portariaEditDialog" header="EDITAR PORTARIA" modal="true" dynamic="true" resizable="false" width="600">
+
                     <p:panelGrid columns="2">
+                        <p:outputLabel value="PK"/>
+                        <p:inputText value="#{portaria.pkPortaria}" disabled="true"/>
                         <p:outputLabel value="Numero Portaria"/>
                         <p:inputText value="#{portaria.numeroPortaria}"/>
                         <p:outputLabel value="Ementa Portaria"/>
@@ -268,12 +270,12 @@
                     </p:panelGrid> 
                     <p:fieldset>
                         <p:commandButton value="Editar"  ajax="false" action="#{MBportaria.editarPortaria()}" oncomplete="PF('portariaEditDialog').hide()"
-                                         update="@form, :Portarias"/>
-                        <p:commandButton value="Fechar" oncomplete="PF('portariaEditDialog').hide()" update="@form, :Portarias" />
+                                         update="Portarias"/>
+                        <p:commandButton value="Fechar" oncomplete="PF('portariaEditDialog').hide()" update="Portarias" />
                     </p:fieldset>
-                </h:form>
-            </p:dialog>
 
+                </p:dialog>
+            </h:form>
         </p:panelGrid>
 
     </ui:define>
