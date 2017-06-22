@@ -5,6 +5,9 @@
  */
 package com.ufpa.scontroleportaria.testeEmail;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import javax.activation.DataSource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -49,12 +52,11 @@ public class EmailUtils {
         email.addTo(mensagem.getDestino());
 
         //cria o anexo para o email junto com suas propriedades
-        EmailAttachment attachment = new EmailAttachment();
-        attachment.setPath("/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/webapp/resources/arquivos/images/banner_controle_portarias.png");
-        attachment.setDisposition(EmailAttachment.ATTACHMENT);
-        attachment.setDescription("anexo");
-        attachment.setName("anexo");
-        email.attach(attachment);
+ InputStream is = new BufferedInputStream((InputStream) mensagem.getAnexo());  
+
+
+// add the attachment
+email.attach((DataSource) is, "somefile.pdf", "Description of some file");
 
         //envia o email
         String resposta = email.send();
@@ -75,3 +77,26 @@ public class EmailUtils {
     }
     
 }
+
+/*  public static void enviaEmail(Mensagem mensagem) throws EmailException {
+        //adiciona as caracteristicas do email que são repassadas pelo usuário
+        MultiPartEmail email = new MultiPartEmail();
+        email = (MultiPartEmail) conectaEmail();
+        email.setSubject(mensagem.getTitulo());
+        email.setMsg(mensagem.getMensagem());
+        email.addTo(mensagem.getDestino());
+
+        //cria o anexo para o email junto com suas propriedades
+        EmailAttachment attachment = new EmailAttachment();
+        attachment.setPath("/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/webapp/resources/arquivos/images/banner_controle_portarias.png");
+        attachment.setDisposition(EmailAttachment.ATTACHMENT);
+        attachment.setDescription("anexo");
+        attachment.setName("anexo");
+        email.attach(attachment);
+
+        //envia o email
+        String resposta = email.send();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
+    }
+    */

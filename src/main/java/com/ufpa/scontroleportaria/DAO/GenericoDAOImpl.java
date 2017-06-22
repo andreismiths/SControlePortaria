@@ -24,7 +24,6 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         System.out.println("BACK-END WARNING: OBJECT SAVED! [ public void save(T entidade) ]");
     }
 
-  
     //Método genérico para listar objetos baseado em uma Query HQL
     @Override
     public List<T> list(String sqlHQL) {
@@ -83,7 +82,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         //---------------------------------------------------------------------
 
         /*A variável determina o tipo de indivíduo a ser
-        pesquisado: proprietário, animal. -----------------------------------*/
+        pesquisado: -----------------------------------*/
         String tipoIndividuo = "";
 
         switch (searchMode) {
@@ -171,42 +170,27 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
     public List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search) {
         search = "'%" + search + "%'";
 
-        //---------------------------------------------------------------------
-
-        /*A variável determina o tipo de indivíduo a ser
-        pesquisado: proprietário, animal. -----------------------------------*/
-        String tipoIndividuo = "";
-
         switch (searchMode) {
 //---------------------------------------------------------------------
             case "nomeFuncionario":
                 searchMode = "f.nomeFuncionario";
-                tipoIndividuo = "funcionario";
                 break;
 
             case "cpfFuncionario":
                 searchMode = "f.cpfFuncionario";
-                tipoIndividuo = "funcionario";
                 break;
 
             case "siapeFuncionario":
                 searchMode = "f.siapeFuncionario";
-                tipoIndividuo = "funcionario";
                 break;
 
         }
-        List<Funcionario> listCollection = new ArrayList<>();
+        List<Funcionario> listFuncionario
+                = (List<Funcionario>) this.list("select f from Funcionario f where "
+                        + searchMode + " like " + search);
 
-        switch (tipoIndividuo) {
-            case "funcionario":
-                List<Funcionario> listFuncionario
-                        = (List<Funcionario>) this.list("select f from Funcionario f where "
-                        + searchMode + " like '%" + search + "%'");
-
-                break;
-        }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ List<Funcionario> listBySearchFUNCIONARIO(String searchMode, String search) ]");
-        return listCollection;
+        return listFuncionario;
     }
 
     @Override
@@ -248,12 +232,12 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
             case "portaria":
                 List<Portaria> listPortaria
                         = (List<Portaria>) this.list("select p from Portaria p where "
-                        + searchMode + " like '%" + search + "%'");
-/*("select p from Portaria p where "
+                                + searchMode + " like " + search);
+            /*("select p from Portaria p where "
                         + "p." + searchMode + " like '%" + search + "%'");*/
-/*("SELECT p from Portaria p"
+ /*("SELECT p from Portaria p"
                                 + " where " + searchMode + " like " + search);*/
-                
+
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) ]");
         return listCollection;
@@ -293,7 +277,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
             case "relatoriof":
                 List<RelatorioF> listRelatorioF
                         = (List<RelatorioF>) this.list("select r from RelatorioF r where "
-                        + searchMode + " like '%" + search + "%'");
+                                + searchMode + " like " + search);
 
                 break;
         }

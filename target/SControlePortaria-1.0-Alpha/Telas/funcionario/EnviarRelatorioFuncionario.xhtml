@@ -18,9 +18,10 @@
                         <h:outputText value="Título: "/>
                         <h:inputText value="#{MBindexController.mensagem.titulo}" size="66"/>
                         <h:outputText value="Mensagem: "/>
-                        <h:inputTextarea value="#{MBindexController.mensagem.mensagem}" cols="63" rows="12"/>
-                        <h:outputText value="Anexo; "/>
+                        <h:inputTextarea value="#{MBindexController.mensagem.mensagem}" cols="65" rows="12"/>
+                        <h:outputText value="Anexo: "/>
                         <p:fileUpload value="#{MBindexController.mensagem.anexo}" mode="simple" skinSimple="true"/>
+                     
                     </h:panelGrid>
                     <p:commandButton value="Enviar e-mail" image="ui-icon-mail-closed" action="#{MBindexController.enviaEmail()}" update="outputPanelMail"/>
                     <p:commandButton value="Limpar campos" image="ui-icon-circle-close" action="#{MBindexController.limpaCampos()}" update="outputPanelMail"/>

@@ -5,6 +5,7 @@
  */
 package com.ufpa.scontroleportaria.testeEmail;
 
+import java.io.File;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -17,6 +18,7 @@ public class Mensagem {
     private String titulo;
     private String mensagem;
     private UploadedFile anexo;
+    private File anexoFile;
 
     public String getDestino() {
         return destino;
@@ -49,5 +51,16 @@ public class Mensagem {
     public void setAnexo(UploadedFile anexo) {
         this.anexo = anexo;
     }
+
+    public File getAnexoFile() {
+        return anexoFile;
+    }
+
+    public void setAnexoFile(File anexoFile) {
+        this.anexoFile = anexoFile;
+    }
+
+    
+    
     
 }
