@@ -132,6 +132,9 @@ public class MBpesquisa extends AbstractBean {
         showDataTableRelatorioF = false;
 
         if (maximumCharacters(100, textoPesquisa)) {
+            /*existe um problema pois a vairavel objbuscados só recebe uma lista por vez
+            teria de ser rapassado um método para que fosse atribuido certa lista de acordo com que fosse 
+                    escolhido certa tabela*/
             objBuscados = getDaoGenerico().listBySearchFUNCIONARIO(itemPesquisa, textoPesquisa);
             boolean fullList = (objBuscados.size() > 0);
 
@@ -149,6 +152,81 @@ public class MBpesquisa extends AbstractBean {
                     showDataTablePortaria = fullList;
                     break;
 
+                case "numeroDeProtocolo":
+                case "assinaturaRespEntrega":
+                case "faculdadeRelatorioF":
+                    showDataTableRelatorioF = fullList;
+                    break;
+                default:
+                    break;
+            }
+            if (!fullList) {
+                getObjMessage().warn("Listagem vazia!", "Item não encontrado.");
+            }
+        } else {
+            getObjMessage().warn("Dados inapropriados!", "O sistema não aceita a quantidade de caracteres inseridos.");
+        }
+    }
+
+    public void itemListFuncionario() {
+        showDataTableFuncionario = false;
+
+        if (maximumCharacters(100, textoPesquisa)) {
+            objBuscados = getDaoGenerico().listBySearchFUNCIONARIO(itemPesquisa, textoPesquisa);
+            boolean fullList = (objBuscados.size() > 0);
+
+            switch (itemPesquisa) {
+                case "nomeFuncionario":
+                case "cpfFuncionario":
+                case "siapeFuncionario":
+                    showDataTableFuncionario = fullList;
+                    break;
+
+                default:
+                    break;
+            }
+            if (!fullList) {
+                getObjMessage().warn("Listagem vazia!", "Item não encontrado.");
+            }
+        } else {
+            getObjMessage().warn("Dados inapropriados!", "O sistema não aceita a quantidade de caracteres inseridos.");
+        }
+    }
+
+    public void itemListPortaria() {
+        showDataTablePortaria = false;
+
+        if (maximumCharacters(100, textoPesquisa)) {
+            objBuscados = getDaoGenerico().listBySearchPORTARIA(itemPesquisa, textoPesquisa);
+            boolean fullList = (objBuscados.size() > 0);
+
+            switch (itemPesquisa) {
+                case "numeroPortaria":
+                case "tituloProjetoPortaria":
+                case "professorCoordenador":
+                case "faculdadePortaria":
+                    showDataTablePortaria = fullList;
+                    break;
+
+                default:
+                    break;
+            }
+            if (!fullList) {
+                getObjMessage().warn("Listagem vazia!", "Item não encontrado.");
+            }
+        } else {
+            getObjMessage().warn("Dados inapropriados!", "O sistema não aceita a quantidade de caracteres inseridos.");
+        }
+    }
+
+    public void itemListRelatorioF() {
+        showDataTableRelatorioF = false;
+
+        if (maximumCharacters(100, textoPesquisa)) {
+            objBuscados = getDaoGenerico().listBySearchRELATORIOF(itemPesquisa, textoPesquisa);
+            boolean fullList = (objBuscados.size() > 0);
+
+            switch (itemPesquisa) {
                 case "numeroDeProtocolo":
                 case "assinaturaRespEntrega":
                 case "faculdadeRelatorioF":

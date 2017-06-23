@@ -55,7 +55,7 @@
                             requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                        <p:commandButton actionListener="#{MBpesquisa.multipleItemList()}"
+                        <p:commandButton actionListener="#{MBpesquisa.itemListFuncionario()}"
                                          value="Pesquisar" 
                                          disabled="false"
                                          icon="fa fa-search"
@@ -76,7 +76,7 @@
 
 
                     <p:dataTable id="funcionarioBuscado"
-                                 var="collection"
+                                 var="funcionario"
                                  rendered="#{MBpesquisa.showDataTableFuncionario}"
                                  value="#{MBpesquisa.objBuscados}"
                                  paginator="true"
@@ -88,32 +88,32 @@
                         </f:facet>
 
                         <p:column headerText="Código">
-                            <h:outputText value="#{collection.Funcionario.pkfuncionario}" />
+                            <h:outputText value="#{funcionario.pkFuncionario}" />
                         </p:column>
 
                         <p:column headerText="Nome" >
-                            <h:outputText value="#{collection.Funcionario.nomeFuncionario}" />
+                            <h:outputText value="#{funcionario.nomeFuncionario}" />
 
                         </p:column>
 
                         <p:column headerText="SIAPE" >
-                            <h:outputText value="#{collection.Funcionario.siapeFuncionario}" />
+                            <h:outputText value="#{funcionario.siapeFuncionario}" />
 
                         </p:column>
                         <p:column headerText="CPF" >
-                            <h:outputText value="#{collection.Funcionario.cpfFuncionario}" />
+                            <h:outputText value="#{funcionario.cpfFuncionario}" />
 
                         </p:column>
                         <p:column headerText="Data de Nascimento">
-                            <h:outputText value="#{collection.Funcionario.dataNascimentoFuncionario}"/>
+                            <h:outputText value="#{funcionario.dataNascimentoFuncionario}"/>
                         </p:column>
 
                         <p:column headerText="E-mail">
-                            <h:outputText value="#{collection.Funcionario.emailFuncionario}"/>
+                            <h:outputText value="#{funcionario.emailFuncionario}"/>
                         </p:column>
 
                         <p:column headerText="Tipo">
-                            <h:outputText value="#{collection.Funcionario.tipoFuncionario}"/>
+                            <h:outputText value="#{funcionario.tipoFuncionario}"/>
                         </p:column>
 
 

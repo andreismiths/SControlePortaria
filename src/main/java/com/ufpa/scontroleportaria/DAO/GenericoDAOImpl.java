@@ -83,81 +83,81 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
         /*A variável determina o tipo de indivíduo a ser
         pesquisado: -----------------------------------*/
-        String tipoIndividuo = "";
+        String tipoTabela = "";
 
         switch (searchMode) {
 //---------------------------------------------------------------------
             case "nomeFuncionario":
                 searchMode = "f.nomeFuncionario";
-                tipoIndividuo = "funcionario";
+                tipoTabela = "funcionario";
                 break;
 
             case "cpfFuncionario":
                 searchMode = "f.cpfFuncionario";
-                tipoIndividuo = "funcionario";
+                tipoTabela = "funcionario";
                 break;
 
             case "siapeFuncionario":
                 searchMode = "f.siapeFuncionario";
-                tipoIndividuo = "funcionario";
+                tipoTabela = "funcionario";
                 break;
 //---------------------------------------------------------------------
             case "numeroPortaria":
                 searchMode = "p.numeroPortaria";
-                tipoIndividuo = "portaria";
+                tipoTabela = "portaria";
                 break;
 
             case "tituloProjetoPortaria":
                 searchMode = "p.tituloProjetoPortaria";
-                tipoIndividuo = "portaria";
+                tipoTabela = "portaria";
                 break;
 
             case "professorCoordenador":
                 searchMode = "p.professorCoordenador";
-                tipoIndividuo = "portaria";
+                tipoTabela = "portaria";
                 break;
 
             case "faculdadePortaria":
                 searchMode = "p.faculdadePortaria";
-                tipoIndividuo = "portaria";
+                tipoTabela = "portaria";
                 break;
 //---------------------------------------------------------------------
             case "numeroDeProtocolo":
                 searchMode = "r.numeroDeProtocolo";
-                tipoIndividuo = "relatoriof";
+                tipoTabela = "relatoriof";
                 break;
 
             case "assinaturaRespEntrega":
                 searchMode = "r.assinaturaRespEntrega";
-                tipoIndividuo = "relatoriof";
+                tipoTabela = "relatoriof";
                 break;
 
             case "faculdadeRelatorioF":
                 searchMode = "r.faculdadeRelatorioF";
-                tipoIndividuo = "relatoriof";
+                tipoTabela = "relatoriof";
                 break;
         }
         List<CollectionClasses> listCollection = new ArrayList<>();
 
-        switch (tipoIndividuo) {
+        switch (tipoTabela) {
             case "funcionario":
                 List<Funcionario> listFuncionario
-                        = (List<Funcionario>) this.list("SELECT f from Funcionario f"
-                                + " where " + searchMode + " like " + search);
+                        = (List<Funcionario>) this.list("select f from Funcionario f where "
+                                + searchMode + " like " + search);
 
                 break;
 
             case "portaria":
                 List<Portaria> listPortaria
-                        = (List<Portaria>) this.list("SELECT p from Portaria p"
-                                + " where " + searchMode + " like " + search);
+                        = (List<Portaria>) this.list("select p from Portaria p where "
+                                + searchMode + " like " + search);
 
                 break;
 
             case "relatoriof":
                 List<RelatorioF> listRelatorioF
-                        = (List<RelatorioF>) this.list("SELECT r from RelatorioF r"
-                                + " where " + searchMode + " like " + search);
+                        = (List<RelatorioF>) this.list("select r from RelatorioF r where "
+                                + searchMode + " like " + search);
 
                 break;
         }
@@ -194,95 +194,61 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
     }
 
     @Override
-    public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) {
+    public List<Portaria> listBySearchPORTARIA(String searchMode, String search) {
         search = "'%" + search + "%'";
 
         //---------------------------------------------------------------------
-
-        /*A variável determina o tipo de indivíduo a ser
-        pesquisado: proprietário, animal. -----------------------------------*/
-        String tipoIndividuo = "";
-
         switch (searchMode) {
 
             case "numeroPortaria":
                 searchMode = "p.numeroPortaria";
-                tipoIndividuo = "portaria";
                 break;
 
             case "tituloProjetoPortaria":
                 searchMode = "p.tituloProjetoPortaria";
-                tipoIndividuo = "portaria";
                 break;
 
             case "professorCoordenador":
                 searchMode = "p.professorCoordenador";
-                tipoIndividuo = "portaria";
                 break;
 
             case "faculdadePortaria":
                 searchMode = "p.faculdadePortaria";
-                tipoIndividuo = "portaria";
                 break;
         }
-        List<CollectionClasses> listCollection = new ArrayList<>();
+        List<Portaria> listPortaria
+                = (List<Portaria>) this.list("select p from Portaria p where "
+                        + searchMode + " like " + search);
 
-        switch (tipoIndividuo) {
-
-            case "portaria":
-                List<Portaria> listPortaria
-                        = (List<Portaria>) this.list("select p from Portaria p where "
-                                + searchMode + " like " + search);
-            /*("select p from Portaria p where "
-                        + "p." + searchMode + " like '%" + search + "%'");*/
- /*("SELECT p from Portaria p"
-                                + " where " + searchMode + " like " + search);*/
-
-        }
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchPORTARIA(String searchMode, String search) ]");
-        return listCollection;
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Portaria> listBySearchPORTARIA(String searchMode, String search) ]");
+        return listPortaria;
     }
 
     @Override
-    public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) {
+    public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search) {
         search = "'%" + search + "%'";
 
         //---------------------------------------------------------------------
-
-        /*A variável determina o tipo de indivíduo a ser
-        pesquisado: proprietário, animal. -----------------------------------*/
-        String tipoIndividuo = "";
-
         switch (searchMode) {
 
             case "numeroDeProtocolo":
                 searchMode = "r.numeroDeProtocolo";
-                tipoIndividuo = "relatoriof";
                 break;
 
             case "assinaturaRespEntrega":
                 searchMode = "r.assinaturaRespEntrega";
-                tipoIndividuo = "relatoriof";
                 break;
 
             case "faculdadeRelatorioF":
                 searchMode = "r.faculdadeRelatorioF";
-                tipoIndividuo = "relatoriof";
-                break;
-        }
-        List<CollectionClasses> listCollection = new ArrayList<>();
-
-        switch (tipoIndividuo) {
-
-            case "relatoriof":
-                List<RelatorioF> listRelatorioF
-                        = (List<RelatorioF>) this.list("select r from RelatorioF r where "
-                                + searchMode + " like " + search);
-
                 break;
         }
 
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<CollectionClasses> listBySearchRELATORIOF(String searchMode, String search) ]");
-        return listCollection;
+        List<RelatorioF> listRelatorioF
+                = (List<RelatorioF>) this.list("select r from RelatorioF r where "
+                        + searchMode + " like " + search);
+
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search) ]");
+        return listRelatorioF;
     }
 }

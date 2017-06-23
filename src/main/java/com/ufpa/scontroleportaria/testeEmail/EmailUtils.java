@@ -6,10 +6,14 @@
 package com.ufpa.scontroleportaria.testeEmail;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.activation.DataSource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.apache.commons.mail.ByteArrayDataSource;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailAttachment;
@@ -44,26 +48,29 @@ public class EmailUtils {
     }
 
     public static void enviaEmail(Mensagem mensagem) throws EmailException {
-        //adiciona as caracteristicas do email que são repassadas pelo usuário
-        MultiPartEmail email = new MultiPartEmail();
-        email = (MultiPartEmail) conectaEmail();
-        email.setSubject(mensagem.getTitulo());
-        email.setMsg(mensagem.getMensagem());
-        email.addTo(mensagem.getDestino());
+        try {
+            //adiciona as caracteristicas do email que são repassadas pelo usuário
+            MultiPartEmail email = new MultiPartEmail();
+            email = (MultiPartEmail) conectaEmail();
+            email.setSubject(mensagem.getTitulo());
+            email.setMsg(mensagem.getMensagem());
+            email.addTo(mensagem.getDestino());
 
-        //cria o anexo para o email junto com suas propriedades
- InputStream is = new BufferedInputStream((InputStream) mensagem.getAnexo());  
+            //
+            InputStream is = new BufferedInputStream(mensagem.getAnexo().getInputstream());
 
+            DataSource source = new ByteArrayDataSource(is, mensagem.getAnexo().getContentType());
+            email.attach(source, mensagem.getAnexo().getFileName(), "Description of some file");
 
-// add the attachment
-email.attach((DataSource) is, "somefile.pdf", "Description of some file");
-
-        //envia o email
-        String resposta = email.send();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-                "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
+            //envia o email
+            String resposta = email.send();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
+        } catch (IOException ex) {
+            Logger.getLogger(EmailUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     public static String getUsername() {
         return username;
     }
@@ -75,7 +82,7 @@ email.attach((DataSource) is, "somefile.pdf", "Description of some file");
     public static String getEmailOrigem() {
         return emailOrigem;
     }
-    
+
 }
 
 /*  public static void enviaEmail(Mensagem mensagem) throws EmailException {
@@ -99,4 +106,6 @@ email.attach((DataSource) is, "somefile.pdf", "Description of some file");
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
                 "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
     }
-    */
+ */
+
+ /* email.attach(mensagem.getAnexoFile());*/
