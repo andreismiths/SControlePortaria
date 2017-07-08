@@ -10,7 +10,7 @@ import java.math.BigInteger;
 
 /**
  *
- * @author andreismiths
+ * @author 
  */
 public class Security {
 

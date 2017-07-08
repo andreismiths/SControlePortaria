@@ -4,12 +4,11 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Adm_Layout.xhtml">
-
     <ui:define name="content">
         <h1 class="aw-page-title">Portarias</h1>
-
-        <p:growl id="growl"/>
-        <p:panel>
+        <p:growl id="grolw"/>
+        
+               <p:panel>
             <div class="ui-fluid">
 
                 <h:form>
@@ -135,146 +134,141 @@
             </div>
         </p:panel>
 
-        <f:metadata>
-            <f:viewAction action="#{MBportaria.listarTodasPortarias()}">  </f:viewAction>    
-        </f:metadata>
+        
+        <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
 
-        <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
-        <h:form id="Portarias" >
-        <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
-            
-                <p:dataTable var="portaria" value="#{MBportaria.listaPDFPortaria}" 
-                             paginator="true" selectionMode="single" selection="#{MBportaria.portaria}" rowKey="#{portaria.pkPortaria}" >
+        <h:form id="formlistaportaria">
 
-                    <f:facet name="header">
-                        Portarias
-                    </f:facet>
-                    <p:ajax event="rowSelect" update=":Portarias" />
+            <p:dataTable var="portaria" value="#{MBportaria.listaPortaria}">
+                <f:facet name="header">
+                    Portarias
+                </f:facet>
+                <p:ajax event="rowSelect" update="formlistaportaria"/>
+                <p:column headerText="PK">
+                    <p:outputLabel value="#{portaria.pkPortaria}"/>
+                </p:column>
+                <p:column headerText="Número">
+                    <p:outputLabel value="#{portaria.numeroPortaria}"/>
+                </p:column>
+                <p:column headerText="Ementa">
+                    <p:outputLabel value="#{portaria.ementaPortaria}"/>
+                </p:column>
+                <p:column headerText="Título do Projeto">
+                    <p:outputLabel value="#{portaria.tituloProjetoPortaria}"/>
+                </p:column>
+                <p:column headerText="Projeto">
+                    <p:outputLabel value="#{portaria.projetoPortaria}"/>
+                </p:column>
+                <p:column headerText="Professor Coordenador">
+                    <p:outputLabel value="#{portaria.professorCoordenador}"/>
+                </p:column>
+                <p:column headerText="Siape Coordenador">
+                    <p:outputLabel value="#{portaria.siapeCoordenador}"/>
+                </p:column>
+                <p:column headerText="Início Vigência">
+                    <p:outputLabel value="#{portaria.inicioVigencia}"/>
+                </p:column>
+                <p:column headerText="Fim Vigência">
+                    <p:outputLabel value="#{portaria.fimVigencia}"/>
+                </p:column>
+                <p:column headerText="Colaborador 1">
+                    <p:outputLabel value="#{portaria.colaborador1}"/>
+                </p:column>
+                <p:column headerText="Siape Colab. 1">
+                    <p:outputLabel value="#{portaria.siapeColaborador1}"/>
+                </p:column>
 
-                    <p:column headerText="Número" width="50" >
-                        <p:outputLabel value="#{portaria.numeroPortaria}" />
-                    </p:column>
+                <p:column headerText="Ações" style="width: 170px; text-align: center;">
+                    <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'"
+                                     action="#{MBportaria.imprimirTodas()}" title="PDF Todas"/>
 
-                    <p:column headerText="Ementa" >
-                        <p:outputLabel value="#{portaria.ementaPortaria}" />
-                    </p:column>
+                    <p:commandButton icon="ui-icon-print" oncomplete="PF('pdfdialogportaria').show()" 
+                                     update=":formlistaportaria:formpdfdialogportaria" title="PDF Única">
+                        <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaPortaria}"/>
+                    </p:commandButton>
+                    <!--ALTERAR O ATRIBUTO "selecionadaPortaria", acredito que deve ser separado para cada dialog
+                    <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogportaria').show()"
+                                     update=":formlistaportaria:formedicaodialogportaria" title="Editar">
+                        <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaPortaria}"/>
+                    </p:commandButton>-->
+                    <!--BOTÃO DE EXCLUSÃO A ALTERAR PARA O CONFIRM DIALOG E TESTAR ANTES DE IMPLEMENTAR-->
+                    <p:commandButton icon="fa fa-trash-o" title="Excluir" action="#{MBportaria.deletarPortaria()}" update="formlistaportaria"/>
+                </p:column>
+            </p:dataTable>
 
-                    <p:column headerText="Título do Projeto" >
-                        <p:outputLabel value="#{portaria.tituloProjetoPortaria}" />
-                    </p:column>
-
-                    <p:column headerText="Projeto" >
-                        <p:outputLabel value="#{portaria.projetoPortaria}" />
-                    </p:column>
-
-                    <p:column headerText="Professor Coordenador" >
-                        <p:outputLabel value="#{portaria.professorCoordenador}" />
-                    </p:column>
-
-                    <p:column headerText="Professor Coordenador" >
-                        <p:outputLabel value="#{portaria.siapeCoordenador}"/>
-                    </p:column>
-
-                    <p:column headerText="Vigêcia Início" >
-                        <p:outputLabel value="#{portaria.inicioVigencia}" />
-                    </p:column>
-
-                    <p:column headerText="Vigêcia Fim" >
-                        <p:outputLabel value="#{portaria.fimVigencia}" />
-                    </p:column>
-
-                    <p:column headerText="Status">
-                        <p:outputLabel value="#{portaria.statusPortaria}"/>
-                    </p:column>
-
-                    <!--BOTÃO PARA gerar o pdf de todas :D -->     
-                    <p:column headerText="Ações" style="width: 170px; text-align: center;" >
-
-                        <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'" action="#{MBportaria.imprimirTodas()}" title="Gerar PDF"/>
-                        <!--BOTÃO PARA gerar o pdf para uma unica linha da tabela :D --> 
-                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('portariaDialog').show()" update="Portarias" title="Gerar PDF">
-                            <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
-                        </p:commandButton>
-
-                        <!--BOTÃO PARA EDIÇÃO-->
-                        <p:commandButton icon="fa fa-pencil-square-o"  oncomplete="PF('portariaEditDialog').show()" update="Portarias" title="Editar">
-                            <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.portaria}"/>
-                        </p:commandButton>
-
-                        <!--BOTÃO DE EXCLUSÃO-->
-                        <p:commandButton icon="fa fa-trash-o" title="Deletar" action="#{MBportaria.deletarPortaria()}" update="Portarias"/>
-                    </p:column>
-                </p:dataTable>
-
-                <!--DIALOG PARA GERAR O PDF-->
-                <p:dialog widgetVar="portariaDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
-
-                    <p:panelGrid columns="2">
+            <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600" >
+                <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
+                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
-                        <p:inputText value="#{portaria.pkPortaria}" disabled="true"/>
-                        <p:outputLabel value="Numero Portaria"/>
-                        <p:inputText value="#{portaria.numeroPortaria}" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.pkPortaria}" disabled="true"/>
+                        <p:outputLabel value="Número"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.numeroPortaria}" disabled="true"/>
                         <p:outputLabel value="Ementa Portaria"/>
-                        <p:inputText value="#{portaria.ementaPortaria}" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.ementaPortaria}" disabled="true"/>
                         <p:outputLabel value="Título"/>
-                        <p:inputText value="#{portaria.tituloProjetoPortaria}" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.tituloProjetoPortaria}" disabled="true"/>
                         <p:outputLabel value="Projeto"/>
-                        <p:inputText value="#{portaria.projetoPortaria}" disabled="true"/>
-                        <p:outputLabel value="Professor Coordenador"/>
-                        <p:inputText value="#{portaria.professorCoordenador}" disabled="true"/>
-                        <p:outputLabel value="Siape Prof. Coord."/>
-                        <p:inputText value="#{portaria.siapeCoordenador}" disabled="true"/>
-                        <p:outputLabel value="Vigência Inicio"/>
-                        <p:inputText value="#{portaria.inicioVigencia}" disabled="true"/>
-                        <p:outputLabel value="Vigência Fim"/>
-                        <p:inputText value="#{portaria.fimVigencia}" disabled="true"/>
-                        <p:outputLabel value="Status"/>
-                        <p:inputText value="#{portaria.statusPortaria}" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.projetoPortaria}" disabled="true" />
+                        <p:outputLabel value="Coordenador"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.professorCoordenador}" disabled="true"/>
+                        <p:outputLabel value="Siape Coordenador"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.siapeCoordenador}" disabled="true"/>
+                        <p:outputLabel value="Início"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" disabled="true"/>
+                        <p:outputLabel value="Fim"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" disabled="true"/>   
+                        <p:outputLabel value="Colaborador 1"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.colaborador1}" disabled="true"/>
+                        <p:outputLabel value="Siape Colab. 1"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.siapeColaborador1}" disabled="true"/>
+                    </p:panelGrid>
+                </p:outputPanel>
+                <p:fieldset>
+                    <p:commandButton value="PDF" ajax="false" action="#{MBportaria.pdfTodas()}"
+                                     oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"
+                                     onclick="this.form.target = '_blank'"/>
+                    <p:commandButton value="Fechar" oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"/>
+                </p:fieldset>
+            </p:dialog>
 
-                    </p:panelGrid> 
-                    <p:fieldset>
-                        <p:commandButton value="Imprimir"  ajax="false" action="#{MBportaria.imprimirUnicoItem()}" oncomplete="PF('portariaDialog').hide()"
-                                         update="Portarias" onclick="this.form.target = '_blank'"/>
-                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="Portarias" />
-                    </p:fieldset>
-
-                </p:dialog>                     
-
-                <!--DIALOG PARA EDIÇÃO-->
-                <p:dialog widgetVar="portariaEditDialog" header="EDITAR PORTARIA" modal="true" dynamic="true" resizable="false" width="600">
-
-                    <p:panelGrid columns="2">
+            <p:dialog widgetVar="edicaodialogportaria" header="Editar Portaria" modal="true" dynamic="true" resizable="false" width="600">
+                <p:outputPanel id="formedicaodialogportaria" style="text-align: center;">
+                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
-                        <p:inputText value="#{portaria.pkPortaria}" disabled="true"/>
-
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.pkPortaria}" disabled="true"/>
+                        <p:outputLabel value="Número"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.numeroPortaria}" />
                         <p:outputLabel value="Ementa Portaria"/>
-                        <p:inputText value="#{portaria.ementaPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.ementaPortaria}" />
                         <p:outputLabel value="Título"/>
-                        <p:inputText value="#{portaria.tituloProjetoPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.tituloProjetoPortaria}" />
                         <p:outputLabel value="Projeto"/>
-                        <p:inputText value="#{portaria.projetoPortaria}" />
-                        <p:outputLabel value="Professor Coordenador"/>
-                        <p:inputText value="#{portaria.professorCoordenador}" />
-                        <p:outputLabel value="Siape Prof. Coord."/>
-                        <p:inputText value="#{portaria.siapeCoordenador}" />
-                        <p:outputLabel value="Vigência Inicio"/>
-                        <p:inputText value="#{portaria.inicioVigencia}" />
-                        <p:outputLabel value="Vigência Fim"/>
-                        <p:inputText value="#{portaria.fimVigencia}" />
-                        <p:outputLabel value="Status"/>
-                        <p:inputText value="#{portaria.statusPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.projetoPortaria}" />
+                        <p:outputLabel value="Coordenador"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.professorCoordenador}" />
+                        <p:outputLabel value="Siape Coordenador"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.siapeCoordenador}" />
+                        <p:outputLabel value="Início"/>
+                        <!--AINDA ESTÁ DANDO ERRO DE CONVERSÃO POR ESTES VALORES SEREM DO TIPO DATE E DEVEM SER CONVERTIDOS PARA STRING
+                        OU ALTERADO O TIPO NO BANCO DE DADOS-->
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" />
+                        <p:outputLabel value="Fim"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" />
+                        <!--AINDA ESTÁ DANDO ERRO DE CONVERSÃO POR ESTES VALORES SEREM DO TIPO DATE E DEVEM SER CONVERTIDOS PARA STRING
+                        OU ALTERADO O TIPO NO BANCO DE DADOS-->
+                        <p:outputLabel value="Colaborador 1"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.colaborador1}" />
+                        <p:outputLabel value="Siape Colab. 1"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.siapeColaborador1}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+                <p:fieldset>
+                    <p:commandButton value="Editar Portaria" ajax="false" action="#{MBportaria.editarPortaria()}"
+                                     oncomplete="PF('edicaodialogportaria').hide()" update=":formlistaportaria"/>
+                    <p:commandButton value="Fechar" oncomplete="PF('edicaodialogportaria').hide()" update=":formlistaportaria"/>
+                </p:fieldset>
+            </p:dialog>
 
-                    </p:panelGrid> 
-                    <p:fieldset>
-                        <p:commandButton value="Editar"  ajax="false" action="#{MBportaria.editarPortaria()}" oncomplete="PF('portariaEditDialog').hide()"
-                                         update="Portarias"/>
-                        <p:commandButton value="Fechar" oncomplete="PF('portariaEditDialog').hide()" update="Portarias" />
-                    </p:fieldset>
-
-                </p:dialog>
-            
-        </p:panelGrid>
-</h:form>
+        </h:form>
     </ui:define>
-
 </ui:composition>

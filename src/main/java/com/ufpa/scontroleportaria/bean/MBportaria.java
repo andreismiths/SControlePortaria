@@ -3,6 +3,7 @@ package com.ufpa.scontroleportaria.bean;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.controller.PortariaList;
 import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
+import com.ufpa.scontroleportaria.relatorio.PdfTodasPortarias;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,17 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "MBportaria")
 @ViewScoped
 public class MBportaria extends AbstractBean implements Serializable {
-
+       
     private Portaria portaria;
+    private Portaria selecionadaPortaria;
     private PortariaList objListPortaria;
-    private List<Portaria> listaPDFPortaria = new ArrayList<Portaria>();
+    private List<Portaria> listaPortaria;
+    private List<Portaria> listaDialogPortaria = new ArrayList<Portaria>();
+    
+    @PostConstruct
+    public void inicio(){
+        listarTodasPortarias();
+    }
 
     public void cadastrarPortaria() {
         try {
@@ -34,7 +42,6 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void editarPortaria() {
         try {
-
             getDaoGenerico().update(portaria);
             getObjMessage().info("Portaria Atualizada!", "Com sucesso!");
             listarTodasPortarias();
@@ -57,7 +64,7 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void listarTodasPortarias() {
         try {
-            listaPDFPortaria = getDaoGenerico().list("SELECT p FROM Portaria p");
+            listaPortaria = getDaoGenerico().list("SELECT p FROM Portaria p");
             getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
@@ -71,23 +78,24 @@ public class MBportaria extends AbstractBean implements Serializable {
         gPDFPortaria.getRelatorioTodas();
     }
     
+    public void pdfTodas(){
+        PdfTodasPortarias pdftodas = new PdfTodasPortarias();
+        pdftodas.todasPortarias();
+    }
+
 //gera pdf de uma portaria apenas, uma unica linha
     public void imprimirUnicoItem() {
-        System.out.println("1111111111");
         GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
-        System.out.println("2222222222");
         List<Portaria> item = new ArrayList<>();
-        System.out.println("3333333333");
         item.add(portaria);
-        System.out.println("4444444444");
         gerarPDFPortaria.getRelatorioUmaLinha(item);
-        System.out.println("5555555555");
+
     }
 
     public Portaria getPortaria() {
-        if (portaria == null) {
-            portaria = new Portaria();
-        }
+//        if (portaria == null) {
+//            portaria = new Portaria();
+//        }
         return portaria;
     }
 
@@ -102,12 +110,30 @@ public class MBportaria extends AbstractBean implements Serializable {
         return objListPortaria;
     }
 
-    public List<Portaria> getListaPDFPortaria() {
-        return listaPDFPortaria;
+    public List<Portaria> getListaPortaria() {
+        return listaPortaria;
     }
 
-    public void setListaPDFPortaria(List<Portaria> listaPDFPortaria) {
-        this.listaPDFPortaria = listaPDFPortaria;
+    public void setListaPortaria(List<Portaria> listaPortaria) {
+        this.listaPortaria = listaPortaria;
     }
+
+    public List<Portaria> getListaDialogPortaria() {
+        return listaDialogPortaria;
+    }
+
+    public void setListaDialogPortaria(List<Portaria> listaDialogPortaria) {
+        this.listaDialogPortaria = listaDialogPortaria;
+    }
+
+    public Portaria getSelecionadaPortaria() {
+        return selecionadaPortaria;
+    }
+
+    public void setSelecionadaPortaria(Portaria selecionadaPortaria) {
+        this.selecionadaPortaria = selecionadaPortaria;
+    }
+    
+    
 
 }
