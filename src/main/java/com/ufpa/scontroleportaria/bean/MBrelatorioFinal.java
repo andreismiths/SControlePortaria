@@ -10,6 +10,7 @@ import com.ufpa.scontroleportaria.model.RelatorioF;
 import com.ufpa.scontroleportaria.relatorio.RelatorioFinalGerarPDF;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -25,6 +26,11 @@ public class MBrelatorioFinal extends AbstractBean {
     private RelatorioFList objListRelatorioF;
     private List<RelatorioF> listaRFPDF = new ArrayList<RelatorioF>();
     
+    
+   @PostConstruct
+   public void inicio(){
+       listarTodosRelatoriosFinais();
+   }
     public void cadastrarRelatorioF() {
         try {
             getDaoGenerico().save(relatorioF);

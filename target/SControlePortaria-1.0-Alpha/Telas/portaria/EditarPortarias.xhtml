@@ -7,8 +7,8 @@
     <ui:define name="content">
         <h1 class="aw-page-title">Portarias</h1>
         <p:growl id="grolw"/>
-        
-               <p:panel>
+
+        <p:panel>
             <div class="ui-fluid">
 
                 <h:form>
@@ -134,7 +134,7 @@
             </div>
         </p:panel>
 
-        
+
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
 
         <h:form id="formlistaportaria">
@@ -186,17 +186,20 @@
                                      update=":formlistaportaria:formpdfdialogportaria" title="PDF Única">
                         <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaPortaria}"/>
                     </p:commandButton>
-                    <!--ALTERAR O ATRIBUTO "selecionadaPortaria", acredito que deve ser separado para cada dialog
+
                     <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogportaria').show()"
                                      update=":formlistaportaria:formedicaodialogportaria" title="Editar">
-                        <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaPortaria}"/>
-                    </p:commandButton>-->
+                        <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaEditPortaria}"/>
+                    </p:commandButton>
                     <!--BOTÃO DE EXCLUSÃO A ALTERAR PARA O CONFIRM DIALOG E TESTAR ANTES DE IMPLEMENTAR-->
-                    <p:commandButton icon="fa fa-trash-o" title="Excluir" action="#{MBportaria.deletarPortaria()}" update="formlistaportaria"/>
+                    <p:commandButton icon="fa fa-trash-o" oncomplete="PF('confirmdialogexcluirportaria').show()" 
+                                     update=":formlistaportaria:confirmdialogexcluirportaria" title="Excluir">
+                        <f:setPropertyActionListener target="#{MBportaria.selecionadaExcluirPortaria}" value="#{portaria}"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
 
-            <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600" >
+            <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="600" >
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
@@ -231,35 +234,33 @@
                 </p:fieldset>
             </p:dialog>
 
-            <p:dialog widgetVar="edicaodialogportaria" header="Editar Portaria" modal="true" dynamic="true" resizable="false" width="600">
+            <p:dialog widgetVar="edicaodialogportaria" header="Editar Portaria" showEffect="fade" hideEffect="explode" modal="true" dynamic="true" resizable="false" width="600">
                 <p:outputPanel id="formedicaodialogportaria" style="text-align: center;">
-                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
+                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaEditPortaria}">
                         <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.pkPortaria}" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.pkPortaria}" disabled="true"/>
                         <p:outputLabel value="Número"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.numeroPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.numeroPortaria}" />
                         <p:outputLabel value="Ementa Portaria"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.ementaPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.ementaPortaria}" />
                         <p:outputLabel value="Título"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.tituloProjetoPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.tituloProjetoPortaria}" />
                         <p:outputLabel value="Projeto"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.projetoPortaria}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.projetoPortaria}" />
                         <p:outputLabel value="Coordenador"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.professorCoordenador}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.professorCoordenador}" />
                         <p:outputLabel value="Siape Coordenador"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.siapeCoordenador}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.siapeCoordenador}" />
                         <p:outputLabel value="Início"/>
-                        <!--AINDA ESTÁ DANDO ERRO DE CONVERSÃO POR ESTES VALORES SEREM DO TIPO DATE E DEVEM SER CONVERTIDOS PARA STRING
-                        OU ALTERADO O TIPO NO BANCO DE DADOS-->
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" />
+                        <p:calendar value="#{MBportaria.selecionadaEditPortaria.inicioVigencia}"
+                        maxlength="10" locale="pt" pattern="dd-mm-yyyy" />
                         <p:outputLabel value="Fim"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" />
-                        <!--AINDA ESTÁ DANDO ERRO DE CONVERSÃO POR ESTES VALORES SEREM DO TIPO DATE E DEVEM SER CONVERTIDOS PARA STRING
-                        OU ALTERADO O TIPO NO BANCO DE DADOS-->
+                        <p:calendar value="#{MBportaria.selecionadaEditPortaria.fimVigencia}"
+                                    maxlength="10" locale="pt" timeZone="GMT-3" pattern="dd-mm-yyyy" /> 
                         <p:outputLabel value="Colaborador 1"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.colaborador1}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.colaborador1}" />
                         <p:outputLabel value="Siape Colab. 1"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.siapeColaborador1}" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.siapeColaborador1}" />
                     </p:panelGrid>
                 </p:outputPanel>
                 <p:fieldset>
@@ -268,6 +269,13 @@
                     <p:commandButton value="Fechar" oncomplete="PF('edicaodialogportaria').hide()" update=":formlistaportaria"/>
                 </p:fieldset>
             </p:dialog>
+            
+            <p:confirmDialog id="confirmdialogexcluirportaria" message="Você gostaria de excluir a portaria de número #{MBportaria.selecionadaExcluirPortaria.numeroPortaria}?"
+                             header="Excluir Portaria" severity="alert" widgetVar="confirmdialogexcluirportaria" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirportaria').hide()" action="#{MBportaria.deletarPortaria()}"
+                                 icon="ui-icon-check" update=":formlistaportaria"/>
+                <p:commandButton value="Não" onclick="PF('confirmdialogexcluirportaria').hide()" icon="ui-icon-close"/>
+            </p:confirmDialog>
 
         </h:form>
     </ui:define>

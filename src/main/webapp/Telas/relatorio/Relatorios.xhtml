@@ -165,26 +165,20 @@
             </div>
         </p:panel>
 
-
-        <f:metadata>
-            <f:viewAction action="#{MBrelatorioF.listarTodosRelatoriosFinais()}">  </f:viewAction>    
-        </f:metadata>
-
         <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
-        <h:form id="relatoriosF" >
-        <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
-            
-                <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRFPDF}" editable="true" 
-                             paginator="true" selectionMode="single" selection="#{MBrelatorioF.relatorioF}" rowKey="#{relatorioF.pkRelatorioF}" >
+        
+        <h:form id="formlistarelatoriosF" >
 
+                <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRFPDF}" >
                     <f:facet name="header">
                         Relatórios Final
                     </f:facet>
-
-
                     <p:ajax event="rowSelect" update="@form" />
-
                     <p:column headerText="Número de Protocolo" width="35" >
+                     <!--ALTERAR TUDO AQUI PARA COLLUMN E OUTPULABEL 
+                     <p:column headerText="PK">
+                    <p:outputLabel value=""/>
+                </p:column>-->
                         <p:cellEditor>
                             <f:facet name="output"><p:outputLabel value="#{relatorioF.numeroDeProtocolo}" /></f:facet>
                             <f:facet name="input">
@@ -246,10 +240,7 @@
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
-        </p:panelGrid> 
-        </h:form>
-
-        <h:form id="formRelatorioF">
+     
             <p:dialog widgetVar="relatorioFDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
 
                 <p:panelGrid columns="2">

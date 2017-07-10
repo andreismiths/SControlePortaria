@@ -20,6 +20,8 @@ import javax.faces.bean.ViewScoped;
 public class MBportaria extends AbstractBean implements Serializable {
        
     private Portaria portaria;
+    private Portaria selecionadaEditPortaria;
+    private Portaria selecionadaExcluirPortaria;
     private Portaria selecionadaPortaria;
     private PortariaList objListPortaria;
     private List<Portaria> listaPortaria;
@@ -93,9 +95,9 @@ public class MBportaria extends AbstractBean implements Serializable {
     }
 
     public Portaria getPortaria() {
-//        if (portaria == null) {
-//            portaria = new Portaria();
-//        }
+        if (portaria == null) {
+            portaria = new Portaria();
+        }
         return portaria;
     }
 
@@ -132,6 +134,22 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void setSelecionadaPortaria(Portaria selecionadaPortaria) {
         this.selecionadaPortaria = selecionadaPortaria;
+    }
+
+    public Portaria getSelecionadaEditPortaria() {
+        return selecionadaEditPortaria;
+    }
+
+    public void setSelecionadaEditPortaria(Portaria selecionadaEditPortaria) {
+        this.selecionadaEditPortaria = selecionadaEditPortaria;
+    }
+
+    public Portaria getSelecionadaExcluirPortaria() {
+        return selecionadaExcluirPortaria;
+    }
+
+    public void setSelecionadaExcluirPortaria(Portaria selecionadaExcluirPortaria) {
+        this.selecionadaExcluirPortaria = selecionadaExcluirPortaria;
     }
     
     
