@@ -227,7 +227,7 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <p:fieldset>
-                    <p:commandButton value="PDF" ajax="false" action="#{MBportaria.imprimirUnicoItem()}"
+                    <p:commandButton value="PDF" ajax="false" action="#{MBportaria.pdfTodas()}"
                                      oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"
                                      onclick="this.form.target = '_blank'"/>
                     <p:commandButton value="Fechar" oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"/>

@@ -41,7 +41,7 @@ public class PdfTodasPortarias {
     }
      
     public void todasPortarias(){
-        stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/pdfportariatodas.jasper");
+        stream = this.getClass().getResourceAsStream("/com/ufpa/scontroleportaria/report/pdfportariatodas.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         
