@@ -44,19 +44,12 @@ public class GerarPDFPortaria {
         this.response = (HttpServletResponse) context.getExternalContext().getResponse();
     }
 
-    /*
-    defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
-     */
     public void getRelatorioUmaLinha(List<Portaria> lista) {
-        stream = this.getClass().getResourceAsStream("/report/PortariaPDF_scontroleportaria_19_Maio_2017.jasper");
-        ///home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/report/PortariaPDF_scontroleportaria_19_Maio_2017.jasper
+        stream = this.getClass().getClassLoader().getResourceAsStream("/report/PortariaPDF_scontroleportaria_19_Maio_2017.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         try {
             JasperReport report = (JasperReport) JRLoader.loadObject(stream);
-            /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
-            mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
-             */
             JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(lista));
             JasperExportManager.exportReportToPdfStream(print, baos);
             response.reset();
@@ -78,16 +71,12 @@ public class GerarPDFPortaria {
     }
 
     public void getRelatorioTodas() {
-        stream = this.getClass().getResourceAsStream("/report/pdfportariatodas.jasper");
+        stream = this.getClass().getClassLoader().getResourceAsStream("/report/pdfportariatodas.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         try {
             
             JasperReport report = (JasperReport) JRLoader.loadObject(stream);
-            
-            /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
-            mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
-             */
             JasperPrint print = JasperFillManager.fillReport(report, params, getConexao());
             JasperExportManager.exportReportToPdfStream(print, baos);
             

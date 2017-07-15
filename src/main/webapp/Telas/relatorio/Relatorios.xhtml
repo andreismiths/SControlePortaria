@@ -7,7 +7,6 @@
 
     <ui:define name="content">
         <h1 class="aw-page-title">Relatórios</h1>
-
         <p:growl id="growl" sticky="true" showDetail="true"/>
         <p:panel>
             <div class="ui-fluid">
@@ -166,102 +165,102 @@
         </p:panel>
 
         <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
-        
+
         <h:form id="formlistarelatoriosF" >
 
-                <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRFPDF}" >
-                    <f:facet name="header">
-                        Relatórios Final
-                    </f:facet>
-                    <p:ajax event="rowSelect" update="@form" />
-                    <p:column headerText="Número de Protocolo" width="35" >
-                     <!--ALTERAR TUDO AQUI PARA COLLUMN E OUTPULABEL 
-                     <p:column headerText="PK">
-                    <p:outputLabel value=""/>
-                </p:column>-->
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{relatorioF.numeroDeProtocolo}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText disabled="true" 
-                                             placeholder="#{relatorioF.numeroDeProtocolo}" 
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+            <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRelatorioF}" >
+                <f:facet name="header">
+                    Relatórios Final
+                </f:facet>
+                <p:ajax event="rowSelect" update="formlistarelatoriosF" />
+                <p:column headerText="PK" width="35" >
+                    <p:outputLabel value="#{relatorioF.pkRelatorioF}"/>
+                </p:column>
+                <p:column headerText="Número de Protocolo" width="35" >
+                    <p:outputLabel value="#{relatorioF.numeroDeProtocolo}"/>
+                </p:column>
+                <p:column headerText="Título do Projeto" width="90" >
+                    <p:outputLabel value="#{relatorioF.relatorioFtituloDoProjeto}"/>
+                </p:column>
+                <p:column headerText="Coordenador" width="30" >
+                    <p:outputLabel value="#{relatorioF.relatorioFcoordenador}"/>
+                </p:column>
+                <p:column headerText="Pesq/Ext" width="20" >
+                    <p:outputLabel value="#{relatorioF.pesquisaExtensao}"/>
+                </p:column>
+                <p:column headerText="Responsável pela Entrega" width="40" >
+                    <p:outputLabel value="#{relatorioF.assinaturaRespEntrega}"/>
+                </p:column>
 
-                    <p:column headerText="Título do Projeto" width="90" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{relatorioF.relatorioFtituloDoProjeto}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText disabled="true" 
-                                             placeholder="#{relatorioF.relatorioFtituloDoProjeto}" 
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                <p:column headerText="Ações" style="width: 40px; text-align: center;" >
+                    <p:commandButton icon="ui-icon-print"  oncomplete="PF('pdfdialogrelatoriof').show()" 
+                                     update=":formlistarelatoriosF:formpdfdialogrelatoriof" title="Gerar PDF">
+                        <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoRelatorioF}"/>
+                    </p:commandButton>
+                    <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogrelatoriof').show()"
+                                     update=":formlistarelatoriosF:formedicaodialogrelatoriof" title="Editar">
+                        <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoEditRelatorioF}"/>
+                    </p:commandButton>
+                    <!--BOTÃO DE EXCLUSÃO A ALTERAR PARA O CONFIRM DIALOG E TESTAR ANTES DE IMPLEMENTAR-->
+                    <p:commandButton icon="fa fa-trash-o" oncomplete="PF('confirmdialogexcluirrelatoriof').show()" 
+                                     update=":formlistarelatoriosF:formconfirmdialogexcluirrelatoriof" title="Excluir">
+                        <f:setPropertyActionListener target="#{MBrelatorioF.selecionadoExcluirRelatorioF}" value="#{relatorioF}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
 
-                    <p:column headerText="Coordenador" width="30" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{relatorioF.relatorioFcoordenador}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText disabled="true" 
-                                             placeholder="#{relatorioF.relatorioFcoordenador}" 
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="Pesq/Ext" width="20" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{relatorioF.pesquisaExtensao}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText disabled="true" 
-                                             placeholder="#{relatorioF.pesquisaExtensao}" 
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-
-                    <p:column headerText="Responsável pela Entrega" width="40" >
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{relatorioF.assinaturaRespEntrega}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText disabled="true" 
-                                             placeholder="#{relatorioF.assinaturaRespEntrega}" 
-                                             style="width: 100%;" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="PDF" style="width: 20px; text-align: center;" >
-                        <p:commandButton icon="ui-icon-print"  oncomplete="PF('relatorioFDialog').show()" update="formRelatorioF" title="Gerar PDF">
-                            <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.relatorioF}"/>
-                        </p:commandButton>
-                    </p:column>
-                </p:dataTable>
-     
-            <p:dialog widgetVar="relatorioFDialog" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
-
+            <p:dialog widgetVar="pdfdialogrelatoriof" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
+                <p:outputPanel id="formpdfdialogrelatoriof" style="text-align: center;">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Número de Protocolo"/>
-                    <p:inputText value="#{relatorioF.numeroDeProtocolo}" disabled="true"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.numeroDeProtocolo}" disabled="true"/>
                     <p:outputLabel value="Título do Projeto"/>
-                    <p:inputText value="#{relatorioF.relatorioFtituloDoProjeto}" disabled="true"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.relatorioFtituloDoProjeto}" disabled="true"/>
                     <p:outputLabel value="Coordenador"/>
-                    <p:inputText value="#{relatorioF.relatorioFcoordenador}" disabled="true"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.relatorioFcoordenador}" disabled="true"/>
                     <p:outputLabel value="Pesq/Ext"/>
-                    <p:inputText value="#{relatorioF.pesquisaExtensao}" disabled="true"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.pesquisaExtensao}" disabled="true"/>
                     <p:outputLabel value="Responsável pela Entrega"/>
-                    <p:inputText value="#{relatorioF.assinaturaRespEntrega}" disabled="true"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.assinaturaRespEntrega}" disabled="true"/>
                 </p:panelGrid>
+                </p:outputPanel>
                 <p:fieldset>
-                    <p:commandButton value="Imprimir"  ajax="false" action="#{MBrelatorioF.gerarPDFRelatorioFinal()}" oncomplete="PF('relatorioFDialog').hide()"
-                                     update="@form, :relatoriosF, :growl" onclick="this.form.target = '_blank'"/>
-                    <p:commandButton value="Fechar" oncomplete="PF('relatorioFDialog').hide()" update="@form, :relatoriosF" />
+                    <p:commandButton value="Imprimir"  ajax="false" action="#{MBrelatorioF.pdfUmRelatorioFinal()}" oncomplete="PF('pdfdialogrelatoriof').hide()"
+                                     update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
+                    <p:commandButton value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
                 </p:fieldset>
 
             </p:dialog>
+            
+             <p:dialog widgetVar="edicaodialogrelatoriof" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="600">
+                <p:outputPanel id="formedicaodialogrelatoriof" style="text-align: center;">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Número de Protocolo"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.numeroDeProtocolo}"/>
+                    <p:outputLabel value="Título do Projeto"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.relatorioFtituloDoProjeto}" />
+                    <p:outputLabel value="Coordenador"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.relatorioFcoordenador}" />
+                    <p:outputLabel value="Pesq/Ext"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.pesquisaExtensao}" />
+                    <p:outputLabel value="Responsável pela Entrega"/>
+                    <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.assinaturaRespEntrega}" />
+                </p:panelGrid>
+                </p:outputPanel>
+                <p:fieldset>
+                    <p:commandButton value="Editar"  ajax="false" action="#{MBrelatorioF.editarRelatorioF()}" oncomplete="PF('edicaodialogrelatoriof').hide()"
+                                     update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
+                    <p:commandButton value="Fechar" oncomplete="PF('edicaodialogrelatoriof').hide()" update=":formlistarelatoriosF" />
+                </p:fieldset>
+            </p:dialog>
+            
+            <p:confirmDialog id="formconfirmdialogexcluirrelatoriof" message="Você gostaria de excluir o Relatório Final de número 
+                             #{MBrelatorioF.selecionadoExcluirRelatorioF.numeroDeProtocolo}?" header="Excluir RelatórioF" 
+                             severity="alert" widgetVar="confirmdialogexcluirrelatoriof" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirrelatoriof').hide()" action="#{MBrelatorioF.deletarRelatorioF()}"
+                                 icon="ui-icon-check" update=":formlistarelatoriosF"/>
+                <p:commandButton value="Não" onclick="PF('confirmdialogexcluirportaria').hide()" icon="ui-icon-close"/>
+            </p:confirmDialog>
         </h:form>
 
     </ui:define>

@@ -7,8 +7,8 @@
 
     <ui:define name="content">
         <h1 class="aw-page-title">Usuários</h1>
-
         <p:growl id="growl" sticky="true" showDetail="true"/>
+
         <p:panel>
             <div class="ui-fluid">
 
@@ -125,77 +125,60 @@
         </p:panel>
 
 
-        <f:metadata>
-            <f:viewAction action="#{MBfuncionario.listarTodosFuncionarios()}">  </f:viewAction>    
-        </f:metadata>
-
         <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
-        <p:panelGrid columns="1"  layout="grid"  styleClass="panelgrid-noborder" >
-            <h:form id="Portarias" ><!--O ID SÓ TA FUNCIONANDO SE FOR ESSE PORTARIAS SE TROCAR ELE N FUNCIONA-->
-                <p:dataTable var="funcionario" value="#{MBfuncionario.listaPDFFuncionario}" editable="true" 
-                             paginator="true" selectionMode="single" selection="#{MBfuncionario.funcionario}" rowKey="#{funcionario.pkFuncionario}" >
 
-                    <f:facet name="header">
-                        Funcionários
-                    </f:facet>
+        <h:form id="formlistaFuncionarios" >
 
-                    <p:ajax event="rowSelect" update="@form" />
+            <p:dataTable var="funcionario" value="#{MBfuncionario.listaFuncionario}">
+                <f:facet name="header">
+                    Funcionários
+                </f:facet>
+                <p:ajax event="rowSelect" update="formlistaFuncionarios" />
+                <p:column headerText="PK" width="1" >
+                    <p:outputLabel value="#{funcionario.pkFuncionario}" />
+                </p:column>
+                <p:column headerText="Nome" width="50" >
+                    <p:outputLabel value="#{funcionario.nomeFuncionario}" />
+                </p:column>
+                <p:column headerText="Data Nascimento" width="20" >
+                    <p:outputLabel value="#{funcionario.dataNascimentoFuncionario}" />
+                </p:column>
+                <p:column headerText="Email" width="50" >
+                    <p:outputLabel value="#{funcionario.emailFuncionario}" />
+                </p:column>
+                <p:column headerText="Tipo" width="10" >
+                    <p:outputLabel value="#{funcionario.tipoFuncionario}" />
+                </p:column>
 
-                    <p:column headerText="PK" width="1" >
-                        <p:outputLabel value="#{funcionario.pkFuncionario}" />
-                    </p:column>
+                <p:column headerText="Ações" style="width: 10px; text-align: center;" >
+                    <p:commandButton icon="fa fa-pencil-square-o"  oncomplete="PF('funcionarioEditDialog').show()" update="Portarias" title="Editar">
+                        <f:setPropertyActionListener value="#{funcionario}" target="#{MBfuncionario.funcionario}"/>
+                    </p:commandButton>
+</p:column>
+                    <p:dialog widgetVar="funcionarioEditDialog" header="Editar" modal="true" dynamic="true" resizable="false" width="600">
+                       
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="PK"/>
+                                <p:inputText value="#{funcionario.pkFuncionario}" disabled="true"/>
+                                <p:outputLabel value="Nome"/>
+                                <p:inputText value="#{funcionario.nomeFuncionario}"/>
+                                <p:outputLabel value="Data Nascimento"/>
+                                <p:inputText value="#{funcionario.dataNascimentoFuncionario}"/>
+                                <p:outputLabel value="Email"/>
+                                <p:inputText value="#{funcionario.emailFuncionario}" />
+                                <p:outputLabel value="Tipo"/>
+                                <p:inputText value="#{funcionario.tipoFuncionario}" />
 
-                    <p:column headerText="Nome" width="50" >
-                        <p:outputLabel value="#{funcionario.nomeFuncionario}" />
-                    </p:column>
+                                <p:fieldset>
+                                    <p:commandButton value="Editar"  ajax="false" action="#{MBfuncionario.editarFuncionario()}" oncomplete="PF('portariaDialog').hide()"
+                                                     update="@form, :Portarias, :growl"/>
+                                    <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="@form, :Portarias" />
+                                </p:fieldset>
 
-                    <p:column headerText="Data Nascimento" width="20" >
-                        <p:outputLabel value="#{funcionario.dataNascimentoFuncionario}" />
-                    </p:column>
-
-                    <p:column headerText="Email" width="50" >
-                        <p:outputLabel value="#{funcionario.emailFuncionario}" />
-                    </p:column>
-
-                    <p:column headerText="Tipo" width="10" >
-                        <p:outputLabel value="#{funcionario.tipoFuncionario}" />
-                    </p:column>
-
-                    <p:column headerText="Ações" style="width: 10px; text-align: center;" >
-                        <p:commandButton icon="fa fa-pencil-square-o"  oncomplete="PF('funcionarioEditDialog').show()" update="Portarias" title="Editar">
-                            <f:setPropertyActionListener value="#{funcionario}" target="#{MBfuncionario.funcionario}"/>
-                        </p:commandButton>
-
-                        <p:dialog widgetVar="funcionarioEditDialog" header="Editar" modal="true" dynamic="true" resizable="false" width="600">
-                            <h:form id="formPortaria"><!--O ID SÓ TA FUNCIONANDO SE FOR ESSE formPORTARIA SE TROCAR ELE N FUNCIONA-->
-                                <p:panelGrid columns="2">
-                                    <p:outputLabel value="PK"/>
-                                    <p:inputText value="#{funcionario.pkFuncionario}" disabled="true"/>
-                                    <p:outputLabel value="Nome"/>
-                                    <p:inputText value="#{funcionario.nomeFuncionario}"/>
-                                    <p:outputLabel value="Data Nascimento"/>
-                                    <p:inputText value="#{funcionario.dataNascimentoFuncionario}"/>
-                                    <p:outputLabel value="Email"/>
-                                    <p:inputText value="#{funcionario.emailFuncionario}" />
-                                    <p:outputLabel value="Tipo"/>
-                                    <p:inputText value="#{funcionario.tipoFuncionario}" />
-
-                                    <p:fieldset>
-                                        <p:commandButton value="Editar"  ajax="false" action="#{MBfuncionario.editarFuncionario()}" oncomplete="PF('portariaDialog').hide()"
-                                                         update="@form, :Portarias, :growl"/>
-                                        <p:commandButton value="Fechar" oncomplete="PF('portariaDialog').hide()" update="@form, :Portarias" />
-                                    </p:fieldset>
-
-                                </p:panelGrid> 
-                            </h:form>
-                        </p:dialog>
-
-                        <!--BOTÃO DE EXCLUSÃO-->
-                        <p:commandButton icon="fa fa-trash-o" title="Deletar" action="#{MBfuncionario.deletarFuncionario()}" update="@form, :growl"/>
-
-                    </p:column>
-                </p:dataTable>
-            </h:form>
+                    </p:dialog>
+         
+            </p:dataTable>
+        </h:form>
         </p:panelGrid>
     </ui:define>
 </ui:composition>

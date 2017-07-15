@@ -23,12 +23,16 @@ import javax.faces.bean.ViewScoped;
 public class MBrelatorioFinal extends AbstractBean {
     
     private RelatorioF relatorioF;
+    private RelatorioF selecionadoRelatorioF;
+    private RelatorioF selecionadoExcluirRelatorioF;
+    private RelatorioF selecionadoEditRelatorioF;
     private RelatorioFList objListRelatorioF;
+    private List<RelatorioF> listaRelatorioF;
     private List<RelatorioF> listaRFPDF = new ArrayList<RelatorioF>();
     
     
    @PostConstruct
-   public void inicio(){
+   public void inicioRelatorioF(){
        listarTodosRelatoriosFinais();
    }
     public void cadastrarRelatorioF() {
@@ -40,11 +44,30 @@ public class MBrelatorioFinal extends AbstractBean {
         }
         
     }
-    
+      public void editarRelatorioF() {
+        try {
+                getDaoGenerico().update(relatorioF);
+            getObjMessage().info("Relatório Final Atualizado!", "Com sucesso!");
+            listarTodosRelatoriosFinais();
+        } catch (Exception e) {
+            getObjMessage().warn("ERRO na Atualização Efetuada!", "Erro na atualização!");
+        }
+
+    }
+          public void deletarRelatorioF() {
+        try {
+            getDaoGenerico().remove(relatorioF);
+            getObjMessage().info("Relatório Final Excluído!", "Com sucesso!");
+            listarTodosRelatoriosFinais();
+        } catch (Exception e) {
+            getObjMessage().warn("ERRO na Exclusão Efetuada!", "Erro na Exclusão!");
+        }
+
+    }
     
             public void listarTodosRelatoriosFinais(){
         try{
-            listaRFPDF = getDaoGenerico().list("SELECT r FROM RelatorioF r");
+            listaRelatorioF = getDaoGenerico().list("SELECT r FROM RelatorioF r");
             getObjMessage().info("Exibindo Relatórios Finais", "Todas os Relatórios Finais estão sendo listados!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
@@ -52,10 +75,16 @@ public class MBrelatorioFinal extends AbstractBean {
         
     }
     
-    public void gerarPDFRelatorioFinal() {
+    public void pdfTodosRelatorioFinal() {
         RelatorioFinalGerarPDF relatoriof = new RelatorioFinalGerarPDF();
-        relatoriof.getRelatorio(listaRFPDF);
+        relatoriof.getTodosRelatorio();
 }
+    public void pdfUmRelatorioFinal(){
+        RelatorioFinalGerarPDF relatoriof = new RelatorioFinalGerarPDF();
+        List<RelatorioF> item = new ArrayList<>();
+        item.add(relatorioF);
+        relatoriof.getUmRelatorio(item);
+    }
 
     public RelatorioF getRelatorioF() {
         if (relatorioF == null) {
@@ -79,6 +108,14 @@ public class MBrelatorioFinal extends AbstractBean {
         this.objListRelatorioF = objListRelatorioF;
     }
 
+    public List<RelatorioF> getListaRelatorioF() {
+        return listaRelatorioF;
+    }
+
+    public void setListaRelatorioF(List<RelatorioF> listaRelatorioF) {
+        this.listaRelatorioF = listaRelatorioF;
+    }
+
     public List<RelatorioF> getListaRFPDF() {
         return listaRFPDF;
     }
@@ -86,7 +123,30 @@ public class MBrelatorioFinal extends AbstractBean {
     public void setListaRFPDF(List<RelatorioF> listaRFPDF) {
         this.listaRFPDF = listaRFPDF;
     }
-    
+
+    public RelatorioF getSelecionadoRelatorioF() {
+        return selecionadoRelatorioF;
+    }
+
+    public void setSelecionadoRelatorioF(RelatorioF selecionadoRelatorioF) {
+        this.selecionadoRelatorioF = selecionadoRelatorioF;
+    }
+
+    public RelatorioF getSelecionadoExcluirRelatorioF() {
+        return selecionadoExcluirRelatorioF;
+    }
+
+    public void setSelecionadoExcluirRelatorioF(RelatorioF selecionadoExcluirRelatorioF) {
+        this.selecionadoExcluirRelatorioF = selecionadoExcluirRelatorioF;
+    }
+
+    public RelatorioF getSelecionadoEditRelatorioF() {
+        return selecionadoEditRelatorioF;
+    }
+
+    public void setSelecionadoEditRelatorioF(RelatorioF selecionadoEditRelatorioF) {
+        this.selecionadoEditRelatorioF = selecionadoEditRelatorioF;
+    }
     
 }
 

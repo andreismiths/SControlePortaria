@@ -4,6 +4,7 @@ import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.controller.FuncionarioList;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,9 +17,18 @@ import javax.faces.bean.ViewScoped;
 public class MBfuncionario extends AbstractBean {
 
     private Funcionario funcionario;
+    private Funcionario selecionadoEditfuncionario;
+    private Funcionario selecionadoExcluirfuncionario;
+    private Funcionario selecionadofuncionario;
     private FuncionarioList objListFuncionario;
+    private List<Funcionario> listaFuncionario;
     private List<Funcionario> listaPDFFuncionario = new ArrayList<Funcionario>();
 
+    @PostConstruct
+    public void inicioFuncionario(){
+        listarTodosFuncionarios();
+    }
+    
     public void cadastrarFuncionario() {
         try {
             getDaoGenerico().save(funcionario);
@@ -31,7 +41,6 @@ public class MBfuncionario extends AbstractBean {
 
     public void editarFuncionario() {
         try {
-            System.out.println("Entrou no try");
             getDaoGenerico().update(funcionario);
             getObjMessage().info("Funcionário Atualizado!", "Com sucesso!");
             listarTodosFuncionarios();
@@ -54,7 +63,7 @@ public class MBfuncionario extends AbstractBean {
 
     public void listarTodosFuncionarios() {
         try {
-            listaPDFFuncionario = getDaoGenerico().list("SELECT f FROM Funcionario f");
+            listaFuncionario = getDaoGenerico().list("SELECT f FROM Funcionario f");
             getObjMessage().info("Exibindo Funcionários", "Todas os Funcionários estão sendo listados!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
@@ -80,12 +89,44 @@ public class MBfuncionario extends AbstractBean {
         return objListFuncionario;
     }
 
+    public List<Funcionario> getListaFuncionario() {
+        return listaFuncionario;
+    }
+
+    public void setListaFuncionario(List<Funcionario> listaFuncionario) {
+        this.listaFuncionario = listaFuncionario;
+    }
+    
     public List<Funcionario> getListaPDFFuncionario() {
         return listaPDFFuncionario;
     }
 
     public void setListaPDFFuncionario(List<Funcionario> listaPDFFuncionario) {
         this.listaPDFFuncionario = listaPDFFuncionario;
+    }
+
+    public Funcionario getSelecionadoEditfuncionario() {
+        return selecionadoEditfuncionario;
+    }
+
+    public void setSelecionadoEditfuncionario(Funcionario selecionadoEditfuncionario) {
+        this.selecionadoEditfuncionario = selecionadoEditfuncionario;
+    }
+
+    public Funcionario getSelecionadoExcluirfuncionario() {
+        return selecionadoExcluirfuncionario;
+    }
+
+    public void setSelecionadoExcluirfuncionario(Funcionario selecionadoExcluirfuncionario) {
+        this.selecionadoExcluirfuncionario = selecionadoExcluirfuncionario;
+    }
+
+    public Funcionario getSelecionadofuncionario() {
+        return selecionadofuncionario;
+    }
+
+    public void setSelecionadofuncionario(Funcionario selecionadofuncionario) {
+        this.selecionadofuncionario = selecionadofuncionario;
     }
 
 }

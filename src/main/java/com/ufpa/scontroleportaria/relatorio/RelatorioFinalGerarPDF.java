@@ -44,11 +44,8 @@ public class RelatorioFinalGerarPDF {
         this.response = (HttpServletResponse) context.getExternalContext().getResponse();
     }
     
-    /*
-    defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
-    */
-    public void getRelatorio(List<RelatorioF> listaRFPDF){
-        stream = this.getClass().getResourceAsStream("/report/RelatorioFinal.jasper");
+     public void getUmRelatorio(List<RelatorioF> listaRFPDF){
+        stream = this.getClass().getClassLoader().getResourceAsStream("/report/RelatorioFinal.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         
@@ -60,6 +57,42 @@ public class RelatorioFinalGerarPDF {
             mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
             */
             JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(listaRFPDF));
+            JasperExportManager.exportReportToPdfStream(print, baos);
+            
+            response.reset();
+            response.setContentType("application/pdf");
+            response.setContentLength(baos.size());
+            response.setHeader("Content-disposition", "inline; filename=Relatório_Final.pdf");
+            response.getOutputStream().write(baos.toByteArray());
+            response.getOutputStream().flush();
+            response.getOutputStream().close();
+            
+            context.responseComplete();
+            fecharConexao();
+            
+        } catch (JRException ex) {
+            Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
+    
+    /*
+    defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
+    */
+    public void getTodosRelatorio(){
+        stream = this.getClass().getClassLoader().getResourceAsStream("/report/RelatorioFinal.jasper");
+        Map<String, Object> params = new HashMap<String, Object>();
+        baos = new ByteArrayOutputStream();
+        
+        try {
+            
+            JasperReport report = (JasperReport) JRLoader.loadObject(stream);
+            
+            /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
+            mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
+            */
+            JasperPrint print = JasperFillManager.fillReport(report, params, getConexao());
             JasperExportManager.exportReportToPdfStream(print, baos);
             
             response.reset();
