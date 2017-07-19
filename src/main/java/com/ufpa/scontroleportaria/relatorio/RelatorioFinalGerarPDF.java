@@ -45,7 +45,7 @@ public class RelatorioFinalGerarPDF {
     }
     
      public void getUmRelatorio(List<RelatorioF> listaRFPDF){
-        stream = this.getClass().getClassLoader().getResourceAsStream("/report/RelatorioFinal.jasper");
+        stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFUmRelatorioFinal.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         
@@ -81,7 +81,7 @@ public class RelatorioFinalGerarPDF {
     defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
     */
     public void getTodosRelatorio(){
-        stream = this.getClass().getClassLoader().getResourceAsStream("/report/RelatorioFinal.jasper");
+        stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFTodosRelatorioFinal.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         

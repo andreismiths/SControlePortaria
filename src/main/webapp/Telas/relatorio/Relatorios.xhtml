@@ -172,7 +172,7 @@
                 <f:facet name="header">
                     Relatórios Final
                 </f:facet>
-                <p:ajax event="rowSelect" update="formlistarelatoriosF" />
+                <p:ajax event="rowSelect" update=":formlistarelatoriosF" />
                 <p:column headerText="PK" width="35" >
                     <p:outputLabel value="#{relatorioF.pkRelatorioF}"/>
                 </p:column>
@@ -193,6 +193,8 @@
                 </p:column>
 
                 <p:column headerText="Ações" style="width: 40px; text-align: center;" >
+                     <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'"
+                                      action="#{MBrelatorioF.pdfTodosRelatorioFinal()}" title="PDF Todas"/>
                     <p:commandButton icon="ui-icon-print"  oncomplete="PF('pdfdialogrelatoriof').show()" 
                                      update=":formlistarelatoriosF:formpdfdialogrelatoriof" title="Gerar PDF">
                         <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoRelatorioF}"/>

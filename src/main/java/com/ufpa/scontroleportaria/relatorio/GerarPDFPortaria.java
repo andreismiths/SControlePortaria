@@ -45,7 +45,7 @@ public class GerarPDFPortaria {
     }
 
     public void getRelatorioUmaLinha(List<Portaria> lista) {
-        stream = this.getClass().getClassLoader().getResourceAsStream("/report/PortariaPDF_scontroleportaria_19_Maio_2017.jasper");
+        stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFUmaPortaria.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         try {
@@ -71,7 +71,7 @@ public class GerarPDFPortaria {
     }
 
     public void getRelatorioTodas() {
-        stream = this.getClass().getClassLoader().getResourceAsStream("/report/pdfportariatodas.jasper");
+        stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFTodasPortarias.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         try {

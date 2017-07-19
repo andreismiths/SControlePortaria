@@ -17,32 +17,31 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "MBlogin")
 @ViewScoped
 public class MBlogin extends AbstractBean {
-        String siape;
-        String senha;
-    
-  public String login() {
-         FacesMessage message = null;
-        
-        if(getSiape()!= null && getSiape().equals("admin") && getSenha() != null && getSenha().equals("admin")) {
-           getObjMessage().info("Bem vindo!", getSiape());
+
+    String siape;
+    String senha;
+
+    public String login() {
+        FacesMessage message = null;
+
+        if (getSiape() != null && getSiape().equals("admin") && getSenha() != null && getSenha().equals("admin")) {
+            getObjMessage().info("Bem vindo!", getSiape());
             /* FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
             (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape())); */
             return "/Telas/PaginaInicial";
-            
-        } 
-        if(getSiape()!= null && getSiape().equals("prof") && getSenha() != null && getSenha().equals("prof")) {
+
+        }
+        if (getSiape() != null && getSiape().equals("prof") && getSenha() != null && getSenha().equals("prof")) {
             getObjMessage().info("Bem vindo!", getSiape());
             /*FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
             (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape()));*/
             return "/Telas/funcionario/MinhasPortarias";
-           
-        } 
-        else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
-            (FacesMessage.SEVERITY_ERROR, "Erro!", "Verifique o Login!"));
+
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Verifique o Login!"));
         }
         return null;
-  }    
+    }
 
     public String getSiape() {
         return siape;
@@ -59,6 +58,5 @@ public class MBlogin extends AbstractBean {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-  
-       
+
 }

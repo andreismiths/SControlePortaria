@@ -82,7 +82,7 @@ public class MBrelatorioFinal extends AbstractBean {
     public void pdfUmRelatorioFinal(){
         RelatorioFinalGerarPDF relatoriof = new RelatorioFinalGerarPDF();
         List<RelatorioF> item = new ArrayList<>();
-        item.add(relatorioF);
+        item.add(selecionadoRelatorioF);
         relatoriof.getUmRelatorio(item);
     }
 

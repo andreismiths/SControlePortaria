@@ -3,7 +3,6 @@ package com.ufpa.scontroleportaria.bean;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.controller.PortariaList;
 import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
-import com.ufpa.scontroleportaria.relatorio.PdfTodasPortarias;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,16 +79,11 @@ public class MBportaria extends AbstractBean implements Serializable {
         gPDFPortaria.getRelatorioTodas();
     }
     
-    public void pdfTodas(){
-        PdfTodasPortarias pdftodas = new PdfTodasPortarias();
-        pdftodas.todasPortarias();
-    }
-
 //gera pdf de uma portaria apenas, uma unica linha
     public void imprimirUnicoItem() {
         GerarPDFPortaria gerarPDFPortaria = new GerarPDFPortaria();
         List<Portaria> item = new ArrayList<>();
-        item.add(portaria);
+        item.add(selecionadaPortaria);
         gerarPDFPortaria.getRelatorioUmaLinha(item);
 
     }
