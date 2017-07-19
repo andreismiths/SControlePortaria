@@ -32,7 +32,7 @@ import com.ufpa.scontroleportaria.model.RelatorioF;
  * @author andreismiths
  */
 public class RelatorioFinalGerarPDF {
-    
+
     private HttpServletResponse response;
     private FacesContext context;
     private ByteArrayOutputStream baos;
@@ -43,22 +43,15 @@ public class RelatorioFinalGerarPDF {
         this.context = FacesContext.getCurrentInstance();
         this.response = (HttpServletResponse) context.getExternalContext().getResponse();
     }
-    
-     public void getUmRelatorio(List<RelatorioF> listaRFPDF){
+
+    public void getUmRelatorio(List<RelatorioF> listaRFPDF) {
         stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFUmRelatorioFinal.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
-        
         try {
-            
             JasperReport report = (JasperReport) JRLoader.loadObject(stream);
-            
-            /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
-            mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
-            */
             JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(listaRFPDF));
             JasperExportManager.exportReportToPdfStream(print, baos);
-            
             response.reset();
             response.setContentType("application/pdf");
             response.setContentLength(baos.size());
@@ -66,35 +59,25 @@ public class RelatorioFinalGerarPDF {
             response.getOutputStream().write(baos.toByteArray());
             response.getOutputStream().flush();
             response.getOutputStream().close();
-            
+
             context.responseComplete();
             fecharConexao();
-            
+
         } catch (JRException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
-    /*
-    defina um parametro: List<Objeto> lista, se usar JavaBean DataSource
-    */
-    public void getTodosRelatorio(){
+    }
+
+    public void getTodosRelatorio() {
         stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFTodosRelatorioFinal.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
-        
         try {
-            
             JasperReport report = (JasperReport) JRLoader.loadObject(stream);
-            
-            /*Para usar JavaBeanDataSource defina: new JRBeanCollectionDataSource(lista)
-            mude a string do getResourceAsStream("/report/reportPessoaJavaBeanDS.jasper")
-            */
             JasperPrint print = JasperFillManager.fillReport(report, params, getConexao());
             JasperExportManager.exportReportToPdfStream(print, baos);
-            
             response.reset();
             response.setContentType("application/pdf");
             response.setContentLength(baos.size());
@@ -102,38 +85,38 @@ public class RelatorioFinalGerarPDF {
             response.getOutputStream().write(baos.toByteArray());
             response.getOutputStream().flush();
             response.getOutputStream().close();
-            
+
             context.responseComplete();
             fecharConexao();
-            
+
         } catch (JRException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
-    public Connection getConexao(){        
-        try {            
+    }
+
+    public Connection getConexao() {
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ControledePortarias?zeroDateTimeBehavior=convertToNull", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ControledePortaria?zeroDateTimeBehavior=convertToNull", "root", "root");
             return con;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return con;
     }
-    
-    public void fecharConexao(){
+
+    public void fecharConexao() {
         try {
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

@@ -83,7 +83,7 @@ public class GerarPDFPortaria {
             response.reset();
             response.setContentType("application/pdf");
             response.setContentLength(baos.size());
-            response.setHeader("Content-disposition", "inline; filename=Portaria.pdf");
+            response.setHeader("Content-disposition", "inline; filename=Portarias.pdf");
             response.getOutputStream().write(baos.toByteArray());
             response.getOutputStream().flush();
             response.getOutputStream().close();
