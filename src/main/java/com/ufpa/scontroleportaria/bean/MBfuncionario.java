@@ -2,6 +2,7 @@ package com.ufpa.scontroleportaria.bean;
 
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.controller.FuncionarioList;
+import com.ufpa.scontroleportaria.tools.Security;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -31,6 +32,7 @@ public class MBfuncionario extends AbstractBean {
     
     public void cadastrarFuncionario() {
         try {
+            funcionario.setSenhaFuncionario(security().encrypter(funcionario.getSenhaFuncionario()));
             getDaoGenerico().save(funcionario);
             getObjMessage().info("Cadastro efetuado!", "Funcionario cadastrado com sucesso");
         } catch (Exception e) {
@@ -69,6 +71,10 @@ public class MBfuncionario extends AbstractBean {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
         }
 
+    }
+    
+        private Security security() {
+        return new Security();
     }
 
     public Funcionario getFuncionario() {

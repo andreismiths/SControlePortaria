@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/07/2017 11:02:21 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20/07/2017 09:45:23 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.Funcionario" table="Funcionario" catalog="SControlePortaria" optimistic-lock="version">
         <id name="pkFuncionario" type="java.lang.Integer">
@@ -18,7 +18,7 @@
             <column name="cpfFuncionario" length="45" />
         </property>
         <property name="senhaFuncionario" type="string">
-            <column name="senhaFuncionario" length="45" />
+            <column name="senhaFuncionario" length="100" />
         </property>
         <property name="dataNascimentoFuncionario" type="date">
             <column name="dataNascimentoFuncionario" length="10" />

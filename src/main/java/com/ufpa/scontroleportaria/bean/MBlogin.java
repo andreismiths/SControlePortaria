@@ -5,10 +5,13 @@
  */
 package com.ufpa.scontroleportaria.bean;
 
-import javax.faces.application.FacesMessage;
+import com.ufpa.scontroleportaria.DAO.SessionUtils;
+import java.io.IOException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import com.ufpa.scontroleportaria.tools.Security;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -18,37 +21,41 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class MBlogin extends AbstractBean {
 
-    String siape;
+    String siapeEmail;
     String senha;
 
-    public String login() {
-        FacesMessage message = null;
-
-        if (getSiape() != null && getSiape().equals("admin") && getSenha() != null && getSenha().equals("admin")) {
-            getObjMessage().info("Bem vindo!", getSiape());
-            /* FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
-            (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape())); */
-            return "/Telas/PaginaInicial";
-
-        }
-        if (getSiape() != null && getSiape().equals("prof") && getSenha() != null && getSenha().equals("prof")) {
-            getObjMessage().info("Bem vindo!", getSiape());
-            /*FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
-            (FacesMessage.SEVERITY_INFO, "Bem Vindo", getSiape()));*/
-            return "/Telas/funcionario/MinhasPortarias";
-
+    public String validateUserPassword() throws IOException {
+        senha = new Security().encrypter(senha);
+        int valid = getDaoGenerico().validate(siapeEmail, senha);
+        if (valid != -1) {
+            getVariaveisDeSessao().setDadosFuncionario((Object) getDaoGenerico().list("select f from Funcionario f where f.pkFuncionario=" + valid).get(0));
+            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicial.xhtml");
+            System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
+            return "PaginaInicial";
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Verifique o Login!"));
+            getObjMessage().warn("Nome de Usuário ou Senha incorretos!", "Por favor, insira os dados corretamente!");
+            System.out.println("BACK-END WARNING: USER NOT LOGGED! [ public String validateUsernamePassword() throws IOException ]");
+            return "Login";
         }
-        return null;
     }
 
-    public String getSiape() {
-        return siape;
+    //logout event, invalidate session
+    public void logout() throws IOException {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        System.out.println("BACK-END WARNING: SESSION INVALIDATED!");
     }
 
-    public void setSiape(String siape) {
-        this.siape = siape;
+    public String goToLogin() {
+        return "/Telas/Login";
+    }
+
+    public String getSiapeEmail() {
+        return siapeEmail;
+    }
+
+    public void setSiapeEmail(String siapeEmail) {
+        this.siapeEmail = siapeEmail;
     }
 
     public String getSenha() {

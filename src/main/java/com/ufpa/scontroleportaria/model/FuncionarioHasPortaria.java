@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 09/07/2017 11:02:20 by Hibernate Tools 4.3.1
+// Generated 20/07/2017 09:45:22 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;

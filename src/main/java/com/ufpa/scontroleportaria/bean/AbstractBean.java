@@ -7,6 +7,8 @@ package com.ufpa.scontroleportaria.bean;
 
 import com.ufpa.scontroleportaria.DAO.GenericoDAO;
 import com.ufpa.scontroleportaria.DAO.GenericoDAOImpl;
+import com.ufpa.scontroleportaria.controller.Tools;
+import com.ufpa.scontroleportaria.controller.VariaveisDeSessao;
 import com.ufpa.scontroleportaria.tools.FacesMessages;
 import java.io.Serializable;
 import java.util.Date;
@@ -35,6 +37,15 @@ public abstract class AbstractBean implements Serializable {
         return message;
     }
 
+        private Tools tools;
+
+    public Tools getObjTools() {
+        if (tools == null) {
+            tools = new Tools();
+        }
+        return tools;
+    }
+    
     private Date data;
 
     public Date getObjData() {
@@ -42,5 +53,14 @@ public abstract class AbstractBean implements Serializable {
             data = new Date();
         }
         return data;
+    }
+    
+    private VariaveisDeSessao variaveisDeSessao;
+    
+    public VariaveisDeSessao getVariaveisDeSessao () {
+        if (variaveisDeSessao == null) {
+            variaveisDeSessao = new VariaveisDeSessao();
+        }
+        return variaveisDeSessao;
     }
 }

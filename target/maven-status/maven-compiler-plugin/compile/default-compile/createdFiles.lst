@@ -27,4 +27,5 @@ com/ufpa/scontroleportaria/testeEmail/Mensagem.class
 com/ufpa/scontroleportaria/controller/Tools.class
 com/ufpa/scontroleportaria/testeEmail/EmailUtils.class
 com/ufpa/scontroleportaria/relatorio/RelatorioFinalGerarPDF.class
+com/ufpa/scontroleportaria/controller/VariaveisDeSessao.class
 com/ufpa/scontroleportaria/DAO/GenericoDAO.class
