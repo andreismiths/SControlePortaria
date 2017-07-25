@@ -24,6 +24,7 @@ public class MBportaria extends AbstractBean implements Serializable {
     private Portaria selecionadaPortaria;
     private PortariaList objListPortaria;
     private List<Portaria> listaPortaria;
+    private List<Portaria> listaPortariaDeFuncionario;    
     private List<Portaria> listaDialogPortaria = new ArrayList<Portaria>();
     
     @PostConstruct
@@ -66,6 +67,16 @@ public class MBportaria extends AbstractBean implements Serializable {
     public void listarTodasPortarias() {
         try {
             listaPortaria = getDaoGenerico().list("SELECT p FROM Portaria p");
+            getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
+        } catch (Exception e) {
+            getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
+        }
+
+    }
+    
+        public void listarPortariaDeFuncionario() {
+        try {
+            listaPortariaDeFuncionario = getDaoGenerico().list("SELECT p FROM Portaria p");
             getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
@@ -145,7 +156,13 @@ public class MBportaria extends AbstractBean implements Serializable {
     public void setSelecionadaExcluirPortaria(Portaria selecionadaExcluirPortaria) {
         this.selecionadaExcluirPortaria = selecionadaExcluirPortaria;
     }
-    
-    
+
+    public List<Portaria> getListaPortariaDeFuncionario() {
+        return listaPortariaDeFuncionario;
+    }
+
+    public void setListaPortariaDeFuncionario(List<Portaria> listaPortariaDeFuncionario) {
+        this.listaPortariaDeFuncionario = listaPortariaDeFuncionario;
+    }
 
 }

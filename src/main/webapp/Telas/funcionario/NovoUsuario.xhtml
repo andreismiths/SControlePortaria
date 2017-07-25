@@ -7,7 +7,7 @@
 
     <ui:define name="content">
         <h1 class="aw-page-title">Novo Usuário</h1>
-          <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
+        <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
         <h:form>
             <p:wizard nextLabel="próximo"
                       backLabel="voltar" >
@@ -46,7 +46,7 @@
                                       style="width: 170px;" />
 
                             <p:button value="Sair" 
-                                      outcome="/Telas/PaginaInicial.xhtml"
+                                      outcome="/PaginaInicial.xhtml"
                                       icon="fa fa-home" 
                                       style="width: 170px;" />
 
@@ -62,11 +62,3 @@
     </ui:define>
 
 </ui:composition>
-
-<!--  <p:panelGrid columns="3" layout="grid" style="margin-top: 25px" styleClass="panelgrid-noborder" columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
-        <p:button id="Voltar" icon="fa fa-undo" value="Voltar" outcome="/Telas/PaginaInicial"/>
-        <p:commandButton type="reset" id="LimparCampos" icon="fa fa-eraser" value="Limpar" action="#"/>
-        <p:commandButton id="SalvarNovoUsuario" icon="fa fa-save" value="Salvar" actionListener="#{CadastroFunc.criaFunc()}"/>
-     </p:panelGrid>
-   </div>
- </h:form> -->

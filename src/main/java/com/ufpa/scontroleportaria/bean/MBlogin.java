@@ -29,10 +29,17 @@ public class MBlogin extends AbstractBean {
         int valid = getDaoGenerico().validate(siapeEmail, senha);
         if (valid != -1) {
             getVariaveisDeSessao().setDadosFuncionario((Object) getDaoGenerico().list("select f from Funcionario f where f.pkFuncionario=" + valid).get(0));
-            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicial.xhtml");
-            System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
-            return "PaginaInicial";
-        } else {
+            if (getVariaveisDeSessao().getTipoFuncionario().equals("Professor")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicialFuncionario.xhtml");
+                System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
+                return "PaginaInicialFuncionario";
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicial.xhtml");
+                System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
+                return "PaginaInicial";
+            }
+        } 
+        else {
             getObjMessage().warn("Nome de Usuário ou Senha incorretos!", "Por favor, insira os dados corretamente!");
             System.out.println("BACK-END WARNING: USER NOT LOGGED! [ public String validateUsernamePassword() throws IOException ]");
             return "Login";
@@ -47,7 +54,7 @@ public class MBlogin extends AbstractBean {
     }
 
     public String goToLogin() {
-        return "/Telas/Login";
+        return "Login";
     }
 
     public String getSiapeEmail() {
