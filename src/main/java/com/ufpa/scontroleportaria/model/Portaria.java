@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 20/07/2017 09:45:22 by Hibernate Tools 4.3.1
+// Generated 26/07/2017 09:37:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -43,13 +43,14 @@ public class Portaria  implements java.io.Serializable {
      private String colaborador3;
      private String siapeColaborador3;
      private String statusPortaria;
+     private String relatorioProjeto;
      private Set<FuncionarioHasPortaria> funcionarioHasPortarias = new HashSet<FuncionarioHasPortaria>(0);
 
     public Portaria() {
     }
 
 	
-    public Portaria(String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String statusPortaria) {
+    public Portaria(String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String statusPortaria, String relatorioProjeto) {
         this.numeroPortaria = numeroPortaria;
         this.ementaPortaria = ementaPortaria;
         this.projetoPortaria = projetoPortaria;
@@ -60,8 +61,9 @@ public class Portaria  implements java.io.Serializable {
         this.inicioVigencia = inicioVigencia;
         this.fimVigencia = fimVigencia;
         this.statusPortaria = statusPortaria;
+        this.relatorioProjeto = relatorioProjeto;
     }
-    public Portaria(String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String colaborador1, String siapeColaborador1, String colaborador2, String siapeColaborador2, String colaborador3, String siapeColaborador3, String statusPortaria, Set<FuncionarioHasPortaria> funcionarioHasPortarias) {
+    public Portaria(String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String colaborador1, String siapeColaborador1, String colaborador2, String siapeColaborador2, String colaborador3, String siapeColaborador3, String statusPortaria, String relatorioProjeto, Set<FuncionarioHasPortaria> funcionarioHasPortarias) {
        this.numeroPortaria = numeroPortaria;
        this.ementaPortaria = ementaPortaria;
        this.projetoPortaria = projetoPortaria;
@@ -78,6 +80,7 @@ public class Portaria  implements java.io.Serializable {
        this.colaborador3 = colaborador3;
        this.siapeColaborador3 = siapeColaborador3;
        this.statusPortaria = statusPortaria;
+       this.relatorioProjeto = relatorioProjeto;
        this.funcionarioHasPortarias = funcionarioHasPortarias;
     }
    
@@ -251,6 +254,16 @@ public class Portaria  implements java.io.Serializable {
     
     public void setStatusPortaria(String statusPortaria) {
         this.statusPortaria = statusPortaria;
+    }
+
+    
+    @Column(name="relatorioProjeto", nullable=false, length=17)
+    public String getRelatorioProjeto() {
+        return this.relatorioProjeto;
+    }
+    
+    public void setRelatorioProjeto(String relatorioProjeto) {
+        this.relatorioProjeto = relatorioProjeto;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="portaria")

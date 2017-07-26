@@ -11,7 +11,8 @@
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
         </f:facet>
-
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/arquivos/images/SControlePortaria.ico" />
+   
         <title>Controle de Portarias</title>
 
         <h:outputStylesheet library="arquivos" name="styles/custom.css"/>
@@ -42,7 +43,7 @@
                             <p:menuitem value="Sobre" action="/Telas/funcionario/SobreFuncionario"/>
                             <p:menuitem value="Ajuda"  action="/Telas/funcionario/AjudaFuncionario"/>
                         </p:submenu>
-                        <p:menuitem value="Sair" action="/Login" />
+                        <p:menuitem value="Sair" action="/Login" actionListener="#{MBlogin.logout()}"/>
                     </p:menubar>
                 </h:form>
             </div>

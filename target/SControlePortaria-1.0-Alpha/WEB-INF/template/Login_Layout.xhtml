@@ -11,6 +11,7 @@
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
         </f:facet>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/arquivos/images/SControlePortaria.ico" />
 
         <title>Login - SICOP</title>
 
@@ -23,8 +24,8 @@
     </h:head>
     <h:body>
         <header class="aw-topbar">
-            <h:graphicImage library="arquivos" name="images/banner_controle_portarias.png" />
-            <a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
+
+            <h:graphicImage style="margin-left: 490px;margin-top: 20px" library="arquivos" name="images/PROJETO_SICOP398x.png" />
 
             <div style="float: right; margin-right: 110px">
 
@@ -35,7 +36,7 @@
                             <p:menuitem value="Sobre" action="/Telas/SobreLogin"/>
                             <p:menuitem value="Ajuda"  action="/Telas/AjudaLogin"/>
                         </p:submenu>
-                        <p:menuitem value="Sair" action="/Login" />
+                        <p:menuitem value="Sair" action="/Login" actionListener="#{MBlogin.logout()}"/>
                     </p:menubar>
                 </h:form>
             </div>
@@ -47,10 +48,10 @@
             <ui:insert name="content"/>
         </section>
         <div>
-           <footer class="footer">
+            <footer class="footer">
 
-            <p:outputLabel value="Projeto TCC - Sistemas de Informação - Andrei Smith da Silva - Universidade Federal do Pará - www.facompcastanhal.ufpa.br"/>
-        </footer>
+                <p:outputLabel value="Projeto TCC - Sistemas de Informação - Andrei Smith da Silva - Universidade Federal do Pará - www.facompcastanhal.ufpa.br"/>
+            </footer>
         </div>
     </h:body>
 </html>

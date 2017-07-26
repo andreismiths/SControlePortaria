@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 20/07/2017 09:45:22 by Hibernate Tools 4.3.1
+// Generated 26/07/2017 09:37:50 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;

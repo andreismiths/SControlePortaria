@@ -4,17 +4,87 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Login_Layout.xhtml">
-     <head>
+    <h:head>
         <h:outputScript library="arquivos" name="javascripts/lock.js"/>
-    </head>
+
+    </h:head>
     <f:metadata>
         <f:viewAction action="#{MBlogin.logout()}" />
     </f:metadata>
     <ui:define name="content">
-      
+
         <h1 class="aw-page-title"></h1> 
         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-        <p:tab title="Portaria" rendered="true">
+
+        <h:body>
+            <h:form>
+                <div class="ui-fluid" >
+
+                    <p:panelGrid columns="1" 
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-12"
+                                 style="margin-top: 140px; margin-left: 300px;
+                                 font-size: 15px;" >
+
+                        <p:inputText id="login" placeholder="Siape ou Email"
+                                     maxlength="100"
+                                     required="true"
+                                     requiredMessage="Digite seu login!"
+                                     style="width: 300px !important; padding: 10px;border-radius: 8px;"
+                                     value="#{MBlogin.siapeEmail}"/>
+
+                        <p:password id="senha" placeholder="Senha" 
+                                    maxlength="16"
+                                    required="true"
+                                    requiredMessage="Digite sua senha!"
+                                    style="width: 300px !important; padding: 10px;border-radius: 8px;"
+                                    value="#{MBlogin.senha}"/>
+                        
+                        <p:ajaxStatus style="display:block;margin-bottom:2em;height:300px;">
+                            <f:facet name="default">
+                                <p:commandButton value="Entrar" 
+                                                 style="
+                                                 font-family: Open Sans, Helvetica, Arial;
+                                                 border-radius: 8px;
+                                                 width: 300px !important; padding: 10px;
+                                                 color: #ffffff;
+                                                 background: #1e94d2"
+                                                 actionListener="#{MBlogin.validateUserPassword()}"
+                                                 />
+                            </f:facet>
+
+                            <f:facet name="start">
+                                <p:graphicImage  library="arquivos" name="images/loader.gif" />
+                            </f:facet>
+
+                            <f:facet name="complete">
+                                <p:commandButton value="Entrar" 
+                                                 style="
+                                                 font-family: Open Sans, Helvetica, Arial;
+                                                 border-radius: 8px;
+                                                 width: 300px !important; padding: 10px;
+                                                 color: #ffffff;
+                                                 background: #1e94d2"
+                                                 actionListener="#{MBlogin.validateUserPassword()}"
+                                                 />
+                            </f:facet>
+                        </p:ajaxStatus> 
+
+                        <p:link value="Esqueceu sua senha?"
+                                style="text-decoration: underline; font-family: Open Sans, Helvetica, Arial;color: #ffffff; font-size: 13px;"/>   
+                    </p:panelGrid>
+
+
+                </div>
+            </h:form>
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+
+
+<!--    <p:tab title="Portaria" rendered="true">
             <h:form id="LoginPortaria" class="ui-fluid">
 
                 <p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder" columnClasses="ui-grid-col-3, ui-grid-col-4">
@@ -40,10 +110,14 @@
                         </p:password>
                         <p:commandButton action="#{MBlogin.validateUserPassword()}" value="Entrar" icon="ui-icon-key" />
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                    </p:panelGrid>
-                </p:panelGrid>
 
+                    </p:panelGrid>
+
+                </p:panelGrid>
+                <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                    <f:facet name="start">
+                        <p:graphicImage library="arquivos" name="images/loader.gif" />
+                    </f:facet>
+                </p:ajaxStatus>
             </h:form>
-        </p:tab>
-    </ui:define>
-</ui:composition>
+        </p:tab>-->
