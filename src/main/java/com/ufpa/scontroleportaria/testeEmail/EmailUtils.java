@@ -5,18 +5,12 @@
  */
 package com.ufpa.scontroleportaria.testeEmail;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.activation.DataSource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.apache.commons.mail.ByteArrayDataSource;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
 
@@ -47,27 +41,25 @@ public class EmailUtils {
         return email;
     }
 
-    public static void enviaEmail(Mensagem mensagem) throws EmailException {
-        try {
-            //adiciona as caracteristicas do email que são repassadas pelo usuário
-            MultiPartEmail email = new MultiPartEmail();
-            email = (MultiPartEmail) conectaEmail();
+    public static void enviaEmail(Mensagem mensagem) throws EmailException, IOException, Exception {
+
+        //adiciona as caracteristicas do email que são repassadas pelo usuário
+        MultiPartEmail email = new MultiPartEmail();
+        email = (MultiPartEmail) conectaEmail();
+
+        if (mensagem.getAnexo() == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "O anexo está vazio.", "Informação"));
+        } else {
             email.setSubject(mensagem.getTitulo());
             email.setMsg(mensagem.getMensagem());
             email.addTo(mensagem.getDestino());
 
-            //
-            InputStream is = new BufferedInputStream(mensagem.getAnexo().getInputstream());
-
-            DataSource source = new ByteArrayDataSource(is, mensagem.getAnexo().getContentType());
-            email.attach(source, mensagem.getAnexo().getFileName(), "Description of some file");
-
-            //envia o email
+        // attachment
+            ByteArrayDataSource source = new ByteArrayDataSource(mensagem.getAnexo().getInputstream(), mensagem.getAnexo().getContentType());
+            email.attach(source, mensagem.getAnexo().getFileName(), "");
             String resposta = email.send();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
-        } catch (IOException ex) {
-            Logger.getLogger(EmailUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,28 +76,3 @@ public class EmailUtils {
     }
 
 }
-
-/*  public static void enviaEmail(Mensagem mensagem) throws EmailException {
-        //adiciona as caracteristicas do email que são repassadas pelo usuário
-        MultiPartEmail email = new MultiPartEmail();
-        email = (MultiPartEmail) conectaEmail();
-        email.setSubject(mensagem.getTitulo());
-        email.setMsg(mensagem.getMensagem());
-        email.addTo(mensagem.getDestino());
-
-        //cria o anexo para o email junto com suas propriedades
-        EmailAttachment attachment = new EmailAttachment();
-        attachment.setPath("/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/webapp/resources/arquivos/images/banner_controle_portarias.png");
-        attachment.setDisposition(EmailAttachment.ATTACHMENT);
-        attachment.setDescription("anexo");
-        attachment.setName("anexo");
-        email.attach(attachment);
-
-        //envia o email
-        String resposta = email.send();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-                "E-mail enviado com sucesso para: " + mensagem.getDestino(), "Informação"));
-    }
- */
-
- /* email.attach(mensagem.getAnexoFile());*/

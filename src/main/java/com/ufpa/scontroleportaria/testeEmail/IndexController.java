@@ -29,7 +29,7 @@ public class IndexController {
  this.mensagem = mensagem;
  }
  
- public void enviaEmail() {
+ public void enviaEmail() throws Exception {
  try {
  EmailUtils.enviaEmail(mensagem);
  } catch (EmailException ex) {

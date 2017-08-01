@@ -6,6 +6,8 @@
 package com.ufpa.scontroleportaria.testeEmail;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -45,6 +47,7 @@ public class Mensagem {
     }
 
     public UploadedFile getAnexo() {
+        
         return anexo;
     }
 
@@ -60,7 +63,4 @@ public class Mensagem {
         this.anexoFile = anexoFile;
     }
 
-    
-    
-    
 }

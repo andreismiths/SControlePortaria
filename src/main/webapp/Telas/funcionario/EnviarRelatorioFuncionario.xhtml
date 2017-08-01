@@ -9,7 +9,7 @@
         <h1 class="aw-page-title">Enviar Relatório</h1>
 
         <p:outputPanel id="outputPanelMail">
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <p:panel header="Envio de e-mail" style="width: 700px; height: 350px">
                     <p:messages/>
                     <h:panelGrid columns="2">
@@ -23,7 +23,7 @@
                         <p:fileUpload value="#{MBindexController.mensagem.anexo}" mode="simple" label="Escolher" allowTypes="pdf,doc,docx" skinSimple="true"/>
                         
                     </h:panelGrid>
-                    <p:commandButton value="Enviar e-mail" image="ui-icon-mail-closed" action="#{MBindexController.enviaEmail()}" update="outputPanelMail"/>
+                    <p:commandButton value="Enviar e-mail" image="ui-icon-mail-closed" ajax="false" action="#{MBindexController.enviaEmail()}" update="outputPanelMail"/>
                     <p:commandButton value="Limpar campos" image="ui-icon-circle-close" action="#{MBindexController.limpaCampos()}" update="outputPanelMail"/>
                 </p:panel>
             </h:form>
