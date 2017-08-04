@@ -32,6 +32,8 @@ public class MBlogin extends AbstractBean {
             if (getVariaveisDeSessao().getTipoFuncionario().equals("Professor")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicialFuncionario.xhtml");
                 System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
+                System.out.println("BACK-END WARNING: USER LOGGED! email=" + getVariaveisDeSessao().getEmail());
+                System.out.println("BACK-END WARNING: USER LOGGED! tipo=" + getVariaveisDeSessao().getTipoFuncionario());
                 return "PaginaInicialFuncionario";
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicial.xhtml");

@@ -41,6 +41,10 @@ public class VariaveisDeSessao {
         return (String) SessionUtils.getSession().getAttribute("username");
     }
     
+        public String getEmail(){
+        return (String) getDadosFuncionario().getEmailFuncionario();
+    }
+    
     public String getTipoFuncionario(){
         return (String) getDadosFuncionario().getTipoFuncionario();
     }

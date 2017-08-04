@@ -87,6 +87,12 @@ public class MBpesquisa extends AbstractBean {
                 searchTip = "Ex: Computação";
                 maxLength = "30";
                 break;
+            case "periodoVigente":
+                searchMask = "9999-99-99";
+                searchTip = "2017-01-27";
+                maxLength = "10";
+                break;
+
         }
     }
 
