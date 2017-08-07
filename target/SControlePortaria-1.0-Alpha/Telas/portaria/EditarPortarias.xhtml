@@ -139,7 +139,7 @@
 
         <h:form id="formlistaportaria">
 
-            <p:dataTable var="portaria" value="#{MBportaria.listaPortaria}">
+            <p:dataTable var="portaria" reflow="true" value="#{MBportaria.listaPortaria}">
                 <f:facet name="header">
                     Portarias
                 </f:facet>
@@ -248,15 +248,21 @@
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.ementaPortaria}" />
                         <p:outputLabel value="Título"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.tituloProjetoPortaria}" />
-                        <p:outputLabel value="Projeto"/>
-                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.projetoPortaria}" />
+
+                        <p:outputLabel value="Projeto" />
+                        <p:selectOneMenu value="#{MBportaria.selecionadaEditPortaria.projetoPortaria}">
+                            <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
+                            <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
+                            <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
+                        </p:selectOneMenu>
+
                         <p:outputLabel value="Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.professorCoordenador}" />
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.siapeCoordenador}" />
                         <p:outputLabel value="Início"/>
                         <p:calendar value="#{MBportaria.selecionadaEditPortaria.inicioVigencia}"
-                                    maxlength="10" locale="pt" pattern="dd-mm-yyyy" />
+                                    maxlength="10" locale="pt" mindate="#{MBportaria.selecionadaEditPortaria.inicioVigencia}" pattern="dd-mm-yyyy" />
                         <p:outputLabel value="Fim"/>
                         <p:calendar value="#{MBportaria.selecionadaEditPortaria.fimVigencia}"
                                     maxlength="10" locale="pt" timeZone="GMT-3" pattern="dd-mm-yyyy" /> 

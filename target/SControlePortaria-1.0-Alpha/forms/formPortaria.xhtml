@@ -49,7 +49,6 @@
                              value="#{MBportaria.portaria.projetoPortaria}"
                              required="true"
                              requiredMessage="Informe o tipo do Projeto!">
-                <f:selectItem itemLabel=" --- " itemValue="" />
                 <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
                 <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
                 <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
@@ -130,15 +129,13 @@
 
             <p:outputLabel value="Selecione:" 
                            for="relatorioProjeto"/>                                
-            <p:selectOneRadio id="relatorioProjeto" 
-                              value="#{MBportaria.portaria.relatorioProjeto}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Escolha Entregue ou Pendente">
+            <p:selectOneMenu id="relatorioProjeto" 
+                             value="#{MBportaria.portaria.relatorioProjeto}"
+                             required="true"
+                             requiredMessage="Escolha Entregue ou Pendente">
                 <f:selectItem itemLabel="Pendente" itemValue="pendente" />
                 <f:selectItem itemLabel="Entregue" itemValue="entregue" />
-            </p:selectOneRadio>
+            </p:selectOneMenu>
             <p:message for="relatorioProjeto" />
 
         </p:panelGrid>

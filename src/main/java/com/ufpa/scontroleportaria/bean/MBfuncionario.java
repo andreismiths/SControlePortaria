@@ -43,7 +43,7 @@ public class MBfuncionario extends AbstractBean {
 
     public void editarFuncionario() {
         try {
-            getDaoGenerico().update(funcionario);
+            getDaoGenerico().update(selecionadoEditfuncionario);
             getObjMessage().info("Funcionário Atualizado!", "Com sucesso!");
             listarTodosFuncionarios();
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class MBfuncionario extends AbstractBean {
 
     public void deletarFuncionario() {
         try {
-            getDaoGenerico().remove(funcionario);
+            getDaoGenerico().remove(selecionadoExcluirfuncionario);
             getObjMessage().info("Funcionário Excluído!", "Com sucesso!");
             listarTodosFuncionarios();
         } catch (Exception e) {

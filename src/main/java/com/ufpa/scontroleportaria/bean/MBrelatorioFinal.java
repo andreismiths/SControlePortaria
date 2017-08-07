@@ -46,7 +46,7 @@ public class MBrelatorioFinal extends AbstractBean {
     }
       public void editarRelatorioF() {
         try {
-                getDaoGenerico().update(relatorioF);
+                getDaoGenerico().update(selecionadoEditRelatorioF);
             getObjMessage().info("Relatório Final Atualizado!", "Com sucesso!");
             listarTodosRelatoriosFinais();
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class MBrelatorioFinal extends AbstractBean {
     }
           public void deletarRelatorioF() {
         try {
-            getDaoGenerico().remove(relatorioF);
+            getDaoGenerico().remove(selecionadoExcluirRelatorioF);
             getObjMessage().info("Relatório Final Excluído!", "Com sucesso!");
             listarTodosRelatoriosFinais();
         } catch (Exception e) {

@@ -24,7 +24,7 @@ import org.apache.commons.mail.MultiPartEmail;
 public class EmailUtils extends AbstractBean {
 
     private static final String username = "scontroleportarias@gmail.com";
-    private static final String password = "@55smiths";
+    private static final String password = "@scontroleufpafacomp";
  
     public static Email conectaEmail(Mensagem mensagem) throws EmailException {
         MultiPartEmail email = new MultiPartEmail();
@@ -37,7 +37,8 @@ public class EmailUtils extends AbstractBean {
         email.getMailSession().getProperties().put("mail.debug", "true");
         email.getMailSession().getProperties().put("mail.smtp.port", "587");
         email.getMailSession().getProperties().put("mail.smtp.socketFactory.port", "587");
-        email.getMailSession().getProperties().put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+      // essa propriedade no tomcat n tava fazendo funcionar
+        //  email.getMailSession().getProperties().put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         email.getMailSession().getProperties().put("mail.smtp.socketFactory.fallback", "false");
         email.getMailSession().getProperties().put("mail.smtp.starttls.enable", "true");
         return email;
@@ -56,7 +57,8 @@ public class EmailUtils extends AbstractBean {
             email.addTo("scontroleportarias@gmail.com");
 
             // attachment
-            ByteArrayDataSource source = new ByteArrayDataSource(mensagem.getAnexo().getInputstream(), mensagem.getAnexo().getContentType());
+            @SuppressWarnings("deprecation")
+			ByteArrayDataSource source = new ByteArrayDataSource(mensagem.getAnexo().getInputstream(), mensagem.getAnexo().getContentType());
             email.attach(source, mensagem.getAnexo().getFileName(), "");
             String resposta = email.send();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,

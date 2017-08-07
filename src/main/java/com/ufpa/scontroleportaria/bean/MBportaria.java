@@ -46,7 +46,7 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void editarPortaria() {
         try {
-            getDaoGenerico().update(portaria);
+            getDaoGenerico().update(selecionadaEditPortaria);
             getObjMessage().info("Portaria Atualizada!", "Com sucesso!");
             listarTodasPortarias();
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void deletarPortaria() {
         try {
-            getDaoGenerico().remove(portaria);
+            getDaoGenerico().remove(selecionadaExcluirPortaria);
             getObjMessage().info("Portaria Excluída!", "Com sucesso!");
             listarTodasPortarias();
         } catch (Exception e) {
