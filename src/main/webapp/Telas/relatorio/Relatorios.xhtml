@@ -4,10 +4,11 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Adm_Layout.xhtml">
-
     <ui:define name="content">
+        <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />
         <h1 class="aw-page-title">Relatórios</h1>
-        <p:growl id="growl" sticky="true" showDetail="true"/>
+        <p:growl id="growl"/>
+        
         <p:panel>
             <div class="ui-fluid">
 

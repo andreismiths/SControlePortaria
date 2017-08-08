@@ -5,8 +5,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Adm_Layout.xhtml">
     <ui:define name="content">
+        <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />
         <h1 class="aw-page-title">Portarias</h1>
-        <p:growl id="grolw"/>
+        <p:growl id="growl"/>
 
         <p:panel>
             <div class="ui-fluid">
@@ -181,7 +182,7 @@
                     <p:outputLabel value="#{portaria.siapeColaborador1}"/>
                 </p:column>
 
-                <p:column headerText="Ações" style="width: 170px; text-align: center;">
+                <p:column headerText="Ações" style="width: 300px; text-align: left;">
                     <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'"
                                      action="#{MBportaria.imprimirTodas()}" title="PDF Todas"/>
 
@@ -194,7 +195,7 @@
                                      update=":formlistaportaria:formedicaodialogportaria" title="Editar">
                         <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaEditPortaria}"/>
                     </p:commandButton>
-                    <!--BOTÃO DE EXCLUSÃO A ALTERAR PARA O CONFIRM DIALOG E TESTAR ANTES DE IMPLEMENTAR-->
+                   
                     <p:commandButton icon="fa fa-trash-o" oncomplete="PF('confirmdialogexcluirportaria').show()" 
                                      update=":formlistaportaria:confirmdialogexcluirportaria" title="Excluir">
                         <f:setPropertyActionListener target="#{MBportaria.selecionadaExcluirPortaria}" value="#{portaria}"/>
@@ -262,10 +263,22 @@
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.siapeCoordenador}" />
                         <p:outputLabel value="Início"/>
                         <p:calendar value="#{MBportaria.selecionadaEditPortaria.inicioVigencia}"
-                                    maxlength="10" locale="pt" mindate="#{MBportaria.selecionadaEditPortaria.inicioVigencia}" pattern="dd-mm-yyyy" />
+                                    
+                                    maxlength="10" 
+                                    disabled="false" 
+                                    timeZone="GMT-3"
+                                    locale="pt" 
+                                    navigator="true"  
+                                    pattern="dd-mm-yyyy" 
+                                    style="margin-bottom: 20px;" />
                         <p:outputLabel value="Fim"/>
                         <p:calendar value="#{MBportaria.selecionadaEditPortaria.fimVigencia}"
-                                    maxlength="10" locale="pt" timeZone="GMT-3" pattern="dd-mm-yyyy" /> 
+                                    maxlength="10" 
+                                    disabled="false" 
+                                    locale="pt" 
+                                    navigator="true"  
+                                    pattern="dd-mm-yyyy" 
+                                    style="margin-bottom: 20px;"  timeZone="GMT-3"/> 
                         <p:outputLabel value="Rel. Projeto"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.relatorioProjeto}"/>
                         <p:outputLabel value="Colaborador 1"/>
