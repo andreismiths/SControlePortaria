@@ -1,13 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/07/2017 09:37:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/08/2017 16:29:27 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.Portaria" table="Portaria" catalog="SControlePortaria" optimistic-lock="version">
-        <id name="pkPortaria" type="java.lang.Integer">
-            <column name="PK_portaria" />
-            <generator class="identity" />
-        </id>
+        <composite-id name="id" class="com.ufpa.scontroleportaria.model.PortariaId">
+            <key-property name="pkPortaria" type="int">
+                <column name="PK_portaria" />
+            </key-property>
+            <key-property name="fkProfessor" type="int">
+                <column name="FK_professor" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="professor" class="com.ufpa.scontroleportaria.model.Professor" update="false" insert="false" fetch="select">
+            <column name="FK_professor" not-null="true" />
+        </many-to-one>
         <property name="numeroPortaria" type="string">
             <column name="numeroPortaria" length="45" not-null="true" />
         </property>
@@ -59,11 +66,5 @@
         <property name="relatorioProjeto" type="string">
             <column name="relatorioProjeto" length="17" not-null="true" />
         </property>
-        <set name="funcionarioHasPortarias" table="Funcionario_has_Portaria" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="FK_portaria" not-null="true" />
-            </key>
-            <one-to-many class="com.ufpa.scontroleportaria.model.FuncionarioHasPortaria" />
-        </set>
     </class>
 </hibernate-mapping>

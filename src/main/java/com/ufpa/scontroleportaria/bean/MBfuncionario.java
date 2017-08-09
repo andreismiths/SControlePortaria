@@ -2,6 +2,7 @@ package com.ufpa.scontroleportaria.bean;
 
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.controller.FuncionarioList;
+import com.ufpa.scontroleportaria.model.Professor;
 import com.ufpa.scontroleportaria.tools.Security;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +27,20 @@ public class MBfuncionario extends AbstractBean {
     private List<Funcionario> listaPDFFuncionario = new ArrayList<Funcionario>();
 
     @PostConstruct
-    public void inicioFuncionario(){
+    public void inicioFuncionario() {
         listarTodosFuncionarios();
     }
-    
+
     public void cadastrarFuncionario() {
         try {
             funcionario.setSenhaFuncionario(security().encrypter(funcionario.getSenhaFuncionario()));
-            getDaoGenerico().save(funcionario);
+            if (funcionario.getTipoFuncionario() == "Administrador") {
+                getDaoGenerico().save(funcionario);     
+            } else {
+                getDaoGenerico().save(funcionario);
+                cadastrarProfessor(funcionario);
+            }
+            
             getObjMessage().info("Cadastro efetuado!", "Funcionario cadastrado com sucesso");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
@@ -72,8 +79,14 @@ public class MBfuncionario extends AbstractBean {
         }
 
     }
-    
-        private Security security() {
+
+    public void cadastrarProfessor(Funcionario funcionario) {
+        Professor professor = new Professor();
+        professor.setFuncionario(funcionario);
+        getDaoGenerico().save(professor);
+    }
+
+    private Security security() {
         return new Security();
     }
 
@@ -102,7 +115,7 @@ public class MBfuncionario extends AbstractBean {
     public void setListaFuncionario(List<Funcionario> listaFuncionario) {
         this.listaFuncionario = listaFuncionario;
     }
-    
+
     public List<Funcionario> getListaPDFFuncionario() {
         return listaPDFFuncionario;
     }

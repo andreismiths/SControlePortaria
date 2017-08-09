@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 26/07/2017 09:37:50 by Hibernate Tools 4.3.1
+// Generated 09/08/2017 16:29:27 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,12 +34,12 @@ public class Funcionario  implements java.io.Serializable {
      private Date dataNascimentoFuncionario;
      private String emailFuncionario;
      private String tipoFuncionario;
-     private Set<FuncionarioHasPortaria> funcionarioHasPortarias = new HashSet<FuncionarioHasPortaria>(0);
+     private Set<Professor> professors = new HashSet<Professor>(0);
 
     public Funcionario() {
     }
 
-    public Funcionario(String nomeFuncionario, Integer siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<FuncionarioHasPortaria> funcionarioHasPortarias) {
+    public Funcionario(String nomeFuncionario, Integer siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<Professor> professors) {
        this.nomeFuncionario = nomeFuncionario;
        this.siapeFuncionario = siapeFuncionario;
        this.cpfFuncionario = cpfFuncionario;
@@ -47,7 +47,7 @@ public class Funcionario  implements java.io.Serializable {
        this.dataNascimentoFuncionario = dataNascimentoFuncionario;
        this.emailFuncionario = emailFuncionario;
        this.tipoFuncionario = tipoFuncionario;
-       this.funcionarioHasPortarias = funcionarioHasPortarias;
+       this.professors = professors;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -133,12 +133,12 @@ public class Funcionario  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
-    public Set<FuncionarioHasPortaria> getFuncionarioHasPortarias() {
-        return this.funcionarioHasPortarias;
+    public Set<Professor> getProfessors() {
+        return this.professors;
     }
     
-    public void setFuncionarioHasPortarias(Set<FuncionarioHasPortaria> funcionarioHasPortarias) {
-        this.funcionarioHasPortarias = funcionarioHasPortarias;
+    public void setProfessors(Set<Professor> professors) {
+        this.professors = professors;
     }
 
 

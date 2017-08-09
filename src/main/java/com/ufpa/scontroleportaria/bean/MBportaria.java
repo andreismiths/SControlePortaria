@@ -3,6 +3,8 @@ package com.ufpa.scontroleportaria.bean;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.controller.PortariaList;
 import com.ufpa.scontroleportaria.controller.VariaveisDeSessao;
+import com.ufpa.scontroleportaria.model.Funcionario;
+import com.ufpa.scontroleportaria.model.Professor;
 import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,7 +38,9 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void cadastrarPortaria() {
         try {
+            
             getDaoGenerico().save(portaria);
+            
             getObjMessage().info("Cadastro efetuado!", "Portaria cadastrada com sucesso!");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
@@ -104,7 +108,7 @@ public class MBportaria extends AbstractBean implements Serializable {
         gerarPDFPortaria.getRelatorioUmaLinha(item);
 
     }
-
+    
     public Portaria getPortaria() {
         if (portaria == null) {
             portaria = new Portaria();

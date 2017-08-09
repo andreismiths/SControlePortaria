@@ -46,7 +46,7 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/SControlePortaria?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="com/ufpa/scontroleportaria/model/FuncionarioHasPortaria.hbm.xml"/>
+    <mapping resource="com/ufpa/scontroleportaria/model/Professor.hbm.xml"/>
     <mapping resource="com/ufpa/scontroleportaria/model/Funcionario.hbm.xml"/>
     <mapping resource="com/ufpa/scontroleportaria/model/RelatorioF.hbm.xml"/>
     <mapping resource="com/ufpa/scontroleportaria/model/Portaria.hbm.xml"/>
