@@ -4,6 +4,7 @@ import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.controller.PortariaList;
 import com.ufpa.scontroleportaria.controller.VariaveisDeSessao;
 import com.ufpa.scontroleportaria.model.Funcionario;
+import com.ufpa.scontroleportaria.model.PortariaId;
 import com.ufpa.scontroleportaria.model.Professor;
 import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class MBportaria extends AbstractBean implements Serializable {
     private Portaria selecionadaEditPortaria;
     private Portaria selecionadaExcluirPortaria;
     private Portaria selecionadaPortaria;
+    private Portaria selecionadaVisualizaPortaria;
     private PortariaList objListPortaria;
     private List<Portaria> listaPortaria;
     private List<Portaria> listaPortariaDeFuncionario;
@@ -34,13 +36,16 @@ public class MBportaria extends AbstractBean implements Serializable {
     @PostConstruct
     public void inicio() {
         listarTodasPortarias();
+        listarPortariaDeFuncionario();
     }
 
     public void cadastrarPortaria() {
         try {
-            
+            Professor professor = new Professor();
+            PortariaId portariaid = new PortariaId();
+            portariaid.setFkProfessor(professor.getPkProfessor());
+            portaria.setId(portariaid);
             getDaoGenerico().save(portaria);
-            
             getObjMessage().info("Cadastro efetuado!", "Portaria cadastrada com sucesso!");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
@@ -82,12 +87,11 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void listarPortariaDeFuncionario() {
         try {
-            listaPortariaDeFuncionario = getDaoGenerico().list("SELECT p FROM Portaria p, Funcionario f, "
-                    + "FuncionarioHasPortaria h WHERE f.tipoFuncionario = 'Professor' AND "
-                    + getVariaveisdesessao().getUsername() +" = p.professorCoordenador AND "
-                    + "f.pkFuncionario = h.id.fkFuncionario AND "
-                    + "h.id.fkPortaria = p.pkPortaria");
-            getObjMessage().info("Exibindo Portarias", "Todas as Portarias estão sendo listadas!");
+            listaPortariaDeFuncionario = getDaoGenerico().list("select p FROM Portaria p, Professor r, Funcionario f WHERE"
+                    + " f.tipoFuncionario = 'Professor' AND"
+                    + " p.id.fkProfessor = r.pkProfessor AND"
+                    + " r.funcionario = "+getVariaveisdesessao().getPKFuncionario());
+            getObjMessage().info("Exibindo Portarias", "Todas as Suas Portarias estão sendo listadas!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
         }
@@ -108,7 +112,7 @@ public class MBportaria extends AbstractBean implements Serializable {
         gerarPDFPortaria.getRelatorioUmaLinha(item);
 
     }
-    
+
     public Portaria getPortaria() {
         if (portaria == null) {
             portaria = new Portaria();
@@ -182,4 +186,13 @@ public class MBportaria extends AbstractBean implements Serializable {
     public void setVariaveisdesessao(VariaveisDeSessao variaveisdesessao) {
         this.variaveisdesessao = variaveisdesessao;
     }
+
+    public Portaria getSelecionadaVisualizaPortaria() {
+        return selecionadaVisualizaPortaria;
+    }
+
+    public void setSelecionadaVisualizaPortaria(Portaria selecionadaVisualizaPortaria) {
+        this.selecionadaVisualizaPortaria = selecionadaVisualizaPortaria;
+    }
+    
 }

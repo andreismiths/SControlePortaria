@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-              xmlns:p="http://primefaces.org/ui" 
-              xmlns:h="http://xmlns.jcp.org/jsf/html" 
-              xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div class="ui-fluid">
         <p:panelGrid id="portariaCoordColabForm"
@@ -28,6 +28,18 @@
             <p:message for="professorCoordenador"
                        rendered="true" />
 
+            <p:outputLabel value="Coordenador:"
+                           for="funcionario"/>
+            <p:selectOneMenu id="funcionario" value="#{MBportaria.portaria.professor}"
+                             converter="omnifaces.SelectItemsConverter"
+                             title="Escolha um item da lista"
+                             required="true"
+                             requiredMessage="Informe o Coordenador!">
+                <f:selectItem itemLabel="Selecione um Coordenador"/>
+                <f:selectItems value="#{MBfuncionario.professorSelect}" var="prof"
+                               itemLabel="#{prof.funcionario.nomeFuncionario}" itemValue="#{prof.pkProfessor}"/>           
+            </p:selectOneMenu>
+            <p:message for="funcionario" />
 
             <p:outputLabel value="Siape Professor Coordenador:"
                            rendered="true"
@@ -42,7 +54,7 @@
             <p:message for="siapeProfessorCoordenador"
                        rendered="true" />
 
-            
+
             <p:outputLabel value="Professor Colaborador 1:"
                            rendered="true"
                            for="professorColaborador1" />
@@ -54,8 +66,8 @@
                          required="false"/>
             <p:message for="professorColaborador1"
                        rendered="true" />
-            
-            
+
+
             <p:outputLabel value="Siape Professor Colaborador 1:"
                            rendered="true"
                            for="siapeProfessorColaborador1" />                                
@@ -67,8 +79,8 @@
                          required="false"/>
             <p:message for="siapeProfessorColaborador1"
                        rendered="true" />
-            
-            
+
+
             <p:outputLabel value="Professor Colaborador 2:"
                            rendered="true"
                            for="professorColaborador2" />
@@ -80,8 +92,8 @@
                          required="false"/>
             <p:message for="professorColaborador2"
                        rendered="true" />
-            
-            
+
+
             <p:outputLabel value="Siape Professor Colaborador 2:"
                            rendered="true"
                            for="siapeProfessorColaborador2" />                                
@@ -93,8 +105,8 @@
                          required="false"/>
             <p:message for="siapeProfessorColaborador2"
                        rendered="true" />
-            
-            
+
+
             <p:outputLabel value="Professor Colaborador 3:"
                            rendered="true"
                            for="professorColaborador3" />
@@ -107,7 +119,7 @@
             <p:message for="professorColaborador3"
                        rendered="true" />
 
-            
+
             <p:outputLabel value="Siape Professor Colaborador 3:"
                            rendered="true"
                            for="siapeProfessorColaborador3" />                                

@@ -19,6 +19,7 @@
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/DAO/AuthorizationFilter.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/relatorio/GerarPDFPortaria.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/AbstractBean.java
+/home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/bean/MBprofessor.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/model/Funcionario.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/controller/RelatorioFList.java
 /home/andreismiths/NetBeansProjects/SControlePortariaTCC/SControlePortaria/src/main/java/com/ufpa/scontroleportaria/Molde/CollectionClasses.java

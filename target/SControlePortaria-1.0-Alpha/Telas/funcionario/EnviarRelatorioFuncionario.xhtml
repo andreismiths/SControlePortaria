@@ -13,7 +13,7 @@
                 <p:panel header="Envio de Relatório de Projeto" style="width: 700px; height: 300px">
                     <p:messages/>
                     <h:panelGrid columns="2">
-                        <h:outputText value="Anexo: "/>
+                        <h:outputText value="Arquivo: "/>
                         <p:fileUpload value="#{MBindexController.mensagem.anexo}" sizeLimit="1000000" invalidSizeMessage="Tamanho Máximo Permitido 10MB" mode="simple" label="Escolher" allowTypes="pdf,doc,docx" skinSimple="true"/>
                         <h:outputText value="Mensagem: "/>
                         <h:inputTextarea value="#{MBindexController.mensagem.mensagem}" cols="65" rows="12"/>

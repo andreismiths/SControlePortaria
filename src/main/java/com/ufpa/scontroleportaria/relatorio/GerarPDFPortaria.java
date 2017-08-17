@@ -61,7 +61,7 @@ public class GerarPDFPortaria {
             response.getOutputStream().close();
 
             context.responseComplete();
-            fecharConexao();
+          //  fecharConexao();
 
         } catch (JRException ex) {
             Logger.getLogger(GerarPDFPortaria.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,7 +89,7 @@ public class GerarPDFPortaria {
             response.getOutputStream().close();
 
             context.responseComplete();
-            fecharConexao();
+           // fecharConexao();
 
         } catch (JRException ex) {
             Logger.getLogger(GerarPDFPortaria.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,12 +113,12 @@ public class GerarPDFPortaria {
         return con;
     }
 
-    public void fecharConexao() {
+   /* public void fecharConexao() {
         try {
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(GerarPDFPortaria.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
 }

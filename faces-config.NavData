@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="Telas/funcionario/MinhasPortarias.xhtml" x="6873" y="32" zoom="true"/>
+        <Node id="Telas/SobreLogin.xhtml" x="3823" y="32" zoom="true"/>
+        <Node id="forms/formRelatorioFinal.xhtml" x="2176" y="32" zoom="true"/>
+        <Node id="Telas/Ajuda.xhtml" x="1060" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/EnviarRelatorioFuncionario.xhtml" x="1341" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/SobreFuncionario.xhtml" x="5224" y="32" zoom="true"/>
+        <Node id="forms/formFuncionario.xhtml" x="710" y="32" zoom="true"/>
+        <Node id="Telas/portaria/EditarPortarias.xhtml" x="6024" y="32" zoom="true"/>
+        <Node id="forms/formPortariaInfo.xhtml" x="1824" y="32" zoom="true"/>
+        <Node id="Telas/AjudaLogin.xhtml" x="3146" y="32" zoom="true"/>
+        <Node id="forms/formPortariaCoordColab.xhtml" x="314" y="32" zoom="true"/>
+        <Node id="PaginaInicialFuncionario.xhtml" x="8485" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/AjudaFuncionario.xhtml" x="10628" y="32" zoom="true"/>
+        <Node id="PaginaInicial.xhtml" x="9511" y="32" zoom="true"/>
+        <Node id="Telas/relatorio/Relatorios.xhtml" x="3461" y="32" zoom="true"/>
+        <Node id="Telas/relatorio/NovoRelatorioFinal.xhtml" x="7680" y="32" zoom="true"/>
+        <Node id="Telas/Sobre.xhtml" x="2866" y="32" zoom="true"/>
+        <Node id="index.xhtml" x="8846" y="32" zoom="true"/>
+        <Node id="Login.xhtml" x="4534" y="32" zoom="true"/>
+        <Node id="Login(copy).xhtml" x="34" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/UsuariosCadastrados.xhtml" x="4778" y="32" zoom="true"/>
+        <Node id="forms/formPortariaCoordColabInfo.xhtml" x="9090" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/NovoUsuario.xhtml" x="4137" y="32" zoom="true"/>
+        <Node id="forms/formFuncionarioInfo.xhtml" x="5649" y="32" zoom="true"/>
+        <Node id="forms/formRelatorioFinalTopsAvaliados.xhtml" x="10179" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/EditarPerfil.xhtml" x="7291" y="32" zoom="true"/>
+        <Node id="Telas/portaria/NovaPortaria.xhtml" x="9801" y="32" zoom="true"/>
+        <Node id="forms/formRelatorioFinalDocsRecebidos.xhtml" x="11054" y="32" zoom="true"/>
+        <Node id="Telas/funcionario/EditarPerfilFuncionario.xhtml" x="6413" y="32" zoom="true"/>
+        <Node id="forms/formRelatorioFinalInfo.xhtml" x="8097" y="32" zoom="true"/>
+        <Node id="forms/formPortaria.xhtml" x="2539" y="32" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

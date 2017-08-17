@@ -131,9 +131,6 @@
                     Funcionários
                 </f:facet>
                 <p:ajax event="rowSelect" update="formlistafuncionario" />
-                <p:column headerText="PK" width="1" >
-                    <p:outputLabel value="#{funcionario.pkFuncionario}" />
-                </p:column>
                 <p:column headerText="Nome" width="50" >
                     <p:outputLabel value="#{funcionario.nomeFuncionario}" />
                 </p:column>
@@ -169,6 +166,10 @@
                         <p:outputLabel value="Data Nascimento"/>
                         <p:calendar value="#{MBfuncionario.selecionadoEditfuncionario.dataNascimentoFuncionario}"
                                     maxlength="10" locale="pt" timeZone="GMT-3" pattern="dd-mm-yyyy" />
+                        <p:outputLabel value="CPF"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.cpfFuncionario}" />
+                        <p:outputLabel value="Siape"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.siapeFuncionario}" />
                         <p:outputLabel value="Email"/>
                         <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.emailFuncionario}" />
                         <p:outputLabel value="Tipo"/>

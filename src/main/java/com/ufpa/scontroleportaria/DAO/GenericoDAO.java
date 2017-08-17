@@ -19,12 +19,15 @@ public interface GenericoDAO<T> {
     public List<RelatorioF> listBySearchRELATORIOF(String searchMode, String search);
 
     public List<Portaria> listBySearchPORTARIAVigencia(String searchMode, String search, String search2);
-    
+
     public void remove(Object entidade);
 
     public void update(Object entidade);
 
     public int validate(String username, String password);
+
+    public List<String> getNameProfessor();
+    
 
 //        void inserir(T entidade);
 //    

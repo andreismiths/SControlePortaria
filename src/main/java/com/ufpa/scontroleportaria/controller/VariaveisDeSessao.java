@@ -48,4 +48,8 @@ public class VariaveisDeSessao {
     public String getTipoFuncionario(){
         return (String) getDadosFuncionario().getTipoFuncionario();
     }
+    
+    public Integer getPKFuncionario(){
+        return getDadosFuncionario().getPkFuncionario();
+    }
 }

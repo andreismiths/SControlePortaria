@@ -88,7 +88,7 @@
                         </f:facet>
 
                         <p:column headerText="Código">
-                            <h:outputText value="#{portaria.pkPortaria}" />
+                            <h:outputText value="#{portaria.id}" />
                         </p:column>
 
                         <p:column headerText="Número" >
@@ -144,9 +144,6 @@
                     Portarias
                 </f:facet>
                 <p:ajax event="rowSelect" update="formlistaportaria"/>
-                <p:column headerText="PK">
-                    <p:outputLabel value="#{portaria.pkPortaria}"/>
-                </p:column>
                 <p:column headerText="Número">
                     <p:outputLabel value="#{portaria.numeroPortaria}"/>
                 </p:column>
@@ -179,11 +176,9 @@
                 </p:column>
 
                 <p:column headerText="Ações" style="width: 170px; text-align: center;">
-                    <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'"
-                                     action="#{MBportaria.imprimirTodas()}" title="PDF Todas"/>
 
-                    <p:commandButton icon="ui-icon-print" oncomplete="PF('pdfdialogportaria').show()" 
-                                     update=":formlistaportaria:formpdfdialogportaria" title="PDF Única">
+                    <p:commandButton icon="fa fa-file-pdf-o" oncomplete="PF('pdfdialogportaria').show()" 
+                                     update=":formlistaportaria:formpdfdialogportaria" title="PDF">
                         <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaPortaria}"/>
                     </p:commandButton>
 
@@ -194,7 +189,7 @@
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.pkPortaria}" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.id}" disabled="true"/>
                         <p:outputLabel value="Número"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.numeroPortaria}" disabled="true"/>
                         <p:outputLabel value="Ementa Portaria"/>

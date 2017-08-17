@@ -1,6 +1,5 @@
 package com.ufpa.scontroleportaria.DAO;
 
-import com.ufpa.scontroleportaria.Molde.CollectionClasses;
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.model.RelatorioF;
@@ -124,7 +123,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
             case "faculdadePortaria":
                 searchMode = "p.faculdadePortaria";
                 break;
- 
+
         }
         List<Portaria> listPortaria
                 = (List<Portaria>) this.list("select p from Portaria p where "
@@ -176,9 +175,21 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         }
         List<Portaria> listPortaria
                 = (List<Portaria>) this.list("select p from Portaria p where "
-                            + searchMode + " BETWEEN " + search + "AND" + search2);
+                        + searchMode + " BETWEEN " + search + "AND" + search2);
 
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Portaria> listBySearchPORTARIA(String searchMode, String search) ]");
         return listPortaria;
+    }
+//Método para listar os nomes de professores inseridos no banco de dados
+
+    @Override
+    public List<String> getNameProfessor() {
+
+        List<String> listanameProfesor = new ArrayList<>();
+        for (Object obj : (List<Object>) this.list("SELECT f.nomeFuncionario from Funcionario f")) {
+            listanameProfesor.add((String) obj);
+        }
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<String> getNameProfessor() ]");
+        return listanameProfesor;
     }
 }

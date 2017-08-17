@@ -21,7 +21,11 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class MBlogin extends AbstractBean {
 
-    String siapeEmail;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String siapeEmail;
     String senha;
 
     public String validateUserPassword() throws IOException {
@@ -34,6 +38,7 @@ public class MBlogin extends AbstractBean {
                 System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
                 System.out.println("BACK-END WARNING: USER LOGGED! email=" + getVariaveisDeSessao().getEmail());
                 System.out.println("BACK-END WARNING: USER LOGGED! tipo=" + getVariaveisDeSessao().getTipoFuncionario());
+                System.out.println("BACK-END WARNING: USER LOGGED! PK=" + getVariaveisDeSessao().getPKFuncionario());
                 return "PaginaInicialFuncionario";
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaInicial.xhtml");

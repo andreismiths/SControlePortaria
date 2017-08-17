@@ -35,12 +35,12 @@ public class MBfuncionario extends AbstractBean {
         try {
             funcionario.setSenhaFuncionario(security().encrypter(funcionario.getSenhaFuncionario()));
             if (funcionario.getTipoFuncionario() == "Administrador") {
-                getDaoGenerico().save(funcionario);     
+                getDaoGenerico().save(funcionario);
             } else {
                 getDaoGenerico().save(funcionario);
                 cadastrarProfessor(funcionario);
             }
-            
+
             getObjMessage().info("Cadastro efetuado!", "Funcionario cadastrado com sucesso");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
@@ -78,6 +78,10 @@ public class MBfuncionario extends AbstractBean {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
         }
 
+    }
+
+    public Funcionario getById(Integer codigo) {
+        return (Funcionario) getDaoGenerico().list("SELECT f FROM Funcionario f WHERE f.pkFuncionario = " + codigo);
     }
 
     public void cadastrarProfessor(Funcionario funcionario) {
@@ -147,5 +151,5 @@ public class MBfuncionario extends AbstractBean {
     public void setSelecionadofuncionario(Funcionario selecionadofuncionario) {
         this.selecionadofuncionario = selecionadofuncionario;
     }
-
+  
 }

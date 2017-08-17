@@ -61,7 +61,7 @@ public class RelatorioFinalGerarPDF {
             response.getOutputStream().close();
 
             context.responseComplete();
-            fecharConexao();
+         //   fecharConexao();
 
         } catch (JRException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,7 +87,7 @@ public class RelatorioFinalGerarPDF {
             response.getOutputStream().close();
 
             context.responseComplete();
-            fecharConexao();
+         //   fecharConexao();
 
         } catch (JRException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,7 +99,7 @@ public class RelatorioFinalGerarPDF {
     public Connection getConexao() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ControledePortaria?zeroDateTimeBehavior=convertToNull", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SControlePortaria?zeroDateTimeBehavior=convertToNull", "root", "root");
             return con;
 
         } catch (SQLException ex) {
@@ -110,13 +110,13 @@ public class RelatorioFinalGerarPDF {
 
         return con;
     }
-
+/*
     public void fecharConexao() {
         try {
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(RelatorioFinalGerarPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
 }

@@ -8,7 +8,7 @@
         <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />
         <h1 class="aw-page-title">Relatórios</h1>
         <p:growl id="growl"/>
-        
+
         <p:panel>
             <div class="ui-fluid">
 
@@ -171,17 +171,11 @@
 
             <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRelatorioF}" >
                 <f:facet name="header">
-                    Relatórios Final
+                    Relatórios Finais
                 </f:facet>
                 <p:ajax event="rowSelect" update=":formlistarelatoriosF" />
-                <p:column headerText="PK" width="5" >
-                    <p:outputLabel value="#{relatorioF.pkRelatorioF}"/>
-                </p:column>
                 <p:column headerText="Nº Protocolo" width="35" >
                     <p:outputLabel value="#{relatorioF.numeroDeProtocolo}"/>
-                </p:column>
-                <p:column headerText="Pesq/Ext" width="35" >
-                    <p:outputLabel value="#{relatorioF.pesquisaExtensao}"/>
                 </p:column>
                 <p:column headerText="Faculdade" width="35" >
                     <p:outputLabel value="#{relatorioF.faculdadeRelatorioF}"/>
@@ -192,64 +186,87 @@
                 <p:column headerText="Coordenador" width="30" >
                     <p:outputLabel value="#{relatorioF.relatorioFcoordenador}"/>
                 </p:column>
-                <p:column headerText="Memorando" width="20" >
-                    <p:outputLabel value="#{relatorioF.memorandoDirecaoFaculdade}"/>
-                </p:column>
-                <p:column headerText="ATA" width="20" >
-                    <p:outputLabel value="#{relatorioF.ataReuniao}"/>
-                </p:column>
-                <p:column headerText="Relatório F. Proj." width="20" >
-                    <p:outputLabel value="#{relatorioF.relatorioFexecutadoFormatoProReitoria}"/>
-                </p:column>
-                <p:column headerText="Parecer" width="20" >
-                    <p:outputLabel value="#{relatorioF.parecerRelatorioFinal}"/>
-                </p:column>
+
                 <p:column headerText="DataRecebido" width="30" >
                     <p:outputLabel value="#{relatorioF.dataRecebido}"/>
                 </p:column>
                 <p:column headerText="Resp. Entrega" width="40" >
                     <p:outputLabel value="#{relatorioF.assinaturaRespEntrega}"/>
                 </p:column>
-                <p:column headerText="Resp. Recebimento" width="30" >
-                    <p:outputLabel value="#{relatorioF.assinaturaRescRecebimento}"/>
-                </p:column>
-                <p:column headerText="Formação de R.H." width="20" >
-                    <p:outputLabel value="#{relatorioF.formacaoRecursosHumanosPesquisa}"/>
-                </p:column>
-                <p:column headerText="Contatos Nac.Inter." width="20" >
-                    <p:outputLabel value="#{relatorioF.contatosNacionaisInternacionais}"/>
-                </p:column>
-                <p:column headerText="Publicados" width="20" >
-                    <p:outputLabel value="#{relatorioF.trabalhosPublicadosAceitos}"/>
-                </p:column>
-                <p:column headerText="Patente" width="20" >
-                    <p:outputLabel value="#{relatorioF.patenteRegistroInvencao}"/>
-                </p:column>
-                <p:column headerText="Atividades" width="20" >
-                    <p:outputLabel value="#{relatorioF.atividadesCientificasAdministrativas}"/>
-                </p:column>
-                <p:column headerText="Contribuição E.G." width="20" >
-                    <p:outputLabel value="#{relatorioF.contribuicaoPensinoGraduacao}"/>
-                </p:column>
 
-                <p:column headerText="Ações" style="width: 40px; text-align: center;" >
-                    <p:commandButton icon="fa fa-bug" ajax="false" onclick="this.form.target = '_blank'"
-                                     action="#{MBrelatorioF.pdfTodosRelatorioFinal()}" title="PDF Todas"/>
-                    <p:commandButton icon="ui-icon-print"  oncomplete="PF('pdfdialogrelatoriof').show()" 
-                                     update=":formlistarelatoriosF:formpdfdialogrelatoriof" title="Gerar PDF">
+                <p:column headerText="Ações" style="width: 70px; text-align: center;" >
+
+                    <p:commandButton icon="fa fa-eye" oncomplete="PF('visualizadialogrelatoriof').show()"
+                                     update=":formlistarelatoriosF:formvisualizadialogrelatoriof" title="Visualizar">
+                        <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoVisualizaRelatorioF}"/>
+                    </p:commandButton>
+                    <p:commandButton icon="fa fa-file-pdf-o"  oncomplete="PF('pdfdialogrelatoriof').show()" 
+                                     update=":formlistarelatoriosF:formpdfdialogrelatoriof" title="PDF">
                         <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoRelatorioF}"/>
                     </p:commandButton>
+                    <p:commandButton icon="fa fa-file-text" ajax="false" onclick="this.form.target = '_blank'"
+                                     action="#{MBrelatorioF.pdfTodosRelatorioFinal()}" title="PDF Todas"/>
                     <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogrelatoriof').show()"
                                      update=":formlistarelatoriosF:formedicaodialogrelatoriof" title="Editar">
                         <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoEditRelatorioF}"/>
                     </p:commandButton>
-                    <!--BOTÃO DE EXCLUSÃO A ALTERAR PARA O CONFIRM DIALOG E TESTAR ANTES DE IMPLEMENTAR-->
                     <p:commandButton icon="fa fa-trash-o" oncomplete="PF('confirmdialogexcluirrelatoriof').show()" 
                                      update=":formlistarelatoriosF:formconfirmdialogexcluirrelatoriof" title="Excluir">
                         <f:setPropertyActionListener target="#{MBrelatorioF.selecionadoExcluirRelatorioF}" value="#{relatorioF}"/>
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
+
+
+            <p:dialog widgetVar="visualizadialogrelatoriof" header="Visualizar" modal="true" dynamic="true" resizable="false" width="650">
+                <p:outputPanel id="formvisualizadialogrelatoriof" style="text-align: center;">
+                    <p:panelGrid columns="4" rendered="#{not empty MBrelatorioF.selecionadoVisualizaRelatorioF}">
+                        <p:outputLabel value="PK"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.pkRelatorioF}" disabled="true"/>
+                        <p:outputLabel value="Número de Protocolo"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.numeroDeProtocolo}" disabled="true"/>
+                        <p:outputLabel value="Pesq/Ext"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.pesquisaExtensao}" disabled="true"/>
+                        <p:outputLabel value="Faculdade"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.faculdadeRelatorioF}" disabled="true"/>
+                        <p:outputLabel value="Título"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.relatorioFtituloDoProjeto}" disabled="true"/>
+                        <p:outputLabel value="Coordenador"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.relatorioFcoordenador}" disabled="true"/>
+                        <p:outputLabel value="Memorando"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.memorandoDirecaoFaculdade}" disabled="true"/>
+                        <p:outputLabel value="ATA"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.ataReuniao}" disabled="true"/>
+                        <p:outputLabel value="Relatório F. Proj."/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.relatorioFexecutadoFormatoProReitoria}" disabled="true"/>
+                        <p:outputLabel value="Parecer"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.parecerRelatorioFinal}" disabled="true"/>
+                        <p:outputLabel value="Data Recebido"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.dataRecebido}" disabled="true"/>
+                        <p:outputLabel value="Resp. Entrega"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.assinaturaRespEntrega}" disabled="true"/>
+                        <p:outputLabel value="Resp. Recebimento"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.assinaturaRescRecebimento}" disabled="true"/>
+                        <p:outputLabel value="Formação de R.H."/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.formacaoRecursosHumanosPesquisa}" disabled="true"/>
+                        <p:outputLabel value="Contatos Nac.Inter."/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.contatosNacionaisInternacionais}" disabled="true"/>
+                        <p:outputLabel value="Publicados"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.trabalhosPublicadosAceitos}" disabled="true"/>
+                        <p:outputLabel value="Patente"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.patenteRegistroInvencao}" disabled="true"/>
+                        <p:outputLabel value="Atividades"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.atividadesCientificasAdministrativas}" disabled="true"/>
+                        <p:outputLabel value="Contribuição E.G."/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.contribuicaoPensinoGraduacao}" disabled="true"/>
+                    </p:panelGrid>
+                </p:outputPanel>
+                <p:fieldset>
+                    <p:commandButton value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
+                </p:fieldset>
+
+            </p:dialog>
+
 
             <p:dialog widgetVar="pdfdialogrelatoriof" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="650">
                 <p:outputPanel id="formpdfdialogrelatoriof" style="text-align: center;">
@@ -304,7 +321,7 @@
 
             <p:dialog widgetVar="edicaodialogrelatoriof" header="Editar" modal="true" dynamic="true" resizable="false" width="650">
                 <p:outputPanel id="formedicaodialogrelatoriof" style="text-align: center;">
-                   <p:panelGrid columns="4">
+                    <p:panelGrid columns="4">
                         <p:outputLabel value="PK"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.pkRelatorioF}" disabled="true"/>
                         <p:outputLabel value="Número de Protocolo"/>
@@ -327,7 +344,7 @@
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.parecerRelatorioFinal}" />
                         <p:outputLabel value="Data Recebido"/>
                         <p:calendar value="#{MBrelatorioF.selecionadoEditRelatorioF.dataRecebido}"
-                        maxlength="10" locale="pt" pattern="dd-mm-yyyy" />
+                                    maxlength="10" locale="pt" pattern="dd-mm-yyyy" />
                         <p:outputLabel value="Resp. Entrega"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.assinaturaRespEntrega}" />
                         <p:outputLabel value="Resp. Recebimento"/>

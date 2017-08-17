@@ -20,6 +20,7 @@ com/ufpa/scontroleportaria/DAO/GenericoDAOImpl.class
 com/ufpa/scontroleportaria/tools/Security.class
 com/ufpa/scontroleportaria/bean/MBlogin.class
 com/ufpa/scontroleportaria/DAO/SessionUtils.class
+com/ufpa/scontroleportaria/bean/MBprofessor.class
 com/ufpa/scontroleportaria/DAO/AuthorizationFilter.class
 com/ufpa/scontroleportaria/Molde/CollectionClasses.class
 com/ufpa/scontroleportaria/controller/Tools.class

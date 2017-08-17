@@ -26,6 +26,7 @@ public class MBrelatorioFinal extends AbstractBean {
     private RelatorioF selecionadoRelatorioF;
     private RelatorioF selecionadoExcluirRelatorioF;
     private RelatorioF selecionadoEditRelatorioF;
+    private RelatorioF selecionadoVisualizaRelatorioF;
     private RelatorioFList objListRelatorioF;
     private List<RelatorioF> listaRelatorioF;
     private List<RelatorioF> listaRFPDF = new ArrayList<RelatorioF>();
@@ -146,6 +147,14 @@ public class MBrelatorioFinal extends AbstractBean {
 
     public void setSelecionadoEditRelatorioF(RelatorioF selecionadoEditRelatorioF) {
         this.selecionadoEditRelatorioF = selecionadoEditRelatorioF;
+    }
+
+    public RelatorioF getSelecionadoVisualizaRelatorioF() {
+        return selecionadoVisualizaRelatorioF;
+    }
+
+    public void setSelecionadoVisualizaRelatorioF(RelatorioF selecionadoVisualizaRelatorioF) {
+        this.selecionadoVisualizaRelatorioF = selecionadoVisualizaRelatorioF;
     }
     
 }
