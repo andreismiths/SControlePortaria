@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 09/08/2017 16:29:27 by Hibernate Tools 4.3.1
+// Generated 18/08/2017 08:59:04 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

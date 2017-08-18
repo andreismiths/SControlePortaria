@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/08/2017 16:29:27 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/08/2017 08:59:05 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ufpa.scontroleportaria.model.Professor" table="Professor" catalog="SControlePortaria" optimistic-lock="version">
         <id name="pkProfessor" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="funcionario" class="com.ufpa.scontroleportaria.model.Funcionario" fetch="select">
-            <column name="FK_funcionario" />
+            <column name="FK_funcionario" not-null="true" />
         </many-to-one>
         <set name="portarias" table="Portaria" inverse="true" lazy="true" fetch="select">
             <key>

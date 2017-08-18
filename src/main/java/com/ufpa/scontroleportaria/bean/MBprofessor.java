@@ -18,16 +18,16 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class MBprofessor extends AbstractBean {
 
-    private List<Object> professorSelect;
+    private List<Professor> professorSelect;
 
-    public List<Object> getProfessorSelect() {
+    public List<Professor> getProfessorSelect() {
         if (this.professorSelect == null){
-            professorSelect = (List<Object>)getDaoGenerico().list("");
+            professorSelect = (List<Professor>)getDaoGenerico().list("SELECT r from Professor r");
         }
         return professorSelect;
     }
 
-    public void setProfessorSelect(List<Object> professorSelect) {
+    public void setProfessorSelect(List<Professor> professorSelect) {
         this.professorSelect = professorSelect;
     }
 
@@ -43,5 +43,34 @@ public class MBprofessor extends AbstractBean {
             System.out.println("pk r "+teste2.get(0).getPkProfessor());
             funcionarioSelect = null;
         }
+
+        if (this.funcionarioSelect == null) {
+            funcionarioSelect = new ArrayList<SelectItem>();
+            List<Funcionario> listafunc = getDaoGenerico().list("SELECT f FROM Funcionario f where f.tipoFuncionario = 'Professor'");
+            if (listafunc != null && !listafunc.isEmpty()) {
+                SelectItem item = new SelectItem();
+                for (Funcionario funcionarioLista : listafunc) {
+                    item.setValue(funcionarioLista);
+                    item.setLabel(funcionarioLista.getNomeFuncionario());
+                    funcionarioSelect.add(item);
+
+                }
+            }
+
+
+
+            professorSelect = new ArrayList<SelectItem>();
+            List<Professor> listaprof = getDaoGenerico().list("SELECT r FROM Professor r");
+            if (listaprof != null && !listaprof.isEmpty()) {
+                SelectItem item = new SelectItem();
+                for (Professor professorLista : listaprof) {
+                    item.setValue(professorLista.getPkProfessor());
+                  
+                    professorSelect.add(item);
+
+                }
+            }
+
+
 
 */

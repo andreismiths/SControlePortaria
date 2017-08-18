@@ -41,11 +41,16 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void cadastrarPortaria() {
         try {
-            Professor professor = new Professor();
+            System.out.println("1");
             PortariaId portariaid = new PortariaId();
-            portariaid.setFkProfessor(professor.getPkProfessor());
+            System.out.println("2");
+            System.out.println(portaria.getProfessor());
+            portariaid.setFkProfessor(portaria.getProfessor().getPkProfessor());
+            System.out.println("3");
             portaria.setId(portariaid);
+            System.out.println("4");
             getDaoGenerico().save(portaria);
+            System.out.println("5");
             getObjMessage().info("Cadastro efetuado!", "Portaria cadastrada com sucesso!");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");

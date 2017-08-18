@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 09/08/2017 16:29:27 by Hibernate Tools 4.3.1
+// Generated 18/08/2017 08:59:04 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -32,6 +32,10 @@ public class Professor  implements java.io.Serializable {
     public Professor() {
     }
 
+	
+    public Professor(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
     public Professor(Funcionario funcionario, Set<Portaria> portarias) {
        this.funcionario = funcionario;
        this.portarias = portarias;
@@ -50,7 +54,7 @@ public class Professor  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="FK_funcionario")
+    @JoinColumn(name="FK_funcionario", nullable=false)
     public Funcionario getFuncionario() {
         return this.funcionario;
     }

@@ -36,8 +36,7 @@
                              required="true"
                              requiredMessage="Informe o Coordenador!">
                 <f:selectItem itemLabel="Selecione um Coordenador"/>
-                <f:selectItems value="#{MBfuncionario.professorSelect}" var="prof"
-                               itemLabel="#{prof.funcionario.nomeFuncionario}" itemValue="#{prof.pkProfessor}"/>           
+                <f:selectItems value="#{MBprofessor.professorSelect}" var="prof" itemLabel="#{prof.pkProfessor}" itemValue="#{prof}" />           
             </p:selectOneMenu>
             <p:message for="funcionario" />
 
