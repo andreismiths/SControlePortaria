@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 18/08/2017 08:59:04 by Hibernate Tools 4.3.1
+// Generated 19/08/2017 13:20:53 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class Portaria  implements java.io.Serializable {
 
 
      private PortariaId id;
-     private Professor professor;
+     private Funcionario funcionario;
      private String numeroPortaria;
      private String ementaPortaria;
      private String projetoPortaria;
@@ -49,9 +49,9 @@ public class Portaria  implements java.io.Serializable {
     }
 
 	
-    public Portaria(PortariaId id, Professor professor, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String statusPortaria, String relatorioProjeto) {
+    public Portaria(PortariaId id, Funcionario funcionario, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String statusPortaria, String relatorioProjeto) {
         this.id = id;
-        this.professor = professor;
+        this.funcionario = funcionario;
         this.numeroPortaria = numeroPortaria;
         this.ementaPortaria = ementaPortaria;
         this.projetoPortaria = projetoPortaria;
@@ -64,9 +64,9 @@ public class Portaria  implements java.io.Serializable {
         this.statusPortaria = statusPortaria;
         this.relatorioProjeto = relatorioProjeto;
     }
-    public Portaria(PortariaId id, Professor professor, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String colaborador1, String siapeColaborador1, String colaborador2, String siapeColaborador2, String colaborador3, String siapeColaborador3, String statusPortaria, String relatorioProjeto) {
+    public Portaria(PortariaId id, Funcionario funcionario, String numeroPortaria, String ementaPortaria, String projetoPortaria, String tituloProjetoPortaria, String faculdadePortaria, String professorCoordenador, String siapeCoordenador, Date inicioVigencia, Date fimVigencia, String colaborador1, String siapeColaborador1, String colaborador2, String siapeColaborador2, String colaborador3, String siapeColaborador3, String statusPortaria, String relatorioProjeto) {
        this.id = id;
-       this.professor = professor;
+       this.funcionario = funcionario;
        this.numeroPortaria = numeroPortaria;
        this.ementaPortaria = ementaPortaria;
        this.projetoPortaria = projetoPortaria;
@@ -91,7 +91,7 @@ public class Portaria  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkPortaria", column=@Column(name="PK_portaria", nullable=false) ), 
-        @AttributeOverride(name="fkProfessor", column=@Column(name="FK_professor", nullable=false) ) } )
+        @AttributeOverride(name="fkFuncionario", column=@Column(name="FK_funcionario", nullable=false) ) } )
     public PortariaId getId() {
         return this.id;
     }
@@ -101,13 +101,13 @@ public class Portaria  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="FK_professor", nullable=false, insertable=false, updatable=false)
-    public Professor getProfessor() {
-        return this.professor;
+    @JoinColumn(name="FK_funcionario", nullable=false, insertable=false, updatable=false)
+    public Funcionario getFuncionario() {
+        return this.funcionario;
     }
     
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     

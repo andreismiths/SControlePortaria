@@ -30,13 +30,15 @@
 
             <p:outputLabel value="Coordenador:"
                            for="funcionario"/>
-            <p:selectOneMenu id="funcionario" value="#{MBportaria.portaria.professor}"
+            <p:selectOneMenu id="funcionario" value="#{MBportaria.portaria.funcionario}"
                              converter="omnifaces.SelectItemsConverter"
                              title="Escolha um item da lista"
                              required="true"
                              requiredMessage="Informe o Coordenador!">
                 <f:selectItem itemLabel="Selecione um Coordenador"/>
-                <f:selectItems value="#{MBprofessor.professorSelect}" var="prof" itemLabel="#{prof.pkProfessor}" itemValue="#{prof}" />           
+                <f:selectItems value="#{MBfuncionario.funcionarioSelect}" var="prof" 
+                               itemLabel="#{prof.nomeFuncionario}" 
+                               itemValue="#{prof}" />           
             </p:selectOneMenu>
             <p:message for="funcionario" />
 

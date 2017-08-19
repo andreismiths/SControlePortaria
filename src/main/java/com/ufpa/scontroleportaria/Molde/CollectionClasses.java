@@ -7,7 +7,6 @@ package com.ufpa.scontroleportaria.Molde;
 
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.model.Portaria;
-import com.ufpa.scontroleportaria.model.Professor;
 import com.ufpa.scontroleportaria.model.RelatorioF;
 
 import java.io.Serializable;
@@ -21,14 +20,13 @@ public class CollectionClasses implements Serializable {
     private Funcionario funcionario;
     private Portaria portaria;
     private RelatorioF relatoriof;
-    private Professor professor;
 
-    public void geraObj() {
-        funcionario = new Funcionario();
-        portaria = new Portaria();
-        relatoriof = new RelatorioF();
-        professor = new Professor();
-    }
+//    public void geraObj() {
+//        funcionario = new Funcionario();
+//        portaria = new Portaria();
+//        relatoriof = new RelatorioF();
+//        professor = new Professor();
+//    }
 
     public Funcionario getFuncionario() {
         if (funcionario == null) {
@@ -61,17 +59,6 @@ public class CollectionClasses implements Serializable {
 
     public void setRelatoriof(RelatorioF relatoriof) {
         this.relatoriof = relatoriof;
-    }
-
-    public Professor getProfessor() {
-        if (professor == null) {
-            professor = new Professor();
-        }
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
     }
 
 }

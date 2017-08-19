@@ -3,9 +3,7 @@ package com.ufpa.scontroleportaria.bean;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.controller.PortariaList;
 import com.ufpa.scontroleportaria.controller.VariaveisDeSessao;
-import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.model.PortariaId;
-import com.ufpa.scontroleportaria.model.Professor;
 import com.ufpa.scontroleportaria.relatorio.GerarPDFPortaria;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,8 +42,8 @@ public class MBportaria extends AbstractBean implements Serializable {
             System.out.println("1");
             PortariaId portariaid = new PortariaId();
             System.out.println("2");
-            System.out.println(portaria.getProfessor());
-            portariaid.setFkProfessor(portaria.getProfessor().getPkProfessor());
+            System.out.println(portaria.getFuncionario());
+            portariaid.setFkFuncionario(portaria.getFuncionario().getPkFuncionario());
             System.out.println("3");
             portaria.setId(portariaid);
             System.out.println("4");
@@ -92,10 +90,9 @@ public class MBportaria extends AbstractBean implements Serializable {
 
     public void listarPortariaDeFuncionario() {
         try {
-            listaPortariaDeFuncionario = getDaoGenerico().list("select p FROM Portaria p, Professor r, Funcionario f WHERE"
-                    + " f.tipoFuncionario = 'Professor' AND"
-                    + " p.id.fkProfessor = r.pkProfessor AND"
-                    + " r.funcionario = "+getVariaveisdesessao().getPKFuncionario());
+            listaPortariaDeFuncionario = getDaoGenerico().list("select p FROM Portaria p, Funcionario f "
+                    + "WHERE f.tipoFuncionario = 'Professor' "
+                    + "AND "+getVariaveisdesessao().getPKFuncionario()+" = p.id.fkFuncionario");
             getObjMessage().info("Exibindo Portarias", "Todas as Suas Portarias estão sendo listadas!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");

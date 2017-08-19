@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 18/08/2017 08:59:04 by Hibernate Tools 4.3.1
+// Generated 19/08/2017 13:20:53 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,12 +34,12 @@ public class Funcionario  implements java.io.Serializable {
      private Date dataNascimentoFuncionario;
      private String emailFuncionario;
      private String tipoFuncionario;
-     private Set<Professor> professors = new HashSet<Professor>(0);
+     private Set<Portaria> portarias = new HashSet<Portaria>(0);
 
     public Funcionario() {
     }
 
-    public Funcionario(String nomeFuncionario, Integer siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<Professor> professors) {
+    public Funcionario(String nomeFuncionario, Integer siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<Portaria> portarias) {
        this.nomeFuncionario = nomeFuncionario;
        this.siapeFuncionario = siapeFuncionario;
        this.cpfFuncionario = cpfFuncionario;
@@ -47,7 +47,7 @@ public class Funcionario  implements java.io.Serializable {
        this.dataNascimentoFuncionario = dataNascimentoFuncionario;
        this.emailFuncionario = emailFuncionario;
        this.tipoFuncionario = tipoFuncionario;
-       this.professors = professors;
+       this.portarias = portarias;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -133,12 +133,12 @@ public class Funcionario  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
-    public Set<Professor> getProfessors() {
-        return this.professors;
+    public Set<Portaria> getPortarias() {
+        return this.portarias;
     }
     
-    public void setProfessors(Set<Professor> professors) {
-        this.professors = professors;
+    public void setPortarias(Set<Portaria> portarias) {
+        this.portarias = portarias;
     }
 
 

@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 18/08/2017 08:59:04 by Hibernate Tools 4.3.1
+// Generated 19/08/2017 13:20:53 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,14 +13,14 @@ public class PortariaId  implements java.io.Serializable {
 
 
      private int pkPortaria;
-     private int fkProfessor;
+     private int fkFuncionario;
 
     public PortariaId() {
     }
 
-    public PortariaId(int pkPortaria, int fkProfessor) {
+    public PortariaId(int pkPortaria, int fkFuncionario) {
        this.pkPortaria = pkPortaria;
-       this.fkProfessor = fkProfessor;
+       this.fkFuncionario = fkFuncionario;
     }
    
 
@@ -35,13 +35,13 @@ public class PortariaId  implements java.io.Serializable {
     }
 
 
-    @Column(name="FK_professor", nullable=false)
-    public int getFkProfessor() {
-        return this.fkProfessor;
+    @Column(name="FK_funcionario", nullable=false)
+    public int getFkFuncionario() {
+        return this.fkFuncionario;
     }
     
-    public void setFkProfessor(int fkProfessor) {
-        this.fkProfessor = fkProfessor;
+    public void setFkFuncionario(int fkFuncionario) {
+        this.fkFuncionario = fkFuncionario;
     }
 
 
@@ -52,14 +52,14 @@ public class PortariaId  implements java.io.Serializable {
 		 PortariaId castOther = ( PortariaId ) other; 
          
 		 return (this.getPkPortaria()==castOther.getPkPortaria())
- && (this.getFkProfessor()==castOther.getFkProfessor());
+ && (this.getFkFuncionario()==castOther.getFkFuncionario());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkPortaria();
-         result = 37 * result + this.getFkProfessor();
+         result = 37 * result + this.getFkFuncionario();
          return result;
    }   
 
