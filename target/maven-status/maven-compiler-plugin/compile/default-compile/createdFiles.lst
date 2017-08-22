@@ -1,9 +1,9 @@
-com/ufpa/scontroleportaria/model/Funcionario.class
 com/ufpa/scontroleportaria/bean/MBfuncionario.class
+com/ufpa/scontroleportaria/model/Funcionario.class
 com/ufpa/scontroleportaria/model/PortariaId.class
 com/ufpa/scontroleportaria/bean/MBrelatorioFinal.class
-com/ufpa/scontroleportaria/model/RelatorioF.class
 com/ufpa/scontroleportaria/bean/MBportaria.class
+com/ufpa/scontroleportaria/model/RelatorioF.class
 com/ufpa/scontroleportaria/controller/RelatorioFList.class
 com/ufpa/scontroleportaria/email/EmailUtils.class
 com/ufpa/scontroleportaria/bean/AbstractBean.class

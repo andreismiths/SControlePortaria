@@ -70,11 +70,6 @@
         </dependency>
         <!--SÓ DO JASPER ESSAS LIBS -->
         <!-- https://mvnrepository.com/artifact/jasperreports/iText -->
-        <dependency>
-            <groupId>jasperreports</groupId>
-            <artifactId>iText</artifactId>
-            <version>2.1.7</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
         <dependency>

@@ -5,9 +5,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Adm_Layout.xhtml">
     <ui:define name="content">
-        <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />
+        <!-- <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" /> -->
         <h1 class="aw-page-title">Usuários</h1>
-        <p:growl id="growl" sticky="true" showDetail="true"/>
+        <p:growl id="growl"/>
 
         <p:panel>
             <div class="ui-fluid">
@@ -125,6 +125,7 @@
         </p:panel>
 
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
+        <br/>
         <h:form id="formlistafuncionario" >
             <p:dataTable var="funcionario" value="#{MBfuncionario.listaFuncionario}">
                 <f:facet name="header">
@@ -134,7 +135,7 @@
                 <p:column headerText="Nome" width="50" >
                     <p:outputLabel value="#{funcionario.nomeFuncionario}" />
                 </p:column>
-                <p:column headerText="Data Nascimento" width="20" >
+                <p:column headerText="Data Nascimento" width="10" >
                     <p:outputLabel value="#{funcionario.dataNascimentoFuncionario}" />
                 </p:column>
                 <p:column headerText="Email" width="50" >
@@ -156,34 +157,42 @@
                 </p:column>
             </p:dataTable>
 
-            <p:dialog widgetVar="edicaodialogfuncionario" header="Editar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="600">
+            <p:dialog widgetVar="edicaodialogfuncionario" header="Editar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800">
                 <p:outputPanel id="formedicaodialogfuncionario" style="text-align: center;">
                     <p:panelGrid columns="2" rendered="#{not empty MBfuncionario.selecionadoEditfuncionario}">
                         <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.pkFuncionario}" disabled="true"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.pkFuncionario}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Nome"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.nomeFuncionario}"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.nomeFuncionario}" style="width: 600px" />
                         <p:outputLabel value="Data Nascimento"/>
                         <p:calendar value="#{MBfuncionario.selecionadoEditfuncionario.dataNascimentoFuncionario}"
-                                    maxlength="10" locale="pt" timeZone="GMT-3" pattern="dd-mm-yyyy" />
+                                    maxlength="10" 
+                                    disabled="false" 
+                                    timeZone="GMT-3"
+                                    size="74"
+                                    locale="pt" 
+                                    navigator="true"  
+                                    pattern="dd-mm-yyyy" 
+                                    style="margin-bottom: 20px;" />
                         <p:outputLabel value="CPF"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.cpfFuncionario}" />
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.cpfFuncionario}" style="width: 600px" />
                         <p:outputLabel value="Siape"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.siapeFuncionario}" />
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.siapeFuncionario}" style="width: 600px" />
                         <p:outputLabel value="Email"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.emailFuncionario}" />
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.emailFuncionario}" style="width: 600px" />
                         <p:outputLabel value="Tipo"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.tipoFuncionario}" />
+                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.tipoFuncionario}" style="width: 600px" />
                     </p:panelGrid>
                 </p:outputPanel>
-                <p:fieldset>
-                    <p:commandButton value="Editar"  ajax="false" action="#{MBfuncionario.editarFuncionario()}" oncomplete="PF('formedicaodialogfuncionario').hide()"
-                                     update=":formlistafuncionario"/>
-                    <p:commandButton value="Fechar" oncomplete="PF('formedicaodialogfuncionario').hide()" update=":formlistafuncionario" />
-                </p:fieldset>
+                <br/>
+               <!-- <p:commandButton style="float: right" value="Fechar" oncomplete="PF('formedicaodialogfuncionario').hide()" update=":formlistafuncionario"/>
+               --> 
+                <p:commandButton style="float: right" value="Editar"  ajax="false" action="#{MBfuncionario.editarFuncionario()}" oncomplete="PF('formedicaodialogfuncionario').hide()"
+                                 update=":formlistafuncionario"/>
+
             </p:dialog>
 
-            <p:confirmDialog id="confirmdialogexcluirfuncionario" message="Você gostaria de excluir o Funcionário de nome #{MBfuncionario.selecionadoExcluirfuncionario.nomeFuncionario}?"
+            <p:confirmDialog id="confirmdialogexcluirfuncionario" message="Você gostaria de excluir o Funcionário de nome: ##{MBfuncionario.selecionadoExcluirfuncionario.nomeFuncionario}#?"
                              header="Excluir Funcionário" severity="alert" widgetVar="confirmdialogexcluirfuncionario" showEffect="fade" hideEffect="explode">
                 <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirfuncionario').hide()" action="#{MBfuncionario.deletarFuncionario()}"
                                  icon="ui-icon-check" update=":formlistafuncionario"/>

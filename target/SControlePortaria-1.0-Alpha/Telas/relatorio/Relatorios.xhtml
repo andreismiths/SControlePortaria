@@ -218,11 +218,10 @@
             </p:dataTable>
 
 
-            <p:dialog widgetVar="visualizadialogrelatoriof" header="Visualizar" modal="true" dynamic="true" resizable="false" width="650">
+            <p:dialog widgetVar="visualizadialogrelatoriof" header="Visualizar" modal="true" dynamic="true" 
+                      resizable="false" showEffect="fade" hideEffect="explode" width="735">
                 <p:outputPanel id="formvisualizadialogrelatoriof" style="text-align: center;">
                     <p:panelGrid columns="4" rendered="#{not empty MBrelatorioF.selecionadoVisualizaRelatorioF}">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.pkRelatorioF}" disabled="true"/>
                         <p:outputLabel value="Número de Protocolo"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.numeroDeProtocolo}" disabled="true"/>
                         <p:outputLabel value="Pesq/Ext"/>
@@ -261,18 +260,15 @@
                         <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.contribuicaoPensinoGraduacao}" disabled="true"/>
                     </p:panelGrid>
                 </p:outputPanel>
-                <p:fieldset>
-                    <p:commandButton value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
-                </p:fieldset>
-
+                <br/>
+                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
             </p:dialog>
 
 
-            <p:dialog widgetVar="pdfdialogrelatoriof" header="Gerar PDF" modal="true" dynamic="true" resizable="false" width="650">
+            <p:dialog widgetVar="pdfdialogrelatoriof" header="Gerar PDF" modal="true" dynamic="true" 
+                      resizable="false" showEffect="fade" hideEffect="explode" width="735">
                 <p:outputPanel id="formpdfdialogrelatoriof" style="text-align: center;">
                     <p:panelGrid columns="4" rendered="#{not empty MBrelatorioF.selecionadoRelatorioF}">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.pkRelatorioF}" disabled="true"/>
                         <p:outputLabel value="Número de Protocolo"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.numeroDeProtocolo}" disabled="true"/>
                         <p:outputLabel value="Pesq/Ext"/>
@@ -311,19 +307,17 @@
                         <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.contribuicaoPensinoGraduacao}" disabled="true"/>
                     </p:panelGrid>
                 </p:outputPanel>
-                <p:fieldset>
-                    <p:commandButton value="Imprimir"  ajax="false" action="#{MBrelatorioF.pdfUmRelatorioFinal()}" oncomplete="PF('pdfdialogrelatoriof').hide()"
-                                     update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
-                    <p:commandButton value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
-                </p:fieldset>
+                <br/>
+                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
+                <p:commandButton style="float: right" value="PDF"  ajax="false" action="#{MBrelatorioF.pdfUmRelatorioFinal()}" oncomplete="PF('pdfdialogrelatoriof').hide()"
+                                 update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
 
             </p:dialog>
 
-            <p:dialog widgetVar="edicaodialogrelatoriof" header="Editar" modal="true" dynamic="true" resizable="false" width="650">
+            <p:dialog widgetVar="edicaodialogrelatoriof" header="Editar" modal="true" dynamic="true" 
+                      resizable="false" showEffect="fade" hideEffect="explode" width="735">
                 <p:outputPanel id="formedicaodialogrelatoriof" style="text-align: center;">
                     <p:panelGrid columns="4">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.pkRelatorioF}" disabled="true"/>
                         <p:outputLabel value="Número de Protocolo"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.numeroDeProtocolo}"/>
                         <p:outputLabel value="Pesq/Ext"/>
@@ -344,7 +338,13 @@
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.parecerRelatorioFinal}" />
                         <p:outputLabel value="Data Recebido"/>
                         <p:calendar value="#{MBrelatorioF.selecionadoEditRelatorioF.dataRecebido}"
-                                    maxlength="10" locale="pt" pattern="dd-mm-yyyy" />
+                                    maxlength="10" 
+                                    disabled="false" 
+                                    timeZone="GMT-3"
+                                    locale="pt" 
+                                    navigator="true"  
+                                    pattern="dd-mm-yyyy" 
+                                    style="margin-bottom: 20px;" />
                         <p:outputLabel value="Resp. Entrega"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.assinaturaRespEntrega}" />
                         <p:outputLabel value="Resp. Recebimento"/>
@@ -363,22 +363,20 @@
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.contribuicaoPensinoGraduacao}" />
                     </p:panelGrid>
                 </p:outputPanel>
-                <p:fieldset>
-                    <p:commandButton value="Editar"  ajax="false" action="#{MBrelatorioF.editarRelatorioF()}" oncomplete="PF('edicaodialogrelatoriof').hide()"
-                                     update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
-                    <p:commandButton value="Fechar" oncomplete="PF('edicaodialogrelatoriof').hide()" update=":formlistarelatoriosF" />
-                </p:fieldset>
+                <br/>
+                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('edicaodialogrelatoriof').hide()" update=":formlistarelatoriosF" />
+                <p:commandButton style="float: right" value="Editar Relatório"  ajax="false" action="#{MBrelatorioF.editarRelatorioF()}" oncomplete="PF('edicaodialogrelatoriof').hide()"
+                                 update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
+
             </p:dialog>
 
-            <p:confirmDialog id="formconfirmdialogexcluirrelatoriof" message="Você gostaria de excluir o Relatório Final de número 
-                             #{MBrelatorioF.selecionadoExcluirRelatorioF.numeroDeProtocolo}?" header="Excluir RelatórioF" 
+            <p:confirmDialog id="formconfirmdialogexcluirrelatoriof" message="Você gostaria de excluir o Relatório Final de número: 
+                             ##{MBrelatorioF.selecionadoExcluirRelatorioF.numeroDeProtocolo}# e de título: ##{MBrelatorioF.selecionadoExcluirRelatorioF.relatorioFtituloDoProjeto}#?" header="Excluir RelatórioF" 
                              severity="alert" widgetVar="confirmdialogexcluirrelatoriof" showEffect="fade" hideEffect="explode">
                 <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirrelatoriof').hide()" action="#{MBrelatorioF.deletarRelatorioF()}"
                                  icon="ui-icon-check" update=":formlistarelatoriosF"/>
                 <p:commandButton value="Não" onclick="PF('confirmdialogexcluirportaria').hide()" icon="ui-icon-close"/>
             </p:confirmDialog>
         </h:form>
-
     </ui:define>
-
 </ui:composition>

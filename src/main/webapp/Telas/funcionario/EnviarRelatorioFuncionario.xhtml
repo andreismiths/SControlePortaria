@@ -6,11 +6,11 @@
                 template="/WEB-INF/template/Func_Layout.xhtml">
 
     <ui:define name="content">
-        <h1 class="aw-page-title">Enviar Relatório</h1>
+        <h1 class="aw-page-title">Envio de Relatório de Projeto</h1>
 
-        <p:outputPanel id="outputPanelMail">
+        <p:outputPanel id="outputPanelMail" >
             <h:form enctype="multipart/form-data">
-                <p:panel header="Envio de Relatório de Projeto" style="width: 700px; height: 300px">
+                <p:panel style="border: none; width: 650px; height: 300px">
                     <p:messages/>
                     <h:panelGrid columns="2">
                         <h:outputText value="Arquivo: "/>
@@ -19,13 +19,11 @@
                         <h:inputTextarea value="#{MBindexController.mensagem.mensagem}" cols="65" rows="12"/>
 
                     </h:panelGrid>
-                    <p:commandButton value="Enviar Relatório"  icon="fa fa-paper-plane" ajax="false" action="#{MBindexController.enviaEmail()}" update="outputPanelMail"/>
-                    <p:commandButton value="Limpar" icon="fa fa-eraser" action="#{MBindexController.limpaCampos()}" update="outputPanelMail"/>
+                    <p:commandButton style="float: right"  value="Limpar" icon="fa fa-eraser" action="#{MBindexController.limpaCampos()}" update="outputPanelMail"/>
+                    <p:commandButton style="float: right"  value="Enviar Relatório"  icon="fa fa-paper-plane" ajax="false" action="#{MBindexController.enviaEmail()}" update="outputPanelMail"/>
+
                 </p:panel>
             </h:form>
-
         </p:outputPanel>
-
     </ui:define>
-
 </ui:composition>
