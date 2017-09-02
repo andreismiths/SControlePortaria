@@ -6,9 +6,7 @@
                 template="/WEB-INF/template/Adm_Layout.xhtml">
     <ui:define name="content">
         <!--<h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />-->
-        <h1 class="aw-page-title">Portarias</h1>
         <p:growl id="growl"/>
-
         <p:panel>
             <div class="ui-fluid">
 
@@ -140,7 +138,7 @@
         <br/>
         <h:form id="formlistaportaria">
 
-            <p:dataTable var="portaria" paginator="true" rows="10" reflow="true" value="#{MBportaria.listaPortaria}">
+            <p:dataTable var="portaria" paginator="true" rows="6" reflow="true" value="#{MBportaria.listaPortaria}">
                 <f:facet name="header">
                     Portarias
                 </f:facet>
@@ -200,7 +198,7 @@
 
             <p:dialog widgetVar="visualizadialogportaria" header=" Exibindo Portaria " modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formvisualizadialogportaria" style="text-align: center;">
-                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
+                    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
                         <p:outputLabel value="PK"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.id}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Número"/>
@@ -216,9 +214,13 @@
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.siapeCoordenador}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Início"/>
-                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.inicioVigencia}" style="width: 600px" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.inicioVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Fim"/>
-                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.fimVigencia}" style="width: 600px" disabled="true"/>   
+                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.fimVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Colaborador 1"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.colaborador1}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Siape Colab. 1"/>
@@ -230,7 +232,7 @@
 
             <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
-                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
+                    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.id}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Número"/>
@@ -246,9 +248,13 @@
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.siapeCoordenador}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Início"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" style="width: 600px" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Fim"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" style="width: 600px" disabled="true"/>   
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Colaborador 1"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.colaborador1}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Siape Colab. 1"/>
@@ -263,15 +269,22 @@
 
             <p:dialog widgetVar="edicaodialogportaria" header="Editar Portaria" showEffect="fade" hideEffect="explode" modal="true" dynamic="true" resizable="false" width="800">
                 <p:outputPanel id="formedicaodialogportaria" style="text-align: center;">
-                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaEditPortaria}">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.id}" style="width: 600px" disabled="true"/>
+                    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaEditPortaria}">
                         <p:outputLabel value="Número"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.numeroPortaria}" style="width: 600px" />
                         <p:outputLabel value="Ementa Portaria"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.ementaPortaria}" style="width: 600px" />
                         <p:outputLabel value="Título"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.tituloProjetoPortaria}" style="width: 600px" />
+                        <p:outputLabel value="Faculdade" />
+                        <p:selectOneMenu value="#{MBportaria.selecionadaEditPortaria.faculdadePortaria}" style="width: 580px">
+                            <f:selectItem itemLabel="Faculdade de Computação" itemValue="Computação" />
+                            <f:selectItem itemLabel="Faculdade de Matematica" itemValue="Matematica" />
+                            <f:selectItem itemLabel="Faculdade de Letras" itemValue="Letras" />  
+                            <f:selectItem itemLabel="Faculdade de Educação Física" itemValue="Educação Física" />
+                            <f:selectItem itemLabel="Faculdade de Pedagogia" itemValue="Pedagogia" />
+                            <f:selectItem itemLabel="Faculdade de Medicina Veterinária" itemValue="Medicina Veterinária" />
+                        </p:selectOneMenu>
                         <p:outputLabel value="Projeto" />
                         <p:selectOneMenu value="#{MBportaria.selecionadaEditPortaria.projetoPortaria}" style="width: 580px">
                             <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
@@ -279,7 +292,7 @@
                             <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
                         </p:selectOneMenu>
                         <p:outputLabel value="Coordenador"/>
-                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.professorCoordenador}" style="width: 600px" />
+                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.professorCoordenador}" disabled="true" style="width: 600px" />
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.siapeCoordenador}" style="width: 600px" />
                         <p:outputLabel value="Início" />
@@ -287,7 +300,7 @@
                                     maxlength="10" 
                                     disabled="false" 
                                     size="70"
-                                    locale="pt" 
+                                    locale="pt"
                                     navigator="true"  
                                     pattern="dd/mm/yyyy" 
                                     pagedate="#{MBportaria.selecionadaEditPortaria.inicioVigencia}"
@@ -306,8 +319,16 @@
                                     style="margin-bottom: 20px;">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </p:calendar>
+                        <p:outputLabel value="Status"/>
+                        <p:selectOneMenu value="#{MBportaria.selecionadaEditPortaria.statusPortaria}" style="width: 580px">
+                            <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
+                            <f:selectItem itemLabel="Expirada" itemValue="Expirada" />  
+                        </p:selectOneMenu>
                         <p:outputLabel value="Rel. Projeto"/>
-                        <p:inputText value="#{MBportaria.selecionadaEditPortaria.relatorioProjeto}" style="width: 600px"/>
+                        <p:selectOneMenu value="#{MBportaria.selecionadaEditPortaria.relatorioProjeto}" style="width: 580px">
+                            <f:selectItem itemLabel="Pendente" itemValue="Pendente" />
+                            <f:selectItem itemLabel="Entregue" itemValue="Entregue" />
+                        </p:selectOneMenu>
                         <p:outputLabel value="Colaborador 1"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.colaborador1}" style="width: 600px"/>
                         <p:outputLabel value="Siape Colab. 1"/>
@@ -317,8 +338,6 @@
                 <br/>
                 <p:commandButton style="float: right" value="Editar Portaria" ajax="false" action="#{MBportaria.editarPortaria()}"
                                  oncomplete="PF('edicaodialogportaria').hide()" update=":formlistaportaria"/>
-
-
             </p:dialog>
 
             <p:confirmDialog id="confirmdialogexcluirportaria" message="Você gostaria de excluir a portaria de número: 

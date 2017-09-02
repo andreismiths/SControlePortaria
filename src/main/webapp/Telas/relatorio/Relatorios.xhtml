@@ -6,19 +6,16 @@
                 template="/WEB-INF/template/Adm_Layout.xhtml">
     <ui:define name="content">
         <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />
-        <h1 class="aw-page-title">Relatórios</h1>
         <p:growl id="growl"/>
 
         <p:panel>
             <div class="ui-fluid">
-
                 <h:form>
                     <p:panelGrid columns="2"
                                  layout="grid"
                                  style="margin: 5px 0px 5px;"
                                  styleClass="panelgrid-noborder"
                                  columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3"> 
-
                         <p:outputLabel value="Escolha a Pesquisa:" 
 
                                        for="TipoPesquisa" />
@@ -169,7 +166,7 @@
 
         <h:form id="formlistarelatoriosF" >
 
-            <p:dataTable var="relatorioF" paginator="true" rows="10" value="#{MBrelatorioF.listaRelatorioF}" >
+            <p:dataTable var="relatorioF" paginator="true" rows="6" value="#{MBrelatorioF.listaRelatorioF}" >
                 <f:facet name="header">
                     Relatórios Finais
                 </f:facet>
@@ -219,9 +216,9 @@
 
 
             <p:dialog widgetVar="visualizadialogrelatoriof" header="Exibindo Relatório Final" modal="true" dynamic="true" 
-                      resizable="false" showEffect="fade" hideEffect="explode" width="735">
+                      resizable="false" showEffect="fade" hideEffect="explode" width="800">
                 <p:outputPanel id="formvisualizadialogrelatoriof" style="text-align: center;">
-                    <p:panelGrid columns="4" rendered="#{not empty MBrelatorioF.selecionadoVisualizaRelatorioF}">
+                    <p:panelGrid columns="4"  layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBrelatorioF.selecionadoVisualizaRelatorioF}">
                         <p:outputLabel value="Número de Protocolo"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.numeroDeProtocolo}" disabled="true"/>
                         <p:outputLabel value="Pesq/Ext"/>
@@ -241,7 +238,9 @@
                         <p:outputLabel value="Parecer"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.parecerRelatorioFinal}" disabled="true"/>
                         <p:outputLabel value="Data Recebido"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.dataRecebido}" disabled="true"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.dataRecebido}" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Resp. Entrega"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoVisualizaRelatorioF.assinaturaRespEntrega}" disabled="true"/>
                         <p:outputLabel value="Resp. Recebimento"/>
@@ -263,11 +262,10 @@
                 <br/>
             </p:dialog>
 
-
             <p:dialog widgetVar="pdfdialogrelatoriof" header="Gerar PDF" modal="true" dynamic="true" 
-                      resizable="false" showEffect="fade" hideEffect="explode" width="735">
+                      resizable="false" showEffect="fade" hideEffect="explode" width="800">
                 <p:outputPanel id="formpdfdialogrelatoriof" style="text-align: center;">
-                    <p:panelGrid columns="4" rendered="#{not empty MBrelatorioF.selecionadoRelatorioF}">
+                    <p:panelGrid columns="4" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2"  styleClass="panelgrid-noborder" rendered="#{not empty MBrelatorioF.selecionadoRelatorioF}">
                         <p:outputLabel value="Número de Protocolo"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.numeroDeProtocolo}" disabled="true"/>
                         <p:outputLabel value="Pesq/Ext"/>
@@ -287,7 +285,9 @@
                         <p:outputLabel value="Parecer"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.parecerRelatorioFinal}" disabled="true"/>
                         <p:outputLabel value="Data Recebido"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.dataRecebido}" disabled="true"/>
+                        <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.dataRecebido}" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Resp. Entrega"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoRelatorioF.assinaturaRespEntrega}" disabled="true"/>
                         <p:outputLabel value="Resp. Recebimento"/>
@@ -312,63 +312,105 @@
             </p:dialog>
 
             <p:dialog widgetVar="edicaodialogrelatoriof" header="Editar" modal="true" dynamic="true" 
-                      resizable="false" showEffect="fade" hideEffect="explode" width="735">
+                      resizable="false" showEffect="fade" hideEffect="explode" width="800">
                 <p:outputPanel id="formedicaodialogrelatoriof" style="text-align: center;">
-                    <p:panelGrid columns="4">
+                    <p:panelGrid  layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2" styleClass="panelgrid-noborder" columns="4" rendered="#{not empty MBrelatorioF.selecionadoEditRelatorioF}">
                         <p:outputLabel value="Número de Protocolo"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.numeroDeProtocolo}"/>
                         <p:outputLabel value="Pesq/Ext"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.pesquisaExtensao}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.pesquisaExtensao}" style="width: 180px">
+                            <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
+                            <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
+                        </p:selectOneMenu>
                         <p:outputLabel value="Faculdade"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.faculdadeRelatorioF}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.faculdadeRelatorioF}" style="width: 180px">
+                            <f:selectItem itemLabel="Computação" itemValue="Computação" />
+                            <f:selectItem itemLabel="Matematica" itemValue="Matematica" />
+                            <f:selectItem itemLabel="Letras" itemValue="Letras" />  
+                            <f:selectItem itemLabel="Educação Física" itemValue="Educação Física" />
+                            <f:selectItem itemLabel="Pedagogia" itemValue="Pedagogia" />
+                            <f:selectItem itemLabel="Medicina Veterinária" itemValue="Medicina Veterinária" />
+                        </p:selectOneMenu>
                         <p:outputLabel value="Título"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.relatorioFtituloDoProjeto}"/>
                         <p:outputLabel value="Coordenador"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.relatorioFcoordenador}" />
                         <p:outputLabel value="Memorando"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.memorandoDirecaoFaculdade}"/>
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.memorandoDirecaoFaculdade}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="ATA"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.ataReuniao}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.ataReuniao}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Relatório F. Proj."/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.relatorioFexecutadoFormatoProReitoria}"/>
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.relatorioFexecutadoFormatoProReitoria}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Parecer"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.parecerRelatorioFinal}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.parecerRelatorioFinal}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Data Recebido"/>
                         <p:calendar value="#{MBrelatorioF.selecionadoEditRelatorioF.dataRecebido}"
                                     maxlength="10" 
                                     disabled="false" 
-                                    timeZone="GMT-3"
-                                    locale="pt" 
+                                    locale="pt"
                                     navigator="true"  
-                                    pattern="dd-mm-yyyy" 
-                                    style="margin-bottom: 20px;" />
+                                    pattern="dd/mm/yyyy" 
+                                    pagedate="#{MBrelatorioF.selecionadoEditRelatorioF.dataRecebido}"
+                                    style="margin-bottom: 20px;">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:calendar>
                         <p:outputLabel value="Resp. Entrega"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.assinaturaRespEntrega}" />
                         <p:outputLabel value="Resp. Recebimento"/>
                         <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.assinaturaRescRecebimento}" />
                         <p:outputLabel value="Formação de R.H."/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.formacaoRecursosHumanosPesquisa}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.formacaoRecursosHumanosPesquisa}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Contatos Nac.Inter."/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.contatosNacionaisInternacionais}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.contatosNacionaisInternacionais}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Publicados"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.trabalhosPublicadosAceitos}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.trabalhosPublicadosAceitos}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Patente"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.patenteRegistroInvencao}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.patenteRegistroInvencao}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Atividades"/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.atividadesCientificasAdministrativas}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.atividadesCientificasAdministrativas}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                         <p:outputLabel value="Contribuição E.G."/>
-                        <p:inputText value="#{MBrelatorioF.selecionadoEditRelatorioF.contribuicaoPensinoGraduacao}" />
+                        <p:selectOneMenu value="#{MBrelatorioF.selecionadoEditRelatorioF.contribuicaoPensinoGraduacao}" style="width: 180px">
+                            <f:selectItem itemLabel="Não" itemValue="Não" />
+                            <f:selectItem itemLabel="Sim" itemValue="Sim" />                        
+                        </p:selectOneMenu>
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Editar Relatório"  ajax="false" action="#{MBrelatorioF.editarRelatorioF()}" oncomplete="PF('edicaodialogrelatoriof').hide()"
-                                 update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
+                <p:commandButton style="float: right" value="Editar Relatório"  ajax="false" action="#{MBrelatorioF.editarRelatorioF()}" 
+                                 oncomplete="PF('edicaodialogrelatoriof').hide()" update=":formlistarelatoriosF"/>
             </p:dialog>
 
             <p:confirmDialog id="formconfirmdialogexcluirrelatoriof" message="Você gostaria de excluir o Relatório Final de número: 
                              ##{MBrelatorioF.selecionadoExcluirRelatorioF.numeroDeProtocolo}# e de título: ##{MBrelatorioF.selecionadoExcluirRelatorioF.relatorioFtituloDoProjeto}#?" header="Excluir RelatórioF" 
                              severity="alert" widgetVar="confirmdialogexcluirrelatoriof" showEffect="fade" hideEffect="explode">
-               <p:commandButton style="float: right" value="Não" onclick="PF('confirmdialogexcluirfuncionario').hide()" icon="ui-icon-close"/>
+                <p:commandButton style="float: right" value="Não" onclick="PF('confirmdialogexcluirfuncionario').hide()" icon="ui-icon-close"/>
                 <p:commandButton style="float: right" value="Sim" oncomplete="PF('confirmdialogexcluirrelatoriof').hide()" action="#{MBrelatorioF.deletarRelatorioF()}"
                                  icon="ui-icon-check" update=":formlistarelatoriosF"/>
             </p:confirmDialog>

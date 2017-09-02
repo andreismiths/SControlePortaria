@@ -11,10 +11,6 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
 
-            <!---->
-            <!-- CADASTRO, ADICIONANDO, EXCLUINDO E MODIFICANDO FICA NO MB DA CLASSE A SER UTILIZADA
-                  ESSE "CADASTROPORTARIA" É A MB DO SISTEMA ANTIGO ENTAO ELA DEVE SER ALTERADA VISANDO MELHOR
-                  FORMATAÇÃO DO CÓDIGO E BOAS PRÁTICAS DE PROGRAMAÇÃO-->
             <p:outputLabel value="Número Portaria:"
                            rendered="true"
                            for="numeroPortaria" />
@@ -28,7 +24,6 @@
             <p:message for="numeroPortaria"
                        rendered="true" />
 
-
             <p:outputLabel value="Ementa:"
                            rendered="true"
                            for="ementa" />                                
@@ -41,7 +36,6 @@
             <p:message for="ementa"
                        rendered="true" />
 
-
             <p:outputLabel value="Projeto:"
                            for="projetoPortaria" />                             
             <p:selectOneMenu id="projetoPortaria"
@@ -53,7 +47,6 @@
                 <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
             </p:selectOneMenu>
             <p:message for="projetoPortaria" rendered="true" />
-
 
             <p:outputLabel value="Título do Projeto:"
                            rendered="true"
@@ -73,7 +66,6 @@
                              value="#{MBportaria.portaria.faculdadePortaria}"
                              required="true"
                              requiredMessage="Informe a Faculdade!">
-                <f:selectItem itemLabel=" --- " itemValue="" />
                 <f:selectItem itemLabel="Faculdade de Computação" itemValue="Computação" />
                 <f:selectItem itemLabel="Faculdade de Matematica" itemValue="Matematica" />
                 <f:selectItem itemLabel="Faculdade de Letras" itemValue="Letras" />  
@@ -82,7 +74,6 @@
                 <f:selectItem itemLabel="Faculdade de Medicina Veterinária" itemValue="Medicina Veterinária" />
             </p:selectOneMenu>
             <p:message for="faculdadePortaria" rendered="true" />
-
 
             <p:outputLabel value="Vigência Início:"
                            for="vigenciaInicio" />
@@ -98,8 +89,6 @@
                         style="margin-bottom: 20px;" /> 
             <p:message for="vigenciaInicio" rendered="true" />
 
-
-
             <p:outputLabel value="Vigência Fim:"
                            for="vigenciaFim" />
             <p:calendar id="vigenciaFim"
@@ -114,7 +103,6 @@
                         style="margin-bottom: 20px;" /> 
             <p:message for="vigenciaFim" rendered="true" />
 
-
             <p:outputLabel value="Status Portaria:"
                            for="statusPortaria" />                             
             <p:selectOneMenu id="statusPortaria"
@@ -126,18 +114,17 @@
             </p:selectOneMenu>
             <p:message for="statusPortaria" rendered="true" />
 
-            <p:outputLabel value="Selecione:" 
+            <p:outputLabel value="Relatório Projeto:" 
                            for="relatorioProjeto"/>                                
             <p:selectOneMenu id="relatorioProjeto" 
                              value="#{MBportaria.portaria.relatorioProjeto}"
                              required="true"
                              requiredMessage="Escolha Entregue ou Pendente">
-                <f:selectItem itemLabel="Pendente" itemValue="pendente" />
-                <f:selectItem itemLabel="Entregue" itemValue="entregue" />
+                <f:selectItem itemLabel="Pendente" itemValue="Pendente" />
+                <f:selectItem itemLabel="Entregue" itemValue="Entregue" />
             </p:selectOneMenu>
             <p:message for="relatorioProjeto" />
 
         </p:panelGrid>
-
     </div>
 </ui:composition>

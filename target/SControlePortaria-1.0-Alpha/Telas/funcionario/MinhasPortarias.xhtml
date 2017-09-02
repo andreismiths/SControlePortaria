@@ -5,12 +5,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Func_Layout.xhtml">
     <ui:define name="content">
-        <h1 class="aw-page-title">Minhas Portarias</h1>
         <p:growl id="grolw"/>
-
         <p:panel>
             <div class="ui-fluid">
-
                 <h:form>
                     <p:panelGrid columns="2"
                                  layout="grid"
@@ -44,7 +41,6 @@
                                  columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                  style="margin-bottom: 20px;" >
 
-
                         <p:inputMask
                             mask="#{MBpesquisa.searchMask}"
                             id="ValorPesquisa"
@@ -53,7 +49,6 @@
                             maxlength="#{MBpesquisa.maxLength}"
                             required="true" 
                             requiredMessage="Informe o valor de pesquisa!"/>
-
 
                         <p:commandButton actionListener="#{MBpesquisa.itemListPortaria()}"
                                          value="Pesquisar" 
@@ -65,15 +60,12 @@
 
                 </h:form>
 
-
-
                 <p:panelGrid id="GridBusca"
                              columns="1"
                              layout="grid"
                              style="margin: 10px 0px 15px;"
                              styleClass="panelgrid-noborder"
                              columnClasses="ui-grid-col-12" >
-
 
                     <p:dataTable id="portariaBuscada"
                                  var="portaria"
@@ -133,13 +125,12 @@
                 </p:panelGrid>
             </div>
         </p:panel>
-
-
+<br/>
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
 
         <h:form id="formlistaportaria">
 
-            <p:dataTable var="portaria" paginator="true" rows="10" value="#{MBportaria.listaPortariaDeFuncionario}">
+            <p:dataTable var="portaria" paginator="true" rows="6" value="#{MBportaria.listaPortariaDeFuncionario}">
                 <f:facet name="header">
                     Portarias de <p:outputLabel value="#{MBlogin.variaveisDeSessao.username}" />
                 </f:facet>
@@ -182,9 +173,9 @@
                 </p:column>
             </p:dataTable>
 
-            <p:dialog widgetVar="visualizadialogportaria" header="Visualizar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
+            <p:dialog widgetVar="visualizadialogportaria" header=" Exibindo Portaria " modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formvisualizadialogportaria" style="text-align: center;">
-                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
+                    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
                         <p:outputLabel value="PK"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.id}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Número"/>
@@ -200,9 +191,13 @@
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.siapeCoordenador}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Início"/>
-                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.inicioVigencia}" style="width: 600px" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.inicioVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Fim"/>
-                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.fimVigencia}" style="width: 600px" disabled="true"/>   
+                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.fimVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Colaborador 1"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.colaborador1}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Siape Colab. 1"/>
@@ -214,7 +209,7 @@
 
             <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
-                    <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
+                    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.id}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Número"/>
@@ -230,9 +225,13 @@
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.siapeCoordenador}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Início"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" style="width: 600px" disabled="true"/>
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.inicioVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Fim"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" style="width: 600px" disabled="true"/>   
+                        <p:inputText value="#{MBportaria.selecionadaPortaria.fimVigencia}" style="width: 600px" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:inputText>
                         <p:outputLabel value="Colaborador 1"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.colaborador1}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Siape Colab. 1"/>

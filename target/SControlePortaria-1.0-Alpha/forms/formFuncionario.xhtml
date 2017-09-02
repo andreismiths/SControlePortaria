@@ -4,19 +4,14 @@
               xmlns:h="http://xmlns.jcp.org/jsf/html" 
               xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
     <div class="ui-fluid">
         <p:panelGrid id="funcionarioForm"
                      columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
+                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-1" >
 
-<!---->
-<!-- CADASTRO, ADICIONANDO, EXCLUINDO E MODIFICANDO FICA NO MB DA CLASSE A SER UTILIZADA
-      ESSE "CADASTROFUNC" É A MB DO SISTEMA ANTIGO ENTAO ELA DEVE SER ALTERADA VISANDO MELHOR
-      FORMATAÇÃO DO CÓDIGO E BOAS PRÁTICAS DE PROGRAMAÇÃO-->
-    <p:outputLabel value="Nome:"
+            <p:outputLabel value="Nome:"
                            rendered="true"
                            for="nome" />
             <p:inputText id="nome" 
@@ -27,9 +22,7 @@
                          required="true" 
                          requiredMessage="Informe seu nome!"/>
             <p:message for="nome"
-                       rendered="true" />
-            
-            
+                       rendered="true" />           
 
             <p:outputLabel value="CPF:"
                            rendered="true"
@@ -44,10 +37,7 @@
             <p:message for="cpf"
                        rendered="true" />
 
-            
-            
-            
-             <p:outputLabel value="Siape:"
+            <p:outputLabel value="Siape:"
                            rendered="true"
                            for="siape" />                                
             <p:inputMask mask="999999"
@@ -59,7 +49,7 @@
                          requiredMessage="Informe o Siape!" />
             <p:message for="siape"
                        rendered="true" />
-          
+
             <p:outputLabel value="Data de Nascimento:"
                            for="dataNascimento" />
             <p:calendar id="dataNascimento"
@@ -74,8 +64,7 @@
                         pattern="dd/MM/yyyy" 
                         style="margin-bottom: 20px;" /> 
             <p:message for="dataNascimento" rendered="true" />
-            
-            
+
             <p:outputLabel value="Email:"
                            rendered="true"
                            for="email_obr" />
@@ -91,9 +80,6 @@
                     pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
             </p:inputText>
             <p:message for="email_obr"/>
-
-
-            
 
             <p:outputLabel value="Senha:"
                            for="senha1" />
@@ -112,9 +98,6 @@
                         requiredMessage="Informe uma senha!" />
             <p:message for="senha1" />
 
-
-
-
             <p:outputLabel value="Digite novamente a senha:"
                            for="senha2" />
             <p:password id="senha2"
@@ -128,23 +111,18 @@
                         required="true"
                         requiredMessage="Digite novamente sua senha!" />
             <p:message for="senha2" />
-        
-            
-            
-              <p:outputLabel value="Tipo de Usuário:"
+
+            <p:outputLabel value="Tipo de Usuário:"
                            for="tipousu" />                             
             <p:selectOneMenu id="tipousu"
                              value="#{MBfuncionario.funcionario.tipoFuncionario}"
                              required="true"
                              requiredMessage="Informe o seu tipo de usuário!">
-                <f:selectItem itemLabel=" --- " itemValue="" />
                 <f:selectItem itemLabel="Professor" itemValue="Professor" />
                 <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
             </p:selectOneMenu>
             <p:message for="tipousu" />
-        
-        </p:panelGrid>
-        
-    </div>
 
+        </p:panelGrid>    
+    </div>
 </ui:component>

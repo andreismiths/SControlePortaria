@@ -10,9 +10,8 @@
                      columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
-            <h3>Documentos Recebidos</h3>
-
+                     columnClasses="ui-grid-col-9, ui-grid-col-3, ui-grid-col-4" >
+         
             <p:outputLabel value="Memorando da Direção da Faculdade:" 
                            for="memorando"/>                                
             <p:selectOneRadio id="memorando" 
@@ -27,7 +26,7 @@
             <p:message for="memorando" />
 
             <p:outputLabel value="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
-                           Final do Projeto. (com frequência em anexo):" 
+                           Final do Projeto." 
                            for="atareuniao"/>                                
             <p:selectOneRadio id="atareuniao" 
                               value="#{MBrelatorioF.relatorioF.ataReuniao}"

@@ -10,7 +10,7 @@
                      columns="2"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-4, ui-grid-col-3" >
+                     columnClasses="ui-grid-col-12, ui-grid-col-3" >
 
 
             <p:outputLabel value="Número de Protocolo:" />
@@ -34,7 +34,9 @@
 
 
             <p:outputLabel value="Recebido em:" />
-            <p:outputLabel value="#{MBrelatorioF.relatorioF.dataRecebido}" />
+            <p:outputLabel value="#{MBrelatorioF.relatorioF.dataRecebido}">
+            <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </p:outputLabel>
 
 
             <p:outputLabel value="Responsável pela entrega. Prof.:" />
@@ -49,7 +51,7 @@
 
 
             <p:outputLabel value="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
-                           Final do Projeto. (com frequência em anexo):" />
+                           Final do Projeto." />
             <p:outputLabel value="#{MBrelatorioF.relatorioF.ataReuniao}" />
 
 

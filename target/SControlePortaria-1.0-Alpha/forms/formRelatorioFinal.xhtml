@@ -11,10 +11,6 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4" >
 
-            <!---->
-            <!-- CADASTRO, ADICIONANDO, EXCLUINDO E MODIFICANDO FICA NO MB DA CLASSE A SER UTILIZADA
-                  ESSE "CADASTROPORTARIA" É A MB DO SISTEMA ANTIGO ENTAO ELA DEVE SER ALTERADA VISANDO MELHOR
-                  FORMATAÇÃO DO CÓDIGO E BOAS PRÁTICAS DE PROGRAMAÇÃO-->
             <p:outputLabel value="Número de Protocolo:"
                            rendered="true"
                            for="numeroProtocoloRelatorio" />
@@ -28,26 +24,23 @@
             <p:message for="numeroProtocoloRelatorio"
                        rendered="true" />
 
-            <p:outputLabel value="Selecione:" 
+            <p:outputLabel value="Pesquisa/Extensão:" 
                            for="pesquisaExtensao"/>                                
-            <p:selectOneRadio id="pesquisaExtensao" 
-                              value="#{MBrelatorioF.relatorioF.pesquisaExtensao}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Escolha Pesquisa ou Extensão">
-                <f:selectItem itemLabel="Pesquisa" itemValue="pesquisa" />
-                <f:selectItem itemLabel="Extensão" itemValue="extensão" />
-            </p:selectOneRadio>
+            <p:selectOneMenu id="pesquisaExtensao" 
+                             value="#{MBrelatorioF.relatorioF.pesquisaExtensao}"
+                             required="true"
+                             requiredMessage="Escolha Pesquisa ou Extensão">
+                <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
+                <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
+            </p:selectOneMenu>
             <p:message for="pesquisaExtensao" />
-            
+
             <p:outputLabel value="Faculdade:"
                            for="faculdadeRelatorioF" />                             
             <p:selectOneMenu id="faculdadeRelatorioF"
                              value="#{MBrelatorioF.relatorioF.faculdadeRelatorioF}"
-                             required="true"
+                             required="true" 
                              requiredMessage="Informe a Faculdade!">
-                <f:selectItem itemLabel=" - " itemValue="" />
                 <f:selectItem itemLabel="Faculdade de Computação" itemValue="Computação" />
                 <f:selectItem itemLabel="Faculdade de Matematica" itemValue="Matematica" />
                 <f:selectItem itemLabel="Faculdade de Letras" itemValue="Letras" />  
@@ -56,7 +49,6 @@
                 <f:selectItem itemLabel="Faculdade de Medicina Veterinária" itemValue="Medicina Veterinária" />
             </p:selectOneMenu>
             <p:message for="faculdadeRelatorioF" rendered="true" />
-
 
             <p:outputLabel value="Título do Projeto:"
                            rendered="true"
@@ -69,8 +61,6 @@
                          requiredMessage="Informe o Título do Projeto!" />
             <p:message for="tituloProjetoRelatorioF"
                        rendered="true" />
-
-
 
             <p:outputLabel value="Coordenador(a):"
                            rendered="true"
@@ -110,7 +100,6 @@
                          requiredMessage="Informe o nome do Responsável pela Entrega!"/>
             <p:message for="assinaturaprof"
                        rendered="true" />
-
 
             <p:outputLabel value="Responsável pelo Recebimento:"
                            rendered="true"

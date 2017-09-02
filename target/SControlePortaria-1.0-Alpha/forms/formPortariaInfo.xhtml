@@ -34,12 +34,14 @@
 
 
             <p:outputLabel value="Vigência Início: *" />
-            <p:outputLabel value="#{MBportaria.portaria.inicioVigencia}" />
-
+            <p:outputLabel value="#{MBportaria.portaria.inicioVigencia}">
+            <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </p:outputLabel>
 
             <p:outputLabel value="Vigência Fim: *" />
-            <p:outputLabel value="#{MBportaria.portaria.fimVigencia}" />
-
+            <p:outputLabel value="#{MBportaria.portaria.fimVigencia}">
+            <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </p:outputLabel>
 
             <p:outputLabel value="Status Portaria: *" />
             <p:outputLabel value="#{MBportaria.portaria.statusPortaria}" />
