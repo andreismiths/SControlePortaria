@@ -137,10 +137,10 @@
 
 
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
-<br/>
+        <br/>
         <h:form id="formlistaportaria">
 
-            <p:dataTable var="portaria" reflow="true" value="#{MBportaria.listaPortaria}">
+            <p:dataTable var="portaria" paginator="true" rows="10" reflow="true" value="#{MBportaria.listaPortaria}">
                 <f:facet name="header">
                     Portarias
                 </f:facet>
@@ -161,10 +161,14 @@
                     <p:outputLabel value="#{portaria.professorCoordenador}"/>
                 </p:column>
                 <p:column headerText="Início Vigência">
-                    <p:outputLabel value="#{portaria.inicioVigencia}"/>
+                    <p:outputLabel value="#{portaria.inicioVigencia}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
                 </p:column>
                 <p:column headerText="Fim Vigência">
-                    <p:outputLabel value="#{portaria.fimVigencia}"/>
+                    <p:outputLabel value="#{portaria.fimVigencia}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
                 </p:column>
                 <p:column headerText="Rel. Projeto">
                     <p:outputLabel value="#{portaria.relatorioProjeto}"/>
@@ -194,7 +198,7 @@
             </p:dataTable>
 
 
-            <p:dialog widgetVar="visualizadialogportaria" header="Visualizar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
+            <p:dialog widgetVar="visualizadialogportaria" header=" Exibindo Portaria " modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formvisualizadialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
                         <p:outputLabel value="PK"/>
@@ -222,10 +226,7 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton value="Fechar" style="float: right" oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"/>
-
             </p:dialog>
-
 
             <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
@@ -255,7 +256,6 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"/>
                 <p:commandButton style="float: right" value="PDF" ajax="false" action="#{MBportaria.imprimirUnicoItem()}"
                                  oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"
                                  onclick="this.form.target = '_blank'"/>
@@ -272,38 +272,40 @@
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.ementaPortaria}" style="width: 600px" />
                         <p:outputLabel value="Título"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.tituloProjetoPortaria}" style="width: 600px" />
-
                         <p:outputLabel value="Projeto" />
                         <p:selectOneMenu value="#{MBportaria.selecionadaEditPortaria.projetoPortaria}" style="width: 580px">
                             <f:selectItem itemLabel="Pesquisa" itemValue="Pesquisa" />
                             <f:selectItem itemLabel="Extensão" itemValue="Extensão" />
                             <f:selectItem itemLabel="Ensino" itemValue="Ensino" />  
                         </p:selectOneMenu>
-
                         <p:outputLabel value="Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.professorCoordenador}" style="width: 600px" />
                         <p:outputLabel value="Siape Coordenador"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.siapeCoordenador}" style="width: 600px" />
-                        <p:outputLabel value="Início"/>
+                        <p:outputLabel value="Início" />
                         <p:calendar value="#{MBportaria.selecionadaEditPortaria.inicioVigencia}"
                                     maxlength="10" 
                                     disabled="false" 
-                                    timeZone="GMT-3"
-                                    size="74"
+                                    size="70"
                                     locale="pt" 
                                     navigator="true"  
-                                    pattern="dd-mm-yyyy" 
-                                    style="margin-bottom: 20px;" />
+                                    pattern="dd/mm/yyyy" 
+                                    pagedate="#{MBportaria.selecionadaEditPortaria.inicioVigencia}"
+                                    style="margin-bottom: 20px;">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:calendar>
                         <p:outputLabel value="Fim"/>
                         <p:calendar value="#{MBportaria.selecionadaEditPortaria.fimVigencia}"
-                                    maxlength="600" 
+                                    maxlength="10" 
                                     disabled="false" 
                                     timeZone="GMT-3"
-                                    size="74"
+                                    size="70"
                                     locale="pt" 
                                     navigator="true"  
-                                    pattern="dd-mm-yyyy" 
-                                    style="margin-bottom: 20px;"  /> 
+                                    pattern="dd/mm/yyyy" 
+                                    style="margin-bottom: 20px;">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:calendar>
                         <p:outputLabel value="Rel. Projeto"/>
                         <p:inputText value="#{MBportaria.selecionadaEditPortaria.relatorioProjeto}" style="width: 600px"/>
                         <p:outputLabel value="Colaborador 1"/>
@@ -313,7 +315,6 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('edicaodialogportaria').hide()" update=":formlistaportaria"/>
                 <p:commandButton style="float: right" value="Editar Portaria" ajax="false" action="#{MBportaria.editarPortaria()}"
                                  oncomplete="PF('edicaodialogportaria').hide()" update=":formlistaportaria"/>
 
@@ -323,9 +324,9 @@
             <p:confirmDialog id="confirmdialogexcluirportaria" message="Você gostaria de excluir a portaria de número: 
                              ##{MBportaria.selecionadaExcluirPortaria.numeroPortaria}# e de título: ##{MBportaria.selecionadaExcluirPortaria.tituloProjetoPortaria}#? "
                              header="Excluir Portaria" severity="alert" widgetVar="confirmdialogexcluirportaria" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirportaria').hide()" action="#{MBportaria.deletarPortaria()}"
-                                 icon="ui-icon-check" update=":formlistaportaria"/>
-                <p:commandButton value="Não" onclick="PF('confirmdialogexcluirportaria').hide()" icon="ui-icon-close"/>
+                <p:commandButton style="float: right" value="Não" onclick="PF('confirmdialogexcluirportaria').hide()" icon="ui-icon-close"/>
+                <p:commandButton style="float: right" value="Sim" oncomplete="PF('confirmdialogexcluirportaria').hide()" action="#{MBportaria.deletarPortaria()}"
+                                 icon="ui-icon-check" update=":formlistaportaria"/>           
             </p:confirmDialog>
 
         </h:form>

@@ -26,8 +26,6 @@ public interface GenericoDAO<T> {
 
     public int validate(String username, String password);
 
-    public List<String> getNameProfessor();
-    
 
 //        void inserir(T entidade);
 //    

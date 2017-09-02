@@ -139,11 +139,11 @@
 
         <h:form id="formlistaportaria">
 
-            <p:dataTable var="portaria" value="#{MBportaria.listaPortariaDeFuncionario}">
+            <p:dataTable var="portaria" paginator="true" rows="10" value="#{MBportaria.listaPortariaDeFuncionario}">
                 <f:facet name="header">
                     Portarias de <p:outputLabel value="#{MBlogin.variaveisDeSessao.username}" />
                 </f:facet>
-               <p:ajax event="rowSelect" update="formlistaportaria"/>
+                <p:ajax event="rowSelect" update="formlistaportaria"/>
                 <p:column headerText="Número">
                     <p:outputLabel value="#{portaria.numeroPortaria}"/>
                 </p:column>
@@ -182,7 +182,7 @@
                 </p:column>
             </p:dataTable>
 
-             <p:dialog widgetVar="visualizadialogportaria" header="Visualizar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
+            <p:dialog widgetVar="visualizadialogportaria" header="Visualizar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formvisualizadialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
                         <p:outputLabel value="PK"/>
@@ -210,11 +210,9 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton value="Fechar" style="float: right" oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"/>
-
             </p:dialog>
-            
-           <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
+
+            <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" rendered="#{not empty MBportaria.selecionadaPortaria}">
                         <p:outputLabel value="PK"/>
@@ -242,7 +240,6 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"/>
                 <p:commandButton style="float: right" value="PDF" ajax="false" action="#{MBportaria.imprimirUnicoItem()}"
                                  oncomplete="PF('pdfdialogportaria').hide()" update=":formlistaportaria"
                                  onclick="this.form.target = '_blank'"/>

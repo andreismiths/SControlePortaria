@@ -180,16 +180,4 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Portaria> listBySearchPORTARIA(String searchMode, String search) ]");
         return listPortaria;
     }
-//Método para listar os nomes de professores inseridos no banco de dados
-
-    @Override
-    public List<String> getNameProfessor() {
-
-        List<String> listanameProfesor = new ArrayList<>();
-        for (Object obj : (List<Object>) this.list("SELECT f.nomeFuncionario from Funcionario f")) {
-            listanameProfesor.add((String) obj);
-        }
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<String> getNameProfessor() ]");
-        return listanameProfesor;
-    }
 }

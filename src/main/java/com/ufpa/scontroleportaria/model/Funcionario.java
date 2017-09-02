@@ -1,5 +1,5 @@
 package com.ufpa.scontroleportaria.model;
-// Generated 19/08/2017 13:20:53 by Hibernate Tools 4.3.1
+// Generated 02/09/2017 11:08:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,7 +28,7 @@ public class Funcionario  implements java.io.Serializable {
 
      private Integer pkFuncionario;
      private String nomeFuncionario;
-     private Integer siapeFuncionario;
+     private String siapeFuncionario;
      private String cpfFuncionario;
      private String senhaFuncionario;
      private Date dataNascimentoFuncionario;
@@ -39,7 +39,7 @@ public class Funcionario  implements java.io.Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(String nomeFuncionario, Integer siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<Portaria> portarias) {
+    public Funcionario(String nomeFuncionario, String siapeFuncionario, String cpfFuncionario, String senhaFuncionario, Date dataNascimentoFuncionario, String emailFuncionario, String tipoFuncionario, Set<Portaria> portarias) {
        this.nomeFuncionario = nomeFuncionario;
        this.siapeFuncionario = siapeFuncionario;
        this.cpfFuncionario = cpfFuncionario;
@@ -73,12 +73,12 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="siapeFuncionario")
-    public Integer getSiapeFuncionario() {
+    @Column(name="siapeFuncionario", length=8)
+    public String getSiapeFuncionario() {
         return this.siapeFuncionario;
     }
     
-    public void setSiapeFuncionario(Integer siapeFuncionario) {
+    public void setSiapeFuncionario(String siapeFuncionario) {
         this.siapeFuncionario = siapeFuncionario;
     }
 

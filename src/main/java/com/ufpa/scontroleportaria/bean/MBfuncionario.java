@@ -5,6 +5,7 @@ import com.ufpa.scontroleportaria.controller.FuncionarioList;
 import com.ufpa.scontroleportaria.tools.Security;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -147,66 +148,29 @@ public class MBfuncionario extends AbstractBean {
         this.funcionarioSelect = funcionarioSelect;
     }
 
-}
-
-/*
-
-    public List<Object> getFuncionarioSelect() {
-        if (this.funcionarioSelect == null) {
-            funcionarioSelect = (List<Object>)getDaoGenerico().list("SELECT f, r FROM Funcionario f, Professor r where f.tipoFuncionario = 'Professor'");
-            List<Funcionario> teste = (List<Funcionario>)funcionarioSelect.get(0);
-            List<Professor> teste2 = (List<Professor>)funcionarioSelect.get(0);
-            System.out.println("pk f "+teste.get(0).getPkFuncionario());
-            System.out.println("pk r "+teste2.get(0).getPkProfessor());
-            funcionarioSelect = null;
-        }
-
-        if (this.funcionarioSelect == null) {
-            funcionarioSelect = new ArrayList<SelectItem>();
-            List<Funcionario> listafunc = getDaoGenerico().list("SELECT f FROM Funcionario f where f.tipoFuncionario = 'Professor'");
-            if (listafunc != null && !listafunc.isEmpty()) {
-                SelectItem item = new SelectItem();
-                for (Funcionario funcionarioLista : listafunc) {
-                    item.setValue(funcionarioLista);
-                    item.setLabel(funcionarioLista.getNomeFuncionario());
-                    funcionarioSelect.add(item);
-
-                }
-            }
-
-
-
-            professorSelect = new ArrayList<SelectItem>();
-            List<Professor> listaprof = getDaoGenerico().list("SELECT r FROM Professor r");
-            if (listaprof != null && !listaprof.isEmpty()) {
-                SelectItem item = new SelectItem();
-                for (Professor professorLista : listaprof) {
-                    item.setValue(professorLista.getPkProfessor());
-                  
-                    professorSelect.add(item);
-
-                }
-            }
-
-
-
-    public List<?> getProfessorSelect() {
-        
-            professorSelect = getDaoGenerico().list("SELECT f.nomeFuncionario, r.pkProfessor "
-                    + "FROM Funcionario f, Professor r "
-                    + "WHERE f.id.pkFuncionario = r.funcionario");
-            List<CollectionClasses> retornaProfessor = new ArrayList<>();
-            for (Object[] obj : (List<Object[]>) professorSelect) {
-                CollectionClasses select = new CollectionClasses();
-
-                select.getFuncionario().setNomeFuncionario((String) obj[0]);
-                select.getProfessor().setPkProfessor((int) obj[1]);
-                retornaProfessor.add(select);
-                System.out.println(retornaProfessor);
-                return retornaProfessor;
-            }
-        return retornaProfessor;
-     
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.funcionario);
+        return hash;
     }
 
- */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MBfuncionario other = (MBfuncionario) obj;
+        if (!Objects.equals(this.funcionario, other.funcionario)) {
+            return false;
+        }
+        return true;
+    }
+
+}

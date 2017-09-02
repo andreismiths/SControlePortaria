@@ -169,7 +169,7 @@
 
         <h:form id="formlistarelatoriosF" >
 
-            <p:dataTable var="relatorioF" value="#{MBrelatorioF.listaRelatorioF}" >
+            <p:dataTable var="relatorioF" paginator="true" rows="10" value="#{MBrelatorioF.listaRelatorioF}" >
                 <f:facet name="header">
                     Relatórios Finais
                 </f:facet>
@@ -218,7 +218,7 @@
             </p:dataTable>
 
 
-            <p:dialog widgetVar="visualizadialogrelatoriof" header="Visualizar" modal="true" dynamic="true" 
+            <p:dialog widgetVar="visualizadialogrelatoriof" header="Exibindo Relatório Final" modal="true" dynamic="true" 
                       resizable="false" showEffect="fade" hideEffect="explode" width="735">
                 <p:outputPanel id="formvisualizadialogrelatoriof" style="text-align: center;">
                     <p:panelGrid columns="4" rendered="#{not empty MBrelatorioF.selecionadoVisualizaRelatorioF}">
@@ -261,7 +261,6 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
             </p:dialog>
 
 
@@ -308,10 +307,8 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('pdfdialogrelatoriof').hide()" update=":formlistarelatoriosF" />
                 <p:commandButton style="float: right" value="PDF"  ajax="false" action="#{MBrelatorioF.pdfUmRelatorioFinal()}" oncomplete="PF('pdfdialogrelatoriof').hide()"
                                  update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
-
             </p:dialog>
 
             <p:dialog widgetVar="edicaodialogrelatoriof" header="Editar" modal="true" dynamic="true" 
@@ -364,18 +361,16 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-                <p:commandButton style="float: right" value="Fechar" oncomplete="PF('edicaodialogrelatoriof').hide()" update=":formlistarelatoriosF" />
                 <p:commandButton style="float: right" value="Editar Relatório"  ajax="false" action="#{MBrelatorioF.editarRelatorioF()}" oncomplete="PF('edicaodialogrelatoriof').hide()"
                                  update=":formlistarelatoriosF" onclick="this.form.target = '_blank'"/>
-
             </p:dialog>
 
             <p:confirmDialog id="formconfirmdialogexcluirrelatoriof" message="Você gostaria de excluir o Relatório Final de número: 
                              ##{MBrelatorioF.selecionadoExcluirRelatorioF.numeroDeProtocolo}# e de título: ##{MBrelatorioF.selecionadoExcluirRelatorioF.relatorioFtituloDoProjeto}#?" header="Excluir RelatórioF" 
                              severity="alert" widgetVar="confirmdialogexcluirrelatoriof" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirrelatoriof').hide()" action="#{MBrelatorioF.deletarRelatorioF()}"
+               <p:commandButton style="float: right" value="Não" onclick="PF('confirmdialogexcluirfuncionario').hide()" icon="ui-icon-close"/>
+                <p:commandButton style="float: right" value="Sim" oncomplete="PF('confirmdialogexcluirrelatoriof').hide()" action="#{MBrelatorioF.deletarRelatorioF()}"
                                  icon="ui-icon-check" update=":formlistarelatoriosF"/>
-                <p:commandButton value="Não" onclick="PF('confirmdialogexcluirportaria').hide()" icon="ui-icon-close"/>
             </p:confirmDialog>
         </h:form>
     </ui:define>

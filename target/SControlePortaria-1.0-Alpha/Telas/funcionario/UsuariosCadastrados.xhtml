@@ -127,7 +127,7 @@
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
         <br/>
         <h:form id="formlistafuncionario" >
-            <p:dataTable var="funcionario" value="#{MBfuncionario.listaFuncionario}">
+            <p:dataTable var="funcionario" paginator="true" rows="10" value="#{MBfuncionario.listaFuncionario}">
                 <f:facet name="header">
                     Funcionários
                 </f:facet>
@@ -136,7 +136,9 @@
                     <p:outputLabel value="#{funcionario.nomeFuncionario}" />
                 </p:column>
                 <p:column headerText="Data Nascimento" width="10" >
-                    <p:outputLabel value="#{funcionario.dataNascimentoFuncionario}" />
+                    <p:outputLabel value="#{funcionario.dataNascimentoFuncionario}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
                 </p:column>
                 <p:column headerText="Email" width="50" >
                     <p:outputLabel value="#{funcionario.emailFuncionario}" />
@@ -169,11 +171,13 @@
                                     maxlength="10" 
                                     disabled="false" 
                                     timeZone="GMT-3"
-                                    size="74"
+                                    size="70"
                                     locale="pt" 
                                     navigator="true"  
-                                    pattern="dd-mm-yyyy" 
-                                    style="margin-bottom: 20px;" />
+                                    pattern="dd/MM/yyyy" 
+                                    style="margin-bottom: 20px;">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:calendar>
                         <p:outputLabel value="CPF"/>
                         <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.cpfFuncionario}" style="width: 600px" />
                         <p:outputLabel value="Siape"/>
@@ -185,22 +189,17 @@
                     </p:panelGrid>
                 </p:outputPanel>
                 <br/>
-               <!-- <p:commandButton style="float: right" value="Fechar" oncomplete="PF('formedicaodialogfuncionario').hide()" update=":formlistafuncionario"/>
-               --> 
                 <p:commandButton style="float: right" value="Editar"  ajax="false" action="#{MBfuncionario.editarFuncionario()}" oncomplete="PF('formedicaodialogfuncionario').hide()"
                                  update=":formlistafuncionario"/>
-
             </p:dialog>
 
             <p:confirmDialog id="confirmdialogexcluirfuncionario" message="Você gostaria de excluir o Funcionário de nome: ##{MBfuncionario.selecionadoExcluirfuncionario.nomeFuncionario}#?"
                              header="Excluir Funcionário" severity="alert" widgetVar="confirmdialogexcluirfuncionario" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Sim" oncomplete="PF('confirmdialogexcluirfuncionario').hide()" action="#{MBfuncionario.deletarFuncionario()}"
+                <p:commandButton style="float: right" value="Não" onclick="PF('confirmdialogexcluirfuncionario').hide()" icon="ui-icon-close"/>
+                <p:commandButton style="float: right" value="Sim" oncomplete="PF('confirmdialogexcluirfuncionario').hide()" action="#{MBfuncionario.deletarFuncionario()}"
                                  icon="ui-icon-check" update=":formlistafuncionario"/>
-                <p:commandButton value="Não" onclick="PF('confirmdialogexcluirfuncionario').hide()" icon="ui-icon-close"/>
             </p:confirmDialog>
 
         </h:form>
-
     </ui:define>
-
 </ui:composition>
