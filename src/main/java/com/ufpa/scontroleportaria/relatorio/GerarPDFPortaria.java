@@ -61,7 +61,7 @@ public class GerarPDFPortaria {
             response.getOutputStream().close();
 
             context.responseComplete();
-          //  fecharConexao();
+            //  fecharConexao();
 
         } catch (JRException ex) {
             Logger.getLogger(GerarPDFPortaria.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,11 +75,11 @@ public class GerarPDFPortaria {
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
         try {
-            
+
             JasperReport report = (JasperReport) JRLoader.loadObject(stream);
             JasperPrint print = JasperFillManager.fillReport(report, params, getConexao());
             JasperExportManager.exportReportToPdfStream(print, baos);
-            
+
             response.reset();
             response.setContentType("application/pdf");
             response.setContentLength(baos.size());
@@ -89,7 +89,7 @@ public class GerarPDFPortaria {
             response.getOutputStream().close();
 
             context.responseComplete();
-           // fecharConexao();
+            // fecharConexao();
 
         } catch (JRException ex) {
             Logger.getLogger(GerarPDFPortaria.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,12 +113,11 @@ public class GerarPDFPortaria {
         return con;
     }
 
-   /* public void fecharConexao() {
+    /* public void fecharConexao() {
         try {
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(GerarPDFPortaria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }*/
-
 }

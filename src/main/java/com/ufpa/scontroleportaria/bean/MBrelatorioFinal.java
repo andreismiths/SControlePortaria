@@ -39,7 +39,7 @@ public class MBrelatorioFinal extends AbstractBean {
     public void cadastrarRelatorioF() {
         try {
             getDaoGenerico().save(relatorioF);
-            getObjMessage().info("Cadastro efetuado!", "Relatório Final cadastrado com sucesso!");
+            getObjMessage().info("Cadastro efetuado!", "Check-List cadastrado com sucesso!");
         } catch (Exception e) {
             getObjMessage().warn("Cadastro não efetuado!", "O cadastro não foi realizado");
         }
@@ -48,7 +48,7 @@ public class MBrelatorioFinal extends AbstractBean {
       public void editarRelatorioF() {
         try {
                 getDaoGenerico().update(selecionadoEditRelatorioF);
-            getObjMessage().info("Relatório Final Atualizado!", "Com sucesso!");
+            getObjMessage().info("Check-List Atualizado!", "Com sucesso!");
             listarTodosRelatoriosFinais();
         } catch (Exception e) {
             getObjMessage().warn("ERRO na Atualização Efetuada!", "Erro na atualização!");
@@ -58,7 +58,7 @@ public class MBrelatorioFinal extends AbstractBean {
           public void deletarRelatorioF() {
         try {
             getDaoGenerico().remove(selecionadoExcluirRelatorioF);
-            getObjMessage().info("Relatório Final Excluído!", "Com sucesso!");
+            getObjMessage().info("Check-List Excluído!", "Com sucesso!");
             listarTodosRelatoriosFinais();
         } catch (Exception e) {
             getObjMessage().warn("ERRO na Exclusão Efetuada!", "Erro na Exclusão!");
@@ -69,7 +69,7 @@ public class MBrelatorioFinal extends AbstractBean {
             public void listarTodosRelatoriosFinais(){
         try{
             listaRelatorioF = getDaoGenerico().list("SELECT r FROM RelatorioF r");
-            getObjMessage().info("Exibindo Relatórios Finais", "Todas os Relatórios Finais estão sendo listados!");
+            getObjMessage().info("Exibindo Check-Lists", "Todas os Check-Lists estão sendo listados!");
         } catch (Exception e) {
             getObjMessage().warn("Lista Inexistente", "Adicione Itens realizando um Novo Cadastro");
         }

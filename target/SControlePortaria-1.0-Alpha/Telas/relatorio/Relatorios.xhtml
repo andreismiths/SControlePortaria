@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Adm_Layout.xhtml">
     <ui:define name="content">
-        <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" />
+       <!-- <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" /> -->
         <p:growl id="growl"/>
 
         <p:panel>
@@ -81,7 +81,7 @@
                                  reflow="true" >
 
                         <f:facet name="header">
-                            Relatórios Encontrados
+                            Check-Lists Encontrados
                         </f:facet>
 
                         <p:column headerText="Código">
@@ -168,7 +168,7 @@
 
             <p:dataTable var="relatorioF" paginator="true" rows="6" value="#{MBrelatorioF.listaRelatorioF}" >
                 <f:facet name="header">
-                    Relatórios Finais
+                    Check-Lists
                 </f:facet>
                 <p:ajax event="rowSelect" update=":formlistarelatoriosF" />
                 <p:column headerText="Nº Protocolo" width="35" >

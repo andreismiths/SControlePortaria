@@ -6,13 +6,13 @@
                 template="/WEB-INF/template/Adm_Layout.xhtml">
 
     <ui:define name="content">
-        <h1 class="aw-page-title">Novo Relatório Final</h1> 
+        <h1 class="aw-page-title">Novo Check-List de Documentos</h1> 
         <h:form>
              <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
             <p:wizard nextLabel="próximo"
                       backLabel="voltar" >
 
-                <p:tab id="etapa1relatorioF" title="Dados do Relatório" >
+                <p:tab id="etapa1relatorioF" title="Dados do Check-List" >
                     <p:panel>
                         <ui:include src="/forms/formRelatorioFinal.xhtml" />
 
@@ -63,7 +63,7 @@
                                 icon="fa fa-save"
                                 disabled="false" />
 
-                            <p:button value="Novo Relatório" 
+                            <p:button value="Novo Check-List" 
                                       outcome="/Telas/relatorio/NovoRelatorioFinal.xhtml"
                                       icon="fa fa-user-plus" 
                                       style="width: 170px;" />
