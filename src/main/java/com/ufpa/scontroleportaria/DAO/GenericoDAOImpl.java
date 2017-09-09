@@ -3,7 +3,6 @@ package com.ufpa.scontroleportaria.DAO;
 import com.ufpa.scontroleportaria.model.Funcionario;
 import com.ufpa.scontroleportaria.model.Portaria;
 import com.ufpa.scontroleportaria.model.RelatorioF;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.Session;

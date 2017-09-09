@@ -6,126 +6,118 @@
                 template="/WEB-INF/template/Func_Layout.xhtml">
     <ui:define name="content">
         <p:growl id="grolw"/>
-        <p:panel>
-            <div class="ui-fluid">
-                <h:form>
-                    <p:panelGrid columns="2"
-                                 layout="grid"
-                                 style="margin: 5px 0px 5px;"
-                                 styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3"> 
 
-                        <p:outputLabel value="Escolha a Pesquisa:" 
+        <h:form>
+            <p:panelGrid columns="2"
+                         layout="grid"
+                         style="margin: 5px 0px 5px;"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3"> 
 
-                                       for="TipoPesquisa" />
-                        <p:selectOneButton id="TipoPesquisa"
+                <p:outputLabel value="Escolha a Pesquisa:" 
 
-                                           value="#{MBpesquisa.itemPesquisa}"
-                                           required="true"
-                                           requiredMessage="Escolha um tipo de pesquisa!">
+                               for="TipoPesquisa" />
+                <p:selectOneButton id="TipoPesquisa"
 
-                            <f:selectItem itemLabel="Número" itemValue="numeroPortaria" />
-                            <f:selectItem itemLabel="Título" itemValue="tituloProjetoPortaria" />
-                            <f:selectItem itemLabel="Coordenador" itemValue="professorCoordenador" />
-                            <f:selectItem itemLabel="Faculdade" itemValue="faculdadePortaria" />
+                                   value="#{MBpesquisa.itemPesquisa}"
+                                   required="true"
+                                   requiredMessage="Escolha um tipo de pesquisa!">
 
-                            <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
-                        </p:selectOneButton>
-                        <p:message for="TipoPesquisa" />
-                    </p:panelGrid>
+                    <f:selectItem itemLabel="Número" itemValue="numeroPortaria" />
+                    <f:selectItem itemLabel="Título" itemValue="tituloProjetoPortaria" />
+                    <f:selectItem itemLabel="Coordenador" itemValue="professorCoordenador" />
+                    <f:selectItem itemLabel="Faculdade" itemValue="faculdadePortaria" />
 
-                    <p:panelGrid id="search"
-                                 columns="3"
-                                 layout="grid"
-                                 styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                 style="margin-bottom: 20px;" >
+                    <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
+                </p:selectOneButton>
+                <p:message for="TipoPesquisa" />
+            </p:panelGrid>
 
-                        <p:inputMask
-                            mask="#{MBpesquisa.searchMask}"
-                            id="ValorPesquisa"
-                            value="#{MBpesquisa.textoPesquisa}" 
-                            title="#{MBpesquisa.searchTip}"
-                            maxlength="#{MBpesquisa.maxLength}"
-                            required="true" 
-                            requiredMessage="Informe o valor de pesquisa!"/>
+            <p:panelGrid id="search"
+                         columns="3"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3"
+                         style="margin-bottom: 20px;" >
 
-                        <p:commandButton actionListener="#{MBpesquisa.itemListPortaria()}"
-                                         value="Pesquisar" 
-                                         disabled="false"
-                                         icon="fa fa-search"
-                                         update="@([id$=:GridBusca])" />
-                        <p:message for="ValorPesquisa" />
-                    </p:panelGrid>
+                <p:inputMask
+                    mask="#{MBpesquisa.searchMask}"
+                    id="ValorPesquisa"
+                    value="#{MBpesquisa.textoPesquisa}" 
+                    title="#{MBpesquisa.searchTip}"
+                    maxlength="#{MBpesquisa.maxLength}"
+                    required="true" 
+                    requiredMessage="Informe o valor de pesquisa!"/>
 
-                </h:form>
+                <p:commandButton actionListener="#{MBpesquisa.itemListPortaria()}"
+                                 value="Pesquisar" 
+                                 disabled="false"
+                                 icon="fa fa-search"
+                                 update="@([id$=:GridBusca])" />
+                <p:message for="ValorPesquisa" />
+            </p:panelGrid>
 
-                <p:panelGrid id="GridBusca"
-                             columns="1"
-                             layout="grid"
-                             style="margin: 10px 0px 15px;"
-                             styleClass="panelgrid-noborder"
-                             columnClasses="ui-grid-col-12" >
+        </h:form>
 
-                    <p:dataTable id="portariaBuscada"
-                                 var="portaria"
-                                 rendered="#{MBpesquisa.showDataTablePortaria}"
-                                 value="#{MBpesquisa.objBuscados}"
-                                 paginator="true"
-                                 rows="10"
-                                 reflow="true" >
+        <p:panelGrid id="GridBusca"
+                     columns="1"
+                     layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-12" >
+            <h:form id="portariasBuscadass">
+                <p:dataTable id="portariaBuscada"
+                             var="portaria"
+                             rendered="#{MBpesquisa.showDataTablePortaria}"
+                             value="#{MBpesquisa.objBuscados}"
+                             paginator="true"
+                             rows="10"
+                             reflow="true" >
 
-                        <f:facet name="header">
-                            Portarias Encontradas
-                        </f:facet>
+                    <f:facet name="header">
+                        Portarias Encontradas
+                    </f:facet>
+                    <p:column headerText="Número">
+                        <p:outputLabel value="#{portaria.numeroPortaria}"/>
+                    </p:column>
+                    <p:column headerText="Ementa">
+                        <p:outputLabel value="#{portaria.ementaPortaria}"/>
+                    </p:column>
+                    <p:column headerText="Título do Projeto">
+                        <p:outputLabel value="#{portaria.tituloProjetoPortaria}"/>
+                    </p:column>
+                    <p:column headerText="Projeto">
+                        <p:outputLabel value="#{portaria.projetoPortaria}"/>
+                    </p:column>
+                    <p:column headerText="Professor Coordenador">
+                        <p:outputLabel value="#{portaria.professorCoordenador}"/>
+                    </p:column>
+                    <p:column headerText="Início Vigência">
+                        <p:outputLabel value="#{portaria.inicioVigencia}"/>
+                    </p:column>
+                    <p:column headerText="Fim Vigência">
+                        <p:outputLabel value="#{portaria.fimVigencia}"/>
+                    </p:column>
+                    <p:column headerText="Rel. Projeto">
+                        <p:outputLabel value="#{portaria.relatorioProjeto}"/>
+                    </p:column>
 
-                        <p:column headerText="Código">
-                            <h:outputText value="#{portaria.id}" />
-                        </p:column>
+                    <p:column headerText="Ações" style="width: 100px; text-align: center;">
+                        <p:commandButton icon="fa fa-eye" oncomplete="PF('visualizadialogportaria').show()" 
+                                         update=":formlistaportaria:formvisualizadialogportaria" title="Visualizar">
+                            <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaVisualizaPortaria}"/>
+                        </p:commandButton>
+                        <p:commandButton icon="fa fa-file-pdf-o" oncomplete="PF('pdfdialogportaria').show()" 
+                                         update=":formlistaportaria:formpdfdialogportaria" title="PDF">
+                            <f:setPropertyActionListener value="#{portaria}" target="#{MBportaria.selecionadaPortaria}"/>
+                        </p:commandButton>
 
-                        <p:column headerText="Número" >
-                            <h:outputText value="#{portaria.numeroPortaria}" />
-                        </p:column>
+                    </p:column>
 
-                        <p:column headerText="Ementa" >
-                            <h:outputText value="#{portaria.ementaPortaria}" />
-                        </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panelGrid>
 
-                        <p:column headerText="Projeto" >
-                            <h:outputText value="#{portaria.projetoPortaria}" />
-                        </p:column>
-
-                        <p:column headerText="Título" >
-                            <h:outputText value="#{portaria.tituloProjetoPortaria}" />
-                        </p:column>
-
-                        <p:column headerText="Faculdade">
-                            <h:outputText value="#{portaria.faculdadePortaria}"/>
-                        </p:column>
-
-                        <p:column headerText="Processor Coordenador">
-                            <h:outputText value="#{portaria.professorCoordenador}"/>
-                        </p:column>
-
-                        <p:column headerText="Siape Coordenador">
-                            <h:outputText value="#{portaria.siapeCoordenador}"/>
-                        </p:column>
-
-                        <p:column headerText="Início Vigência">
-                            <h:outputText value="#{portaria.inicioVigencia}"/>
-                        </p:column>
-
-                        <p:column headerText="Fim Vigência">
-                            <h:outputText value="#{portaria.fimVigencia}"/>
-                        </p:column>
-
-
-                    </p:dataTable>
-
-                </p:panelGrid>
-            </div>
-        </p:panel>
-<br/>
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
 
         <h:form id="formlistaportaria">

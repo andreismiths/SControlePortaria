@@ -5,167 +5,130 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/Adm_Layout.xhtml">
     <ui:define name="content">
-       <!-- <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" /> -->
-        <p:growl id="growl"/>
+        <!-- <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" /> -->
+        <p:growl id="growl"/> 
 
-        <p:panel>
-            <div class="ui-fluid">
-                <h:form>
-                    <p:panelGrid columns="2"
-                                 layout="grid"
-                                 style="margin: 5px 0px 5px;"
-                                 styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3"> 
-                        <p:outputLabel value="Escolha a Pesquisa:" 
+        <h:form>
+            <p:panelGrid columns="2"
+                         layout="grid"
+                         style="margin: 5px 0px 5px;"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3"> 
+                <p:outputLabel value="Escolha a Pesquisa:" 
 
-                                       for="TipoPesquisa" />
-                        <p:selectOneButton id="TipoPesquisa"
+                               for="TipoPesquisa" />
+                <p:selectOneButton id="TipoPesquisa"
 
-                                           value="#{MBpesquisa.itemPesquisa}"
-                                           required="true"
-                                           requiredMessage="Escolha um tipo de pesquisa!">
+                                   value="#{MBpesquisa.itemPesquisa}"
+                                   required="true"
+                                   requiredMessage="Escolha um tipo de pesquisa!">
 
-                            <f:selectItem itemLabel="Protocolo" itemValue="numeroDeProtocolo" />
-                            <f:selectItem itemLabel="Resp. Entrega" itemValue="assinaturaRespEntrega" />
-                            <f:selectItem itemLabel="Faculdade" itemValue="faculdadeRelatorioF" />
+                    <f:selectItem itemLabel="Protocolo" itemValue="numeroDeProtocolo" />
+                    <f:selectItem itemLabel="Resp. Entrega" itemValue="assinaturaRespEntrega" />
+                    <f:selectItem itemLabel="Faculdade" itemValue="faculdadeRelatorioF" />
 
-                            <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
-                        </p:selectOneButton>
-                        <p:message for="TipoPesquisa" />
-                    </p:panelGrid>
+                    <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
+                </p:selectOneButton>
+                <p:message for="TipoPesquisa" />
+            </p:panelGrid>
 
-                    <p:panelGrid id="search"
-                                 columns="3"
-                                 layout="grid"
-                                 styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                 style="margin-bottom: 20px;" >
+            <p:panelGrid id="search"
+                         columns="2"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-3, ui-grid-col-1, ui-grid-col-1"
+                         style="margin-bottom: 20px;" >
 
 
-                        <p:inputMask
-                            mask="#{MBpesquisa.searchMask}"
-                            id="ValorPesquisa"
-                            value="#{MBpesquisa.textoPesquisa}" 
-                            title="#{MBpesquisa.searchTip}"
-                            maxlength="#{MBpesquisa.maxLength}"
-                            required="true" 
-                            requiredMessage="Informe o valor de pesquisa!"/>
+                <p:inputMask
+                    mask="#{MBpesquisa.searchMask}"
+                    id="ValorPesquisa"
+                    value="#{MBpesquisa.textoPesquisa}" 
+                    title="#{MBpesquisa.searchTip}"
+                    maxlength="#{MBpesquisa.maxLength}"
+                    required="true"
+                    style="width: 250px"
+                    requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                        <p:commandButton actionListener="#{MBpesquisa.itemListRelatorioF()}"
-                                         value="Pesquisar" 
-                                         disabled="false"
-                                         icon="fa fa-search"
-                                         update="@([id$=:GridBusca])" />
-                        <p:message for="ValorPesquisa" />
-                    </p:panelGrid>
+                <p:commandButton actionListener="#{MBpesquisa.itemListRelatorioF()}"
+                                 value="Pesquisar" 
+                                 disabled="false"
+                                 icon="fa fa-search"
+                                 update="@([id$=:GridBusca])" />
+                <p:message for="ValorPesquisa" />
+            </p:panelGrid>
 
-                </h:form>
+        </h:form>
 
+        <p:panelGrid id="GridBusca"
+                     columns="1"
+                     layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-12" >
 
+            <h:form id="relatoriosFBuscados">
+                <p:dataTable id="relatorioFBuscado"
+                             var="relatorioF"
+                             rendered="#{MBpesquisa.showDataTableRelatorioF}"
+                             value="#{MBpesquisa.objBuscados}"
+                             paginator="true"
+                             rows="4"
+                             reflow="true" >
 
-                <p:panelGrid id="GridBusca"
-                             columns="1"
-                             layout="grid"
-                             style="margin: 10px 0px 15px;"
-                             styleClass="panelgrid-noborder"
-                             columnClasses="ui-grid-col-12" >
+                    <f:facet name="header">
+                        Check-Lists Encontrados
+                    </f:facet>
 
+                    <p:column headerText="Nº Protocolo" width="35" >
+                        <p:outputLabel value="#{relatorioF.numeroDeProtocolo}"/>
+                    </p:column>
+                    <p:column headerText="Faculdade" width="35" >
+                        <p:outputLabel value="#{relatorioF.faculdadeRelatorioF}"/>
+                    </p:column>
+                    <p:column headerText="Título" width="90" >
+                        <p:outputLabel value="#{relatorioF.relatorioFtituloDoProjeto}"/>
+                    </p:column>
+                    <p:column headerText="Coordenador" width="30" >
+                        <p:outputLabel value="#{relatorioF.relatorioFcoordenador}"/>
+                    </p:column>
 
-                    <p:dataTable id="relatorioFBuscado"
-                                 var="relatorioF"
-                                 rendered="#{MBpesquisa.showDataTableRelatorioF}"
-                                 value="#{MBpesquisa.objBuscados}"
-                                 paginator="true"
-                                 rows="10"
-                                 reflow="true" >
+                    <p:column headerText="DataRecebido" width="30" >
+                        <p:outputLabel value="#{relatorioF.dataRecebido}"/>
+                    </p:column>
+                    <p:column headerText="Resp. Entrega" width="40" >
+                        <p:outputLabel value="#{relatorioF.assinaturaRespEntrega}"/>
+                    </p:column>
 
-                        <f:facet name="header">
-                            Check-Lists Encontrados
-                        </f:facet>
+                    <p:column headerText="Ações" style="width: 70px; text-align: center;" >
 
-                        <p:column headerText="Código">
-                            <h:outputText value="#{relatorioF.pkRelatorioF}" />
-                        </p:column>
+                        <p:commandButton icon="fa fa-eye" oncomplete="PF('visualizadialogrelatoriof').show()"
+                                         update=":formlistarelatoriosF:formvisualizadialogrelatoriof" title="Visualizar">
+                            <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoVisualizaRelatorioF}"/>
+                        </p:commandButton>
+                        <p:commandButton icon="fa fa-file-pdf-o"  oncomplete="PF('pdfdialogrelatoriof').show()" 
+                                         update=":formlistarelatoriosF:formpdfdialogrelatoriof" title="PDF">
+                            <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoRelatorioF}"/>
+                        </p:commandButton>
+                        <p:commandButton icon="fa fa-file-text" ajax="false" onclick="this.form.target = '_blank'"
+                                         action="#{MBrelatorioF.pdfTodosRelatorioFinal()}" title="PDF Todas"/>
+                        <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogrelatoriof').show()"
+                                         update=":formlistarelatoriosF:formedicaodialogrelatoriof" title="Editar">
+                            <f:setPropertyActionListener value="#{relatorioF}" target="#{MBrelatorioF.selecionadoEditRelatorioF}"/>
+                        </p:commandButton>
+                        <p:commandButton icon="fa fa-trash-o" oncomplete="PF('confirmdialogexcluirrelatoriof').show()" 
+                                         update=":formlistarelatoriosF:formconfirmdialogexcluirrelatoriof" title="Excluir">
+                            <f:setPropertyActionListener target="#{MBrelatorioF.selecionadoExcluirRelatorioF}" value="#{relatorioF}"/>
+                        </p:commandButton>
+                    </p:column>
 
-                        <p:column headerText="Número de Protocolo" >
-                            <h:outputText value="#{relatorioF.numeroDeProtocolo}" />
-                        </p:column>
-
-                        <p:column headerText="Tipo" >
-                            <h:outputText value="#{relatorioF.pesquisaExtensao}" />
-                        </p:column>
-
-                        <p:column headerText="Título do Projeto" >
-                            <h:outputText value="#{relatorioF.relatorioFtituloDoProjeto}" />
-                        </p:column>
-
-                        <p:column headerText="Coordenador" >
-                            <h:outputText value="#{relatorioF.relatorioFcoordenador}" />
-                        </p:column>
-
-                        <p:column headerText="Memorando da Direção da Faculdade">
-                            <h:outputText value="#{relatorioF.memorandoDirecaoFaculdade}"/>
-                        </p:column>
-
-                        <p:column headerText="Ata da Reunião do Conselho da Faculdade que aprovou o Relatório
-                                  Final do Projeto. (com frequência em anexo)">
-                            <h:outputText value="#{relatorioF.ataReuniao}"/>
-                        </p:column>
-
-                        <p:column headerText="Relatório Final do Projeto executado, de acordo com formato definido
-                                  pela Pró-Reitoria">
-                            <h:outputText value="#{relatorioF.relatorioFexecutadoFormatoProReitoria}"/>
-                        </p:column>
-
-                        <p:column headerText="Parecer em Relatório Final de Projeto, assinado pelo Parecerista">
-                            <h:outputText value="#{relatorioF.parecerRelatorioFinal}"/>
-                        </p:column>
-
-                        <p:column headerText="Formação de Recursos Humanos para a Pesquisa">
-                            <h:outputText value="#{relatorioF.formacaoRecursosHumanosPesquisa}"/>
-                        </p:column>
-
-                        <p:column headerText="Data Recebido" >
-                            <h:outputText value="#{relatorioF.dataRecebido}" />
-                        </p:column>
-
-                        <p:column headerText="Contatos Nacionais e Internacionais efetivamente ocorridos em função do
-                                  projeto" >
-                            <h:outputText value="#{relatorioF.contatosNacionaisInternacionais}" />
-                        </p:column>
-
-                        <p:column headerText="Trabalhos publicados e/ou aceitos para publicação no período,
-                                  relacionados com o projeto em pauta: livros, capítulos de livros, artigos
-                                  em periódicos nacionais e internacionais, etc" >
-                            <h:outputText value="#{relatorioF.trabalhosPublicadosAceitos}" />
-                        </p:column>
-
-                        <p:column headerText="Patente ou registro de invenção ou técnica" >
-                            <h:outputText value="#{relatorioF.patenteRegistroInvencao}" />
-                        </p:column>
-
-                        <p:column headerText="Atividades científicas/administrativas: organização de ou participação em
-                                  eventos científicos, consultorias, assessorias a órgãos de fomento ou a
-                                  outras instituições, participação em colegiados, bancas de doutorado ou
-                                  concursos públicos, etc" >
-                            <h:outputText value="#{relatorioF.atividadesCientificasAdministrativas}" />
-                        </p:column>
-
-                        <p:column headerText="Contribuição para o ensino de graduação, inclusive discriminando as
-                                  disciplinas teóricas e/ou experimentais beneficiadas" >
-                            <h:outputText value="#{relatorioF.contribuicaoPensinoGraduacao}" />
-                        </p:column>
-
-                    </p:dataTable>
-                </p:panelGrid>
-            </div>
-        </p:panel>
+                </p:dataTable>
+            </h:form>
+        </p:panelGrid>
 
         <p:messages  id="messages" autoUpdate="true" closable="true" showDetail="true" />
-
         <h:form id="formlistarelatoriosF" >
-
             <p:dataTable var="relatorioF" paginator="true" rows="6" value="#{MBrelatorioF.listaRelatorioF}" >
                 <f:facet name="header">
                     Check-Lists

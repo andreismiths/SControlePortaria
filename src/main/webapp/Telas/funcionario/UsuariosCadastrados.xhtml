@@ -7,121 +7,110 @@
     <ui:define name="content">
         <!-- <h:outputStylesheet library="arquivos" name="styles/table-locked-in-responsive-mode.css" /> -->
         <p:growl id="growl"/>
-        <p:panel>
-            <div class="ui-fluid">
-                <h:form>
-                    <p:panelGrid columns="2"
-                                 layout="grid"
-                                 style="margin: 5px 0px 5px;"
-                                 styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-4, ui-grid-col-4, ui-grid-col-3"> 
+        <h:form>
+            <p:panelGrid columns="2"
+                         layout="grid"
+                         style="margin: 5px 0px 5px;"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3"> 
 
-                        <p:outputLabel value="Escolha a Pesquisa:" 
-                                       for="TipoPesquisa" />
-                        <p:selectOneButton id="TipoPesquisa"
+                <p:outputLabel value="Escolha a Pesquisa:" 
+                               for="TipoPesquisa" />
+                <p:selectOneButton id="TipoPesquisa"
 
-                                           value="#{MBpesquisa.itemPesquisa}"
-                                           required="true"
-                                           requiredMessage="Escolha um tipo de pesquisa!">
+                                   value="#{MBpesquisa.itemPesquisa}"
+                                   required="true"
+                                   requiredMessage="Escolha um tipo de pesquisa!">
 
-                            <f:selectItem itemLabel="Nome" itemValue="nomeFuncionario" />
-                            <f:selectItem itemLabel="CPF" itemValue="cpfFuncionario" />
-                            <f:selectItem itemLabel="SIAPE" itemValue="siapeFuncionario" />
+                    <f:selectItem itemLabel="Nome" itemValue="nomeFuncionario" />
+                    <f:selectItem itemLabel="CPF" itemValue="cpfFuncionario" />
+                    <f:selectItem itemLabel="SIAPE" itemValue="siapeFuncionario" />
 
-                            <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
-                        </p:selectOneButton>
-                        <p:message for="TipoPesquisa" />
-                    </p:panelGrid>
+                    <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
+                </p:selectOneButton>
+                <p:message for="TipoPesquisa" />
+            </p:panelGrid>
 
-                    <p:panelGrid id="search"
-                                 columns="3"
-                                 layout="grid"
-                                 styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                 style="margin-bottom: 20px;" >
+            <p:panelGrid id="search"
+                         columns="2"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3"
+                         style="margin-bottom: 20px;" >
 
 
-                        <p:inputMask
-                            mask="#{MBpesquisa.searchMask}"
-                            id="ValorPesquisa"
-                            value="#{MBpesquisa.textoPesquisa}" 
-                            title="#{MBpesquisa.searchTip}"
-                            maxlength="#{MBpesquisa.maxLength}"
-                            required="true" 
-                            requiredMessage="Informe o valor de pesquisa!"/>
+                <p:inputMask
+                    mask="#{MBpesquisa.searchMask}"
+                    id="ValorPesquisa"
+                    value="#{MBpesquisa.textoPesquisa}" 
+                    title="#{MBpesquisa.searchTip}"
+                    maxlength="#{MBpesquisa.maxLength}"
+                    required="true"
+                    style="width: 250px"
+                    requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                        <p:commandButton actionListener="#{MBpesquisa.itemListFuncionario()}"
-                                         value="Pesquisar" 
-                                         disabled="false"
-                                         icon="fa fa-search"
-                                         update="@([id$=:GridBusca])" />
-                        <p:message for="ValorPesquisa" />
-                    </p:panelGrid>
+                <p:commandButton actionListener="#{MBpesquisa.itemListFuncionario()}"
+                                 value="Pesquisar" 
+                                 disabled="false"
+                                 icon="fa fa-search"
+                                 update="@([id$=:GridBusca])" />
+                <p:message for="ValorPesquisa" />
+            </p:panelGrid>
 
-                </h:form>
+        </h:form>
 
+        <p:panelGrid id="GridBusca"
+                     columns="1"
+                     layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-12" >
 
+            <h:form id="funcionariosBuscados">
+                <p:dataTable id="funcionarioBuscado"
+                             var="funcionario"
+                             rendered="#{MBpesquisa.showDataTableFuncionario}"
+                             value="#{MBpesquisa.objBuscados}"
+                             paginator="true"
+                             rows="4"
+                             reflow="true" >
 
-                <p:panelGrid id="GridBusca"
-                             columns="1"
-                             layout="grid"
-                             style="margin: 10px 0px 15px;"
-                             styleClass="panelgrid-noborder"
-                             columnClasses="ui-grid-col-12" >
+                    <f:facet name="header">
+                        Funcionários Encontrados
+                    </f:facet>
 
+                    <p:column headerText="Nome" width="50" >
+                        <p:outputLabel value="#{funcionario.nomeFuncionario}" />
+                    </p:column>
+                    <p:column headerText="Data Nascimento" width="10" >
+                        <p:outputLabel value="#{funcionario.dataNascimentoFuncionario}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column headerText="Email" width="50" >
+                        <p:outputLabel value="#{funcionario.emailFuncionario}" />
+                    </p:column>
+                    <p:column headerText="Tipo" width="10" >
+                        <p:outputLabel value="#{funcionario.tipoFuncionario}" />
+                    </p:column>
 
-                    <p:dataTable id="funcionarioBuscado"
-                                 var="funcionario"
-                                 rendered="#{MBpesquisa.showDataTableFuncionario}"
-                                 value="#{MBpesquisa.objBuscados}"
-                                 paginator="true"
-                                 rows="10"
-                                 reflow="true" >
+                    <p:column headerText="Ações" style="width: 10px; text-align: center;" >
+                        <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogfuncionario').show()"
+                                         update=":formlistafuncionario:formedicaodialogfuncionario" title="Editar">
+                            <f:setPropertyActionListener value="#{funcionario}" target="#{MBfuncionario.selecionadoEditfuncionario}"/>
+                        </p:commandButton>
+                        <p:commandButton icon="fa fa-trash-o" oncomplete="PF('confirmdialogexcluirfuncionario').show()" 
+                                         update=":formlistafuncionario:confirmdialogexcluirfuncionario" title="Excluir">
+                            <f:setPropertyActionListener target="#{MBfuncionario.selecionadoExcluirfuncionario}" value="#{funcionario}"/>
+                        </p:commandButton>
+                    </p:column>
 
-                        <f:facet name="header">
-                            Funcionários Encontrados
-                        </f:facet>
-
-                        <p:column headerText="Código">
-                            <h:outputText value="#{funcionario.pkFuncionario}" />
-                        </p:column>
-
-                        <p:column headerText="Nome" >
-                            <h:outputText value="#{funcionario.nomeFuncionario}" />
-
-                        </p:column>
-
-                        <p:column headerText="SIAPE" >
-                            <h:outputText value="#{funcionario.siapeFuncionario}" />
-
-                        </p:column>
-                        <p:column headerText="CPF" >
-                            <h:outputText value="#{funcionario.cpfFuncionario}" />
-
-                        </p:column>
-                        <p:column headerText="Data de Nascimento">
-                            <h:outputText value="#{funcionario.dataNascimentoFuncionario}"/>
-                        </p:column>
-
-                        <p:column headerText="E-mail">
-                            <h:outputText value="#{funcionario.emailFuncionario}"/>
-                        </p:column>
-
-                        <p:column headerText="Tipo">
-                            <h:outputText value="#{funcionario.tipoFuncionario}"/>
-                        </p:column>
-
-
-                    </p:dataTable>
-
-
-                </p:panelGrid>
-            </div>
-        </p:panel>
+                </p:dataTable>
+            </h:form>
+        </p:panelGrid>
 
         <p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
-        <br/>
         <h:form id="formlistafuncionario" >
             <p:dataTable var="funcionario" paginator="true" rows="6" value="#{MBfuncionario.listaFuncionario}">
                 <f:facet name="header">
