@@ -19,9 +19,10 @@ import javax.faces.bean.ViewScoped;
 public class MBfuncionario extends AbstractBean {
 
     private Funcionario funcionario;
+    private Funcionario selecionadofuncionario;
     private Funcionario selecionadoEditfuncionario;
     private Funcionario selecionadoExcluirfuncionario;
-    private Funcionario selecionadofuncionario;
+    private Funcionario selecionadoVisualizafuncionario;
     private FuncionarioList objListFuncionario;
     private List<Funcionario> listaFuncionario;
     private List<Funcionario> listaPDFFuncionario = new ArrayList<Funcionario>();
@@ -138,14 +139,22 @@ public class MBfuncionario extends AbstractBean {
     }
 
     public List<Funcionario> getFuncionarioSelect() {
-        if (this.funcionarioSelect == null){
-            funcionarioSelect = (List<Funcionario>)getDaoGenerico().list("SELECT f FROM Funcionario f WHERE f.tipoFuncionario = 'Professor'");
+        if (this.funcionarioSelect == null) {
+            funcionarioSelect = (List<Funcionario>) getDaoGenerico().list("SELECT f FROM Funcionario f WHERE f.tipoFuncionario = 'Professor'");
         }
         return funcionarioSelect;
     }
 
     public void setFuncionarioSelect(List<Funcionario> funcionarioSelect) {
         this.funcionarioSelect = funcionarioSelect;
+    }
+
+    public Funcionario getSelecionadoVisualizafuncionario() {
+        return selecionadoVisualizafuncionario;
+    }
+
+    public void setSelecionadoVisualizafuncionario(Funcionario selecionadoVisualizafuncionario) {
+        this.selecionadoVisualizafuncionario = selecionadoVisualizafuncionario;
     }
 
     @Override

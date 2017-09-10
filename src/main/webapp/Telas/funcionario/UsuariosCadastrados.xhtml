@@ -133,6 +133,10 @@
                 </p:column>
 
                 <p:column headerText="Ações" style="width: 10px; text-align: center;" >
+                    <p:commandButton icon="fa fa-eye" oncomplete="PF('visualizadialogfuncionario').show()" 
+                                     update=":formlistafuncionario:formvisualizadialogfuncionario" title="Visualizar">
+                        <f:setPropertyActionListener value="#{funcionario}" target="#{MBfuncionario.selecionadoVisualizafuncionario}"/>
+                    </p:commandButton>
                     <p:commandButton icon="fa fa-pencil-square-o" oncomplete="PF('edicaodialogfuncionario').show()"
                                      update=":formlistafuncionario:formedicaodialogfuncionario" title="Editar">
                         <f:setPropertyActionListener value="#{funcionario}" target="#{MBfuncionario.selecionadoEditfuncionario}"/>
@@ -144,11 +148,42 @@
                 </p:column>
             </p:dataTable>
 
+            <p:dialog widgetVar="visualizadialogfuncionario" header="Exibindo Funcionário" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="600">
+                <p:outputPanel id="formvisualizadialogfuncionario" style="text-align: center;">
+                    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBfuncionario.selecionadoVisualizafuncionario}">
+                        <p:outputLabel value="Nome"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoVisualizafuncionario.nomeFuncionario}" style="width: 400px" disabled="true"/>
+                        <p:outputLabel value="Data Nascimento"/>
+                        <p:calendar value="#{MBfuncionario.selecionadoVisualizafuncionario.dataNascimentoFuncionario}" disabled="true"
+                                    maxlength="10" 
+                                    timeZone="GMT-3"
+                                    size="45"
+                                    locale="pt" 
+                                    navigator="true"  
+                                    pattern="dd/MM/yyyy" 
+                                    style="margin-bottom: 20px;">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:calendar>
+                        <p:outputLabel value="CPF"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoVisualizafuncionario.cpfFuncionario}" style="width: 400px" disabled="true"/>
+                        <p:outputLabel value="Siape"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoVisualizafuncionario.siapeFuncionario}" style="width: 400px" disabled="true"/>
+                        <p:outputLabel value="Email"/>
+                        <p:inputText value="#{MBfuncionario.selecionadoVisualizafuncionario.emailFuncionario}" style="width: 400px" disabled="true"/>
+                        <p:outputLabel value="Tipo"/>
+                        <p:selectOneMenu value="#{MBfuncionario.selecionadoVisualizafuncionario.tipoFuncionario}" style="width: 380px" disabled="true">
+                            <f:selectItem itemLabel="Professor" itemValue="Professor" />
+                            <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+                </p:outputPanel>
+                <br/>
+            </p:dialog>
+
             <p:dialog widgetVar="edicaodialogfuncionario" header="Editar" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="600">
                 <p:outputPanel id="formedicaodialogfuncionario" style="text-align: center;">
                     <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBfuncionario.selecionadoEditfuncionario}">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.pkFuncionario}" style="width: 400px" disabled="true"/>
                         <p:outputLabel value="Nome"/>
                         <p:inputText value="#{MBfuncionario.selecionadoEditfuncionario.nomeFuncionario}" style="width: 400px" />
                         <p:outputLabel value="Data Nascimento"/>

@@ -168,8 +168,6 @@
             <p:dialog widgetVar="visualizadialogportaria" header=" Exibindo Portaria " modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formvisualizadialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaVisualizaPortaria}">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.id}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Número"/>
                         <p:inputText value="#{MBportaria.selecionadaVisualizaPortaria.numeroPortaria}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Ementa Portaria"/>
@@ -202,8 +200,6 @@
             <p:dialog widgetVar="pdfdialogportaria" header="Gerar PDF" modal="true" showEffect="fade" hideEffect="explode" dynamic="true" resizable="false" width="800" >
                 <p:outputPanel id="formpdfdialogportaria" style="text-align: center;">
                     <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2" styleClass="panelgrid-noborder" rendered="#{not empty MBportaria.selecionadaPortaria}">
-                        <p:outputLabel value="PK"/>
-                        <p:inputText value="#{MBportaria.selecionadaPortaria.id}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Número"/>
                         <p:inputText value="#{MBportaria.selecionadaPortaria.numeroPortaria}" style="width: 600px" disabled="true"/>
                         <p:outputLabel value="Ementa Portaria"/>
