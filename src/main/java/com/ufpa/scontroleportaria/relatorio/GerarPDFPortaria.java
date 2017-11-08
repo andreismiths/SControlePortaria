@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -48,6 +49,7 @@ public class GerarPDFPortaria {
         stream = this.getClass().getClassLoader().getResourceAsStream("/com/ufpa/scontroleportaria/report/PDFUmaPortaria.jasper");
         Map<String, Object> params = new HashMap<String, Object>();
         baos = new ByteArrayOutputStream();
+        
         try {
             JasperReport report = (JasperReport) JRLoader.loadObject(stream);
             JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(lista));
